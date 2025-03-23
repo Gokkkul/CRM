@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
-import { Interaction } from "./Interaction";
-import { SalesOpportunity } from "./SalesOpportunity";
+import { Interaction } from "./interaction.entity";
+import { SalesOpportunity } from "./salesOpportunity.entity";
 
 @Entity()
 export class Customer {

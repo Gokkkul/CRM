@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne } from "typeorm";
-import { SalesOpportunity } from "./SalesOpportunity";
+import { SalesOpportunity } from "./salesOpportunity.entity";
 
 @Entity()
 export class Lead {

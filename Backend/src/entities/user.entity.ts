@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
-import { Interaction } from "./Interaction";
-import { Task } from "./Task";
-import { EmailLog } from "./EmailLog";
-import { Report } from "./Report";
+import { Interaction } from "./interaction.entity";
+import { Task } from "./task.entity";
+import { EmailLog } from "./emailLog.entity";
+import { Report } from "./report.entity";
 
 @Entity()
 export class User {

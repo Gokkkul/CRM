@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne } from "typeorm";
-import { Customer } from "./Customer";
-import { Lead } from "./Lead";
+import { Customer } from "./customer.entity";
+import { Lead } from "./lead.entity";
 
 @Entity()
 export class SalesOpportunity {

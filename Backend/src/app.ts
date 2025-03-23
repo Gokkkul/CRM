@@ -18,7 +18,7 @@ app.use(express.json())
 app.use('/users', userRouter );
 
 app.listen(process.env.SERVER_PORT, () => {
-    console.log("Server started...!");
+    console.log("Server started...!", process.env.SERVER_PORT);
 })
 
 

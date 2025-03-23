@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from "typeorm";
-import { Customer } from "./Customer";
-import { User } from "./User";
+import { Customer } from "./customer.entity";
+import { User } from "./user.entity";
 
 @Entity()
 export class Interaction {
