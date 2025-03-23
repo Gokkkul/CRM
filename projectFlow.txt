@@ -1,3 +1,12 @@
+### 8. **Customer Relationship Management (CRM) System**
+**Features**:
+- **Contact Management**: Manage customer contacts and interaction history.
+- **Sales Pipeline**: Track leads and opportunities through the sales pipeline.
+- **Email Integration**: Send and track emails directly from the CRM.
+- **Reporting and Analytics**: Generate sales reports and analyze performance.
+- **Automation**: Automate repetitive tasks like follow-ups and reminders.
+
+
 Here's a recommended flow for developing your Customer Relationship Management (CRM) System project:
 
 ### **Step-by-Step Project Flow**
