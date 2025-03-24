@@ -15,4 +15,14 @@ export class customerRepository{
         const data = await this.appDataSource.update(id,customer);
         return `Customer updated successfully...!`;
     }
+
+    async deleteCustomer(id: number){
+        await this.appDataSource.update(id,{isDeleted: 1});
+        return `Customer deleted successfully...!`;
+    }
+
+    async getCustomer(){
+        const result = await this.appDataSource.find();
+        return result;
+    }
 }

@@ -19,6 +19,9 @@ export class SalesOpportunity {
     @Column({ type: "float" })
     value: number;
 
+    @Column({type: 'bit'})
+    isDeleted: number;
+
     @Column({ type: "date", nullable: true })
     expectedCloseDate: Date;
 

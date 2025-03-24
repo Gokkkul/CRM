@@ -15,6 +15,9 @@ export class EmailLog {
     @Column({ type: "varchar", length: 255 })
     recipient: string;
 
+    @Column({type: "bit"})
+    isDeleted: number;
+
     @ManyToOne(() => User, (user) => user.emailLogs)
     sentBy: User;
 

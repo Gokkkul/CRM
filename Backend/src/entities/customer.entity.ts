@@ -22,6 +22,9 @@ export class Customer {
     @Column({ type: "varchar", length: 255, nullable: true })
     company: string;
 
+    @Column({type: 'bit'})
+    isDeleted: number;
+
     @CreateDateColumn()
     createdAt: Date;
 
