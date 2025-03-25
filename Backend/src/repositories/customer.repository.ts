@@ -15,4 +15,9 @@ export class customerRepository{
         const data = await this.appDataSource.update(id,customer);
         return `Customer updated successfully...!`;
     }
+
+    async deleteCustomer(id: number){
+        const data = await this.appDataSource.delete(id);
+        return `Customer deleted successfully...!`
+    }
 }
