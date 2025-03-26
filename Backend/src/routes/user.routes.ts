@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 // const userController = new UserController();
 
-// router.post('/add-user', userController.createUser);
+// router.post('/add-user',  userController.createUser);
 // router.delete('/delete-user/:id', userController.deleteUser);
 
 export{router as userRouter }
