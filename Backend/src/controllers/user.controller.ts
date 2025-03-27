@@ -37,12 +37,11 @@ export class UserController {
     }
   };
 
-  /**
-   * This method is used to delete a user
-   * @param req
-   * @param res
-   * @returns
-   */
+ /**
+  * 
+  * @param req 
+  * @param res 
+  */
   deleteUser = async (req: Request, res: Response) => {
     try {
       const id = Number(req.params.id);
