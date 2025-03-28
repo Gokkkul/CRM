@@ -4,7 +4,7 @@ import { Task } from "./task.entity";
 import { EmailLog } from "./emailLog.entity";
 import { Report } from "./report.entity";
 
-@Entity()
+@Entity('user___tbl')
 export class User {
     @PrimaryGeneratedColumn()
     id: number;

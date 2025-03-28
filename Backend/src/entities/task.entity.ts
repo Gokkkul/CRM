@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from "typeorm";
 import { User } from "./user.entity";
 
-@Entity()
+@Entity('task__tbl')
 export class Task {
     @PrimaryGeneratedColumn()
     id: number;

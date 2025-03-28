@@ -1,20 +1,36 @@
-.sidenav-container {
-    height: 100vh;
-    color: white;
+#sidebar {
+  width: 250px;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    width: 70px; /* Adjust width for smaller screens */
   }
-  
-  .mat-sidenav {
-    width: 250px;
-    background-color: #212529;
+
+  #sidebar .nav-item {
+    text-align: center;
   }
-  
-  .mat-toolbar {
-    position: sticky;
-    top: 0;
-    z-index: 1;
+
+  #sidebar .nav-link i {
+    font-size: 1.5rem; /* Enlarge icons for better visibility */
   }
-  
-  .content {
-    padding: 16px;
+
+  #sidebar .nav-link span {
+    display: none; /* Hide text on smaller screens */
   }
-  
+}
+
+.nav-item:hover{
+  background-color: #0d6efd;
+  color: white;
+
+}
+.nav-item:active{
+  background-color: #0d6efd;
+  color: white;
+}
+
+.nav-item{
+  padding: 10px;
+}
+

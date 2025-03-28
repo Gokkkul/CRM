@@ -162,3 +162,22 @@ Based on the entities you have provided, your CRM (Customer Relationship Managem
 Your CRM system helps businesses track customer relationships, sales progress, interactions, and tasks. The system organizes data into entities like **Customer**, **SalesOpportunity**, **Interaction**, **Lead**, **EmailLog**, **Task**, and **User**. These entities work together to provide a comprehensive view of customer data and sales activities, ultimately helping businesses manage and grow their customer relationships efficiently.
 
 Let me know if you need further clarification on any part of the system!
+
+
+
+Dashboard compoenents 
+
+Based on the entities you've described, here's a suggestion for the modules you could include in your sidebar for easy navigation:
+
+1. **Dashboard** (for an overview of key metrics, summaries, and shortcuts)
+2. **Customers** (to manage customer details and their associated interactions and opportunities)
+3. **Interactions** (to log and track calls, emails, meetings, and follow-ups)
+4. **Sales Opportunities** (to manage the sales pipeline, stages, and potential deals)
+5. **Leads** (to handle potential customers and track their status)
+6. **Email Logs** (to view and manage email communications)
+7. **Tasks** (to organize and track pending and completed tasks)
+8. **Reports** (to access and generate performance and activity reports)
+9. **Users** (for admin purposes like managing roles, permissions, and profiles)
+10. **Settings** (to configure system preferences and customize the CRM)
+
+This structure keeps your CRM organized and ensures that users can seamlessly navigate between essential sections. Let me know if you'd like me to refine or expand on any of these!

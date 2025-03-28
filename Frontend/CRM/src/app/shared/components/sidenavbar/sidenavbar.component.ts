@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class SidenavbarComponent {
 
+   sidebarMenu = ['dashboard', 'customers', 'interactions', 'sales opportunity', 'leads', 'email logs', 'tasks', 'reports', 'users']
 }

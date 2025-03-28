@@ -1,39 +1,34 @@
-<mat-sidenav-container class="sidenav-container">
-    <!-- Sidebar -->
-    <mat-sidenav #sidenav mode="side" opened>
-      <mat-toolbar color="primary">CRM Menu</mat-toolbar>
-      <mat-nav-list>
-        <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
-          <mat-icon>dashboard</mat-icon>
-          <span>Dashboard</span>
+<div class="d-flex">
+  <!-- Sidebar -->
+  <nav class="bg-light border-end vh-100" id="sidebar" style="padding-top: 70px;">
+    <ul class="list-unstyled" *ngFor="let menu of sidebarMenu">
+      <!-- Example menu item -->
+      <li class="nav-item text-center my-3">
+        <a routerLink="{{menu}}" class="nav-link">
+          <!-- Use an icon library like Font Awesome or Bootstrap Icons -->
+          <!-- <i class="bi bi-house"></i> -->
+          <span class="d-none d-md-inline">{{ menu | titlecase }}</span>
         </a>
-        <a mat-list-item routerLink="/customers" routerLinkActive="active">
-          <mat-icon>group</mat-icon>
-          <span>Customers</span>
+      </li>
+      <!-- <li class="nav-item text-center my-3" >
+        <a routerLink="" class="nav-link">
+          <i class="bi bi-info-circle"></i>
+          <span class="d-none d-md-inline">Customers</span>
         </a>
-        <a mat-list-item routerLink="/reports" routerLinkActive="active">
-          <mat-icon>bar_chart</mat-icon>
-          <span>Reports</span>
+      </li>
+      <li class="nav-item text-center my-3" >
+        <a routerLink="" class="nav-link">
+          <i class="bi bi-envelope"></i>
+          <span class="d-none d-md-inline"></span>
         </a>
-        <a mat-list-item routerLink="/settings" routerLinkActive="active">
-          <mat-icon>settings</mat-icon>
-          <span>Settings</span>
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-  
-    <!-- Main Content -->
-    <mat-sidenav-content>
-      <mat-toolbar color="primary">
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span>CRM System</span>
-      </mat-toolbar>
-      <div class="content">
-        <p>Hello</p>
-        <router-outlet></router-outlet>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  
+      </li> -->
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex-grow-1 p-3">
+    <div style="padding-top: 80px;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

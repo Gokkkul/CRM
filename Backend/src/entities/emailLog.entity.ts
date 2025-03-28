@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from "typeorm";
 import { User } from "./user.entity";
 
-@Entity()
+@Entity('email__log__tbl')
 export class EmailLog {
     @PrimaryGeneratedColumn()
     id: number;

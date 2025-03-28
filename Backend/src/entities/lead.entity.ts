@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne } from "typeorm";
 import { SalesOpportunity } from "./salesOpportunity.entity";
 
-@Entity()
+@Entity('lead__tbl')
 export class Lead {
     @PrimaryGeneratedColumn()
     id: number;
