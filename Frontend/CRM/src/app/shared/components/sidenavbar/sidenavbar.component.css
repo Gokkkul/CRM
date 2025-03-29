@@ -1,0 +1,37 @@
+#sidebar {
+  width: 250px;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    width: 70px; /* Adjust width for smaller screens */
+  }
+
+  #sidebar .nav-item {
+    text-align: center;
+  }
+
+  #sidebar .nav-link i {
+    font-size: 1.5rem; /* Enlarge icons for better visibility */
+  }
+
+  #sidebar .nav-link span {
+    display: none; /* Hide text on smaller screens */
+  }
+}
+
+.nav-item:hover{
+  background-color: #0d6efd;
+  color: white;
+
+}
+/* .active-item {
+  background-color: #0d6efd;
+  color: white;
+} */
+
+
+.nav-item{
+  padding: 10px;
+}
+

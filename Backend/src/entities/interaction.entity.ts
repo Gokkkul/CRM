@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } f
 import { Customer } from "./customer.entity";
 import { User } from "./user.entity";
 
-@Entity()
+@Entity('interaction__tbl')
 export class Interaction {
     @PrimaryGeneratedColumn()
     id: number;

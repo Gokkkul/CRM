@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne } from "typ
 import { Customer } from "./customer.entity";
 import { Lead } from "./lead.entity";
 
-@Entity()
+@Entity('sales__opportunity__tbl')
 export class SalesOpportunity {
     @PrimaryGeneratedColumn()
     id: number;

@@ -1,0 +1,38 @@
+<!-- <div class="">
+    <div class="row" style="height: 10rem;">
+        <div class="col-6" style="background-color: blue">
+            View Customer
+        </div>
+        <div class="col-6" style="background-color: green;">
+            Add Customer
+        </div>
+    </div>
+    <div class="row" style="height: 10rem;">
+    <div class="col-6" style="background-color: orange;">
+            View Customer
+        </div>
+        <div class="col-6" style="background-color: red;">
+            Add Customer
+        </div>
+    </div>
+</div>  -->
+
+<div class="container">
+    <div class="row">
+        <div class="col action-div add-customer" (click)="handleAction('Add Customer')">
+            Add Customer
+        </div>
+        <div class="col action-div update-customer" (click)="handleAction('Update Customer')">
+            Update Customer
+        </div>
+        <div class="col action-div delete-customer" (click)="handleAction('Delete Customer')">
+            Delete Customer
+        </div>
+        <div class="col action-div view-customer" (click)="handleAction('View Customer')">
+            View Customer
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+</div>

@@ -4,7 +4,7 @@ import { Task } from "./task.entity";
 import { EmailLog } from "./emailLog.entity";
 import { Report } from "./report.entity";
 
-@Entity()
+@Entity('user___tbl')
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
@@ -27,7 +27,9 @@ export class User {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @Column({type: 'bit'})
+    @Column({type: 'bit', 
+        nullable: true
+    })
     isDeleted: number;
 
     @OneToMany(() => Interaction, (interaction) => interaction.handledBy)
