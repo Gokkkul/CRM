@@ -22,16 +22,16 @@ AppDataSource.initialize()
 
 app.use(express.json())
 
-app.use('api/customer', customerRouter );
-app.use('api/email-log', emailLogRouter );
-app.use('api/interaction', interactionRouter );
-app.use('api/lead', leadRouter );
-app.use('api/report',reportRouter );
-app.use('api/sales-opportunity', salesOpportunityRouter );
-app.use('api/task', taskRouter );
-app.use('api/users', userRouter );
+app.use('/api/customer', customerRouter );
+app.use('/api/email-log', emailLogRouter );
+app.use('/api/interaction', interactionRouter );
+app.use('/api/lead', leadRouter );
+app.use('/api/report',reportRouter );
+app.use('/api/sales-opportunity', salesOpportunityRouter );
+app.use('/api/task', taskRouter );
+app.use('/api/users', userRouter );
 
-app.listen(process.env.SERVER_PORT, () => {
+app.listen(Number(process.env.SERVER_PORT), () => {
     console.log("Server started...!", process.env.SERVER_PORT);
 })
 

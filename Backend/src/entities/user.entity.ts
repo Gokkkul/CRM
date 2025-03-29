@@ -27,7 +27,9 @@ export class User {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @Column({type: 'bit'})
+    @Column({type: 'bit', 
+        nullable: true
+    })
     isDeleted: number;
 
     @OneToMany(() => Interaction, (interaction) => interaction.handledBy)

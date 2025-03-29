@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './customer-home.component.css'
 })
 export class CustomerHomeComponent {
-
+  handleAction(action: string) {
+    console.log(`${action} clicked`);
+    // Add logic for navigating to respective pages or opening modals.
+  }
 }

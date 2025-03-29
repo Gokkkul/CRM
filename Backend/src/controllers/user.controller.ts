@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import { UserService } from "../services/user.service";
+import { AuthService } from "../services/auth.service";
 
 const userService = new UserService();
+const authService = new AuthService();
 
 export class UserController {
   /**
@@ -13,7 +15,7 @@ export class UserController {
   addUser = async (req: Request, res: Response) => {
     try {
       const user = req.body;
-      const result = await userService.addUser(user);
+      const result = await authService.registerUser(user);
       res.status(200).json(result);
     } catch (error) {
       res.status(500).json(`Message: ${error}`);

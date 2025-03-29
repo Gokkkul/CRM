@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .col {
+    flex: 1;
+    height: 150px;
+    width: 350px; /* Adjust size */
+    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow */
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  }
+  
+  .add-customer {
+    background: linear-gradient(135deg, #4CAF50, #81C784); /* Green gradient */
+}
+
+.update-customer {
+    background: linear-gradient(135deg, #2196F3, #64B5F6); /* Blue gradient */
+}
+
+.delete-customer {
+    background: linear-gradient(135deg, #F44336, #E57373); /* Red gradient */
+}
+
+.view-customer {
+    background: linear-gradient(135deg, #FF9800, #FFB74D); /* Orange gradient */
+}
+  
+  .col:hover {
+    transform: scale(1.05); /* Slight scaling effect */
+    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.3); /* Emphasized shadow */
+  }
+  

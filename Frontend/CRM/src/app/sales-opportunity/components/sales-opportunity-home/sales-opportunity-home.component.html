@@ -1,1 +1,29 @@
-<p>sales-opportunity-home works!</p>
+<div>
+    <h2>Sales Opportunities</h2>
+  
+    <!-- Display Existing Opportunities -->
+    <ul>
+      <li *ngFor="let opportunity of opportunities">
+        {{ opportunity.name }} - {{ opportunity.stage }}
+        <button (click)="selectedOpportunity = opportunity">Edit</button>
+        <button (click)="deleteOpportunity(opportunity._id)">Delete</button>
+      </li>
+    </ul>
+  
+    <!-- Add New Opportunity -->
+    <h3>Add New Opportunity</h3>
+    <form (submit)="addOpportunity()">
+      <input [(ngModel)]
+      ="newOpportunity.name" placeholder="Name" />
+      <input [(ngModel)]="newOpportunity.stage" placeholder="Stage" />
+      <button type="submit">Add</button>
+    </form>
+  
+    <!-- Update Opportunity -->
+    <h3>Edit Opportunity</h3>
+    <form *ngIf="selectedOpportunity" (submit)="updateOpportunity()">
+      <input [(ngModel)]="selectedOpportunity.name" placeholder="Name" />
+      <input [(ngModel)]="selectedOpportunity.stage" placeholder="Stage" />
+      <button type="submit">Update</button>
+    </form>
+  </div>
