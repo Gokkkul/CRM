@@ -12,6 +12,9 @@ export class Report {
     @Column({ type: "text" })
     content: string; // JSON or other structured data
 
+    @Column({type: 'bit'})
+    isDeleted: number;
+
     @ManyToOne(() => User, (user) => user.reports)
     generatedBy: User;
 

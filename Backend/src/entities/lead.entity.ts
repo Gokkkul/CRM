@@ -24,6 +24,9 @@ export class Lead {
     @Column({ type: "varchar", length: 255, nullable: true })
     source: string;
 
+    @Column({type: 'bit'})
+    isDeleted: number;
+
     @CreateDateColumn()
     createdAt: Date;
 

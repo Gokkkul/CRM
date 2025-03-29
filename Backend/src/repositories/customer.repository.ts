@@ -17,7 +17,12 @@ export class customerRepository{
     }
 
     async deleteCustomer(id: number){
-        const data = await this.appDataSource.delete(id);
-        return `Customer deleted successfully...!`
+        await this.appDataSource.update(id,{isDeleted: 1});
+        return `Customer deleted successfully...!`;
+    }
+
+    async getCustomer(){
+        const result = await this.appDataSource.find();
+        return result;
     }
 }
