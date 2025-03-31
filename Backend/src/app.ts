@@ -10,10 +10,14 @@ import { leadRouter } from "./routes/lead.routes";
 import { reportRouter } from "./routes/report.routes";
 import { salesOpportunityRouter } from "./routes/salesOpportunity.routes";
 import { taskRouter } from "./routes/task.routes";
+import cors from 'cors'
 
 dotenv.config();
 
 const app = express();
+
+app.use(cors())
+
 
 AppDataSource.initialize()
 .then(() => console.log("Database Connected Successfully...!"))
