@@ -1,5 +1,6 @@
 #sidebar {
-  width: 250px;
+  width: 200px;
+  text-align: left;
 }
 
 @media (max-width: 768px) {
@@ -8,7 +9,7 @@
   }
 
   #sidebar .nav-item {
-    text-align: center;
+    text-align: left;
   }
 
   #sidebar .nav-link i {

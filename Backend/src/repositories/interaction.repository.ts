@@ -21,7 +21,7 @@ export class interactionRepository {
     }
 
     async getInteractions() {
-        const result = await this.appDataSource.find();
+        const result = await this.appDataSource.find({ relations: ['handledBy'] });
         return result;
     }
 }

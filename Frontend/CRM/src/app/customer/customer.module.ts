@@ -6,7 +6,8 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerHomeComponent } from './components/customer-home/customer-home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EditCustomerComponent } from './components/edit-customer/edit-customer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,8 +18,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     CustomerRoutingModule,
+    SharedModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class CustomerModule { }
