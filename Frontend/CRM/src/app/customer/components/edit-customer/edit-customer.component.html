@@ -1,0 +1,123 @@
+<!-- <div class="container mt-5">
+    <h2>Edit Customer</h2>
+    <form [formGroup]="editCustomerForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" class="form-control" formControlName="name" />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email" />
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="tel" id="phone" class="form-control" formControlName="phone" />
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" id="address" class="form-control" formControlName="address" />
+      </div>
+      <div class="mb-3">
+        <label for="company" class="form-label">Company</label>
+        <input type="text" id="company" class="form-control" formControlName="company" />
+      </div>
+      <button type="button" class="btn btn-primary mt-3" (click)="onSave()">Save Changes</button>
+    </form>
+  </div> -->
+
+
+<!-- <p-button (click)="showDialog()" label="Show" /> -->
+<!-- <p-dialog header="Edit Customer" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+  <span class="p-text-secondary block mb-8">Update Customer</span>
+  <div class="flex items-center gap-4 mb-4">
+    <label for="username" class="font-semibold w-24">Username</label>
+    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+  </div>
+  <div class="flex items-center gap-4 mb-8">
+    <label for="email" class="font-semibold w-24">Email</label>
+    <input pInputText id="email" class="flex-auto" autocomplete="off" />
+  </div>
+  <div class="flex justify-end gap-2">
+    <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+    <p-button label="Save" (click)="visible = false" />
+  </div>
+</p-dialog> -->
+
+
+<p-dialog header="Edit Customer" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+  <span class="p-text-secondary block mb-8">Edit Customer</span>
+
+  <form [formGroup]="customerForm" (ngSubmit)="onUpdate()">
+    <!-- Name -->
+    <div class="flex items-center gap-4 mb-4">
+      <label for="name" class="font-semibold w-24">Name</label>
+      <input pInputText id="name" class="flex-auto" formControlName="name" autocomplete="off" />
+      <p-message *ngIf="customerForm.controls['name'].invalid && customerForm.controls['name'].touched"
+                 severity="error" text="Name is required"></p-message>
+    </div>
+
+    <!-- Email -->
+    <div class="flex items-center gap-4 mb-4">
+      <label for="email" class="font-semibold w-24">Email</label>
+      <input pInputText id="email" class="flex-auto" formControlName="email" autocomplete="off" />
+      <p-message *ngIf="customerForm.controls['email'].invalid && customerForm.controls['email'].touched"
+                 severity="error" text="Valid email is required"></p-message>
+    </div>
+
+    <!-- Phone -->
+    <div class="flex items-center gap-4 mb-4">
+      <label for="phone" class="font-semibold w-24">Phone</label>
+      <input pInputText id="phone" class="flex-auto" formControlName="phone" autocomplete="off" />
+    </div>
+
+    <!-- Address -->
+    <div class="flex items-center gap-4 mb-4">
+      <label for="address" class="font-semibold w-24">Address</label>
+      <input pInputText id="address" class="flex-auto" formControlName="address" autocomplete="off" />
+    </div>
+
+
+    <div class="flex justify-end gap-2">
+      <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+      <p-button type="submit" label="Save Changes" [disabled]="customerForm.invalid" />
+    </div>
+  </form>
+</p-dialog>
+
+
+
+<!-- <p-dialog header="Edit Customer" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+  <span class="p-text-secondary block mb-8">Update Customer Information</span>
+  
+  <form >
+    <div class="flex items-center gap-4 mb-4">
+      <label for="name" class="font-semibold w-24">Name</label>
+      <input pInputText id="name" class="flex-auto" formControlName="name" autocomplete="off" />
+    </div>
+    
+    <div class="flex items-center gap-4 mb-4">
+      <label for="email" class="font-semibold w-24">Email</label>
+      <input pInputText id="email" class="flex-auto" formControlName="email" autocomplete="off" />
+    </div>
+    
+    <div class="flex items-center gap-4 mb-4">
+      <label for="phone" class="font-semibold w-24">Phone</label>
+      <input pInputText id="phone" class="flex-auto" formControlName="phone" autocomplete="off" />
+    </div>
+    
+    <div class="flex items-center gap-4 mb-4">
+      <label for="address" class="font-semibold w-24">Address</label>
+      <input pInputText id="address" class="flex-auto" formControlName="address" autocomplete="off" />
+    </div>
+    
+    <div class="flex items-center gap-4 mb-4">
+      <label for="company" class="font-semibold w-24">Company</label>
+      <input pInputText id="company" class="flex-auto" formControlName="company" autocomplete="off" />
+    </div>
+    
+    <div class="flex justify-end gap-2 mt-4">
+      <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+      <p-button label="Save"  />
+    </div>
+  </form>
+</p-dialog> -->

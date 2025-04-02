@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SalesOpportunitiesService } from '../../services/sales-opportunities.service';
+import { SalesOpportunityService } from '../../services/sales-opportunity.service';
 
 @Component({
   selector: 'app-sales-opportunity-home',
@@ -12,38 +12,38 @@ export class SalesOpportunityHomeComponent {
   newOpportunity: any = {}; // for adding a new opportunity
   selectedOpportunity: any = {}; // for updating an opportunity
 
-  constructor(private salesService: SalesOpportunitiesService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.loadOpportunities();
-  }
+  // ngOnInit(): void {
+  //   this.loadOpportunities();
+  // }
 
-  loadOpportunities(): void {
-    this.salesService.getOpportunities().subscribe((data) => {
-      this.opportunities = data;
-    });
-  }
+  // loadOpportunities(): void {
+  //   this.salesService.getOpportunities().subscribe((data) => {
+  //     this.opportunities = data;
+  //   });
+  // }
 
-  addOpportunity(): void {
-    this.salesService.addOpportunity(this.newOpportunity).subscribe(() => {
-      this.loadOpportunities();
-      this.newOpportunity = {};
-    });
-  }
+  // addOpportunity(): void {
+  //   this.salesService.addOpportunity(this.newOpportunity).subscribe(() => {
+  //     this.loadOpportunities();
+  //     this.newOpportunity = {};
+  //   });
+  // }
 
-  updateOpportunity(): void {
-    this.salesService
-      .updateOpportunity(this.selectedOpportunity._id, this.selectedOpportunity)
-      .subscribe(() => {
-        this.loadOpportunities();
-        this.selectedOpportunity = {};
-      });
-  }
+  // updateOpportunity(): void {
+  //   this.salesService
+  //     .updateOpportunity(this.selectedOpportunity._id, this.selectedOpportunity)
+  //     .subscribe(() => {
+  //       this.loadOpportunities();
+  //       this.selectedOpportunity = {};
+  //     });
+  // }
 
-  deleteOpportunity(id: string): void {
-    this.salesService.deleteOpportunity(id).subscribe(() => {
-      this.loadOpportunities();
-    });
-  }
+  // deleteOpportunity(id: string): void {
+  //   this.salesService.deleteOpportunity(id).subscribe(() => {
+  //     this.loadOpportunities();
+  //   });
+  // }
 }
 

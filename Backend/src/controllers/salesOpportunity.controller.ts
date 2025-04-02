@@ -67,4 +67,33 @@ export class SalesOpportunityController {
       res.status(500).json(`Message: ${error}`);
     }
   };
+
+  getOpportunitiesByStage = async(req: Request, res: Response) => {
+    try {
+      const result = await salesOpportunityService.getOpportunitiesByStage();
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`);
+    }
+  }
+
+  getSummaryData = async(req: Request, res: Response) => {
+    try {
+      const result = await salesOpportunityService.getSummaryData();
+      res.status(200).json(result)
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`);
+    }
+  }
+  
+  getOpportunityById = async( req: Request, res: Response) => {
+    try {
+      const id = Number(req.params.id)
+      const result = await salesOpportunityService.getOpportunityById(id);
+      res.status(200).json(result);
+
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`);
+    }
+  }
 }

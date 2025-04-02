@@ -4,17 +4,28 @@ import { CommonModule } from '@angular/common';
 import { CustomerRoutingModule } from './customer-routing.module';
 
 import { CustomerHomeComponent } from './components/customer-home/customer-home.component';
-import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { EditCustomerComponent } from './components/edit-customer/edit-customer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
+import { AddCustomerComponent } from './components/add-customer/add-customer.component';
+import { ViewCustomerComponent } from './components/view-customer/view-customer.component';
 
 
 @NgModule({
   declarations: [
     CustomerHomeComponent,
-    CustomerListComponent
+    EditCustomerComponent,
+    AddCustomerComponent,
+    ViewCustomerComponent
   ],
   imports: [
     CommonModule,
-    CustomerRoutingModule
+    CustomerRoutingModule,
+    SharedModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class CustomerModule { }

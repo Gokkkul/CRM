@@ -15,4 +15,10 @@ export class SidenavbarComponent {
     elements.forEach(el => el.classList.remove('active-item'));
     event.currentTarget.classList.add('active-item');
   }
+
+  isCollapsed = false;
+
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }

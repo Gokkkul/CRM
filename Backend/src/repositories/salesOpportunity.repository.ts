@@ -24,4 +24,30 @@ export class SalesOpportunityRepository {
         const result = await this.appDataSource.find();
         return result;
     }
+
+    // Fetch grouped opportunities for Kanban board
+    async getOpportunitiesByStage() {
+        return this.appDataSource.createQueryBuilder('opportunity')
+            .select('opportunity.stage')
+            .addSelect('JSON_ARRAYAGG(opportunity) AS opportunities')
+            .groupBy('opportunity.stage')
+            .getRawMany();
+    }
+
+   
+
+    // Fetch summary data
+    async getSummaryData() {
+        return this.appDataSource.createQueryBuilder('opportunity')
+            .select('opportunity.stage')
+            .addSelect('COUNT(*) AS count')
+            .addSelect('SUM(opportunity.value) AS totalValue')
+            .groupBy('opportunity.stage')
+            .getRawMany();
+    }
+
+    // Fetch Opportunities by id
+    async getOpportunityById(id: number) {
+        return this.appDataSource.findOne({ where: { id } });
+    }
 }

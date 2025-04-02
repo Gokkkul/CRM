@@ -1,23 +1,4 @@
-<!-- <div class="">
-    <div class="row" style="height: 10rem;">
-        <div class="col-6" style="background-color: blue">
-            View Customer
-        </div>
-        <div class="col-6" style="background-color: green;">
-            Add Customer
-        </div>
-    </div>
-    <div class="row" style="height: 10rem;">
-    <div class="col-6" style="background-color: orange;">
-            View Customer
-        </div>
-        <div class="col-6" style="background-color: red;">
-            Add Customer
-        </div>
-    </div>
-</div>  -->
-
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col action-div add-customer" (click)="handleAction('Add Customer')">
             Add Customer
@@ -35,4 +16,47 @@
     <div class="row">
 
     </div>
+</div> -->
+
+<div class="">
+    <h2>Customers</h2>
+     <button class="btn btn-primary" (click)="showAddCustomer()">Add Customer<i class="bi bi-plus"></i></button>
+    <hr>
+    <table id="example" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers">
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.phone }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.createdAt | date:'medium' }}</td>
+                <td>{{ customer.updatedAt | date:'medium' }}</td>
+                <td>
+                    <button (click)="showEditCustomer(customer)" class="btn btn-primary btn-sm m-1">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm m-1">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                    <button (click)="showViewCustomer(customer)" class="btn btn-success btn-sm m-1">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+<div #editCustomer></div>
+<div #addCustomer></div>
+<div #viewCustomer></div>

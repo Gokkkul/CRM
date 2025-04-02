@@ -1,0 +1,32 @@
+<p-dialog header="View Customer" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <div class="p-fluid">
+      <div class="field">
+        <b><label>Name</label></b>
+        <p>{{ customerData?.name }}</p>
+      </div>
+      <div class="field">
+        <b><label>Email</label></b>
+        <p>{{ customerData?.email }}</p>
+      </div>
+      <div class="field">
+        <b><label>Phone</label></b>
+        <p>{{ customerData?.phone || 'N/A' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Address</label></b>
+        <p>{{ customerData?.address || 'N/A' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Created At</label></b>
+        <p>{{ customerData?.createdAt | date: 'medium' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Updated At</label></b>
+        <p>{{ customerData?.updatedAt | date: 'medium' }}</p>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <p-button label="Close" severity="secondary" (click)="closeDialog()" />
+    </div>
+  </p-dialog>
+  

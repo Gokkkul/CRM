@@ -12,30 +12,64 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import {InputTextModule} from 'primeng/inputtext';
+
+import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SliderModule } from 'primeng/slider';
+import { TagModule } from 'primeng/tag';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { CalendarModule } from 'primeng/calendar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { SelectModule } from 'primeng/select';
+import { IconField } from 'primeng/iconfield';
+import { InputIcon } from 'primeng/inputicon';
+import { DialogModule } from 'primeng/dialog';
+import { MessageModule } from 'primeng/message';
+
+
+const ngPrimeModule = [
+  TableModule,
+  ButtonModule,
+  InputTextModule,
+  DropdownModule,
+  MultiSelectModule,
+  SliderModule,
+  TagModule,
+  ProgressBarModule,
+  CalendarModule,
+  CheckboxModule,
+  SelectModule,
+  IconField,
+  InputIcon,
+  DialogModule,
+  MessageModule
+];
 
 
 @NgModule({
   declarations: [
     ButtonComponent,
     NavbarComponent,
-    SidenavbarComponent
+    SidenavbarComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ButtonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    ngPrimeModule,
   ],
   exports: [
     ButtonComponent,
     NavbarComponent,
-    SidenavbarComponent
+    SidenavbarComponent,
+    ngPrimeModule,
   ]
 })
 export class SharedModule { }

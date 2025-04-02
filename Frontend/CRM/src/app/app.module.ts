@@ -10,6 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { UserModule } from './user/user.module';
+import { HttpClientModule } from '@angular/common/http';
 import { SalesOpportunityModule } from './sales-opportunity/sales-opportunity.module';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SalesOpportunityModule } from './sales-opportunity/sales-opportunity.mo
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     SharedModule,
     ButtonModule,
     UserModule,
