@@ -9,5 +9,7 @@ router.post('/add-sales-opportunity', salesOpportunityController.addSalesOpportu
 router.delete('/delete-sales-opportunity/:id', salesOpportunityController.deleteSalesOpportunity);
 router.put('/update-sales-opportunity/:id', salesOpportunityController.updateSalesOpportunity);
 router.get('/get-sales-opportunities', salesOpportunityController.getSalesOpportunities);
+router.get('/kanban', salesOpportunityController.getOpportunitiesByStage);
+router.put('/:id/stage')
 
 export { router as salesOpportunityRouter };

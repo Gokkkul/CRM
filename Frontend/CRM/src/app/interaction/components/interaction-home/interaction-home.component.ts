@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { InteractionService } from '../../services/interaction.service';
+import $ from 'jquery';
+import 'datatables.net';
 
 export interface IInteraction{
   id: number;
@@ -26,8 +28,11 @@ export class InteractionHomeComponent {
 
   ngOnInit(){
     this.interactionService.getInteractions().subscribe((data: any) => {
-      console.log('API Response:', data);
+      // console.log('API Response:', data);
       this.interactions = data;
+      setTimeout(() => {
+        $('#example').DataTable();
+    }, 1);
     })
   }
 

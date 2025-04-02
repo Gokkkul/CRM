@@ -1,0 +1,11 @@
+<!-- <p>kanban-board works!</p> -->
+<div class="kanban-board">
+    <div *ngFor="let column of kanbanData" class="kanban-column" (drop)="onDrop($event, column.stage)">
+      <h3>{{ column.stage }}</h3>
+      <div *ngFor="let opportunity of column.opportunities" class="kanban-item" draggable="true" (dragstart)="onDragStart($event, opportunity)">
+        <p>{{ opportunity.customer.name }}</p>
+        <p>{{ opportunity.value | currency }}</p>
+      </div>
+    </div>
+  </div>
+  

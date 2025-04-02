@@ -39,4 +39,31 @@ export class SalesOpportunityService {
             return `Error: ${error}`;
         }
     }
+
+    async getOpportunitiesByStage(){
+        try {
+            const result = await salesOpportunityRepo.getOpportunitiesByStage();
+            return result;
+        } catch (error) {
+            return `Error: ${error}`;
+        }
+    }
+
+    async getSummaryData() {
+        try {
+            const result = await salesOpportunityRepo.getSummaryData();
+            return result;
+        } catch (error) {
+            return `Error: ${error}`;
+        }
+    }
+
+    async getOpportunityById(id: number) {
+        try {
+            const result = await salesOpportunityRepo.getOpportunityById(id);
+            return result;
+        } catch (error) {
+            return `Error: ${error}`;
+        }
+    }
 }

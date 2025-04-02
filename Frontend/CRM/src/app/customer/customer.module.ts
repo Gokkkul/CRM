@@ -8,12 +8,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditCustomerComponent } from './components/edit-customer/edit-customer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { AddCustomerComponent } from './components/add-customer/add-customer.component';
+import { ViewCustomerComponent } from './components/view-customer/view-customer.component';
 
 
 @NgModule({
   declarations: [
     CustomerHomeComponent,
-    EditCustomerComponent
+    EditCustomerComponent,
+    AddCustomerComponent,
+    ViewCustomerComponent
   ],
   imports: [
     CommonModule,

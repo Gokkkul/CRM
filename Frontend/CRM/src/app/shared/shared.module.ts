@@ -26,7 +26,7 @@ import { SelectModule } from 'primeng/select';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { DialogModule } from 'primeng/dialog';
-
+import { MessageModule } from 'primeng/message';
 
 
 const ngPrimeModule = [
@@ -43,7 +43,8 @@ const ngPrimeModule = [
   SelectModule,
   IconField,
   InputIcon,
-  DialogModule
+  DialogModule,
+  MessageModule
 ];
 
 

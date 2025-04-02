@@ -2,32 +2,11 @@
   <!-- Sidebar -->
   <nav class="bg-light border-end vh-100" id="sidebar" style="padding-top: 70px;">
     <ul class="list-unstyled" *ngFor="let menu of sidebarMenu">
-      <!-- Example menu item -->
-      <!-- <li class="nav-item text-center my-3">
-        <a routerLink="{{menu}}" class="nav-link"> -->
-          <!-- Use an icon library like Font Awesome or Bootstrap Icons -->
-          <!-- <i class="bi bi-house"></i> -->
-          <!-- <span class="d-none d-md-inline">{{ menu | titlecase }}</span>
-        </a>
-      </li> -->
-
       <li class="nav-item my-3" (click)="toggleActive($event)">
         <a routerLink="{{menu}}" class="nav-link">
           <span class="d-none d-md-inline">{{ menu | titlecase }}</span>
         </a>
       </li>
-      <!-- <li class="nav-item text-center my-3" >
-        <a routerLink="" class="nav-link">
-          <i class="bi bi-info-circle"></i>
-          <span class="d-none d-md-inline">Customers</span>
-        </a>
-      </li>
-      <li class="nav-item text-center my-3" >
-        <a routerLink="" class="nav-link">
-          <i class="bi bi-envelope"></i>
-          <span class="d-none d-md-inline"></span>
-        </a>
-      </li> -->
     </ul>
   </nav>
 

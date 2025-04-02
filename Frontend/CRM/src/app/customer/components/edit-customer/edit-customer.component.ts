@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CustomerService } from '../../services/customer.service';
+import { ICustomer } from '../customer-home/customer-home.component';
 
 @Component({
   selector: 'app-edit-customer',
@@ -63,13 +64,35 @@ export class EditCustomerComponent {
   //   }
   // }
 
-  @Input() visible: boolean = false;
+  @Input() customerData!: ICustomer; // Receives selected customer data
+  @Input() visible: boolean = false; // Controls visibility of the dialog
 
-  show(){
-    console.log(this.visible);
-    
-    this.visible = false;
-    console.log(this.visible);
+  customerForm!: FormGroup;
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    // Initialize the form with the incoming customer data
+    this.customerForm = this.fb.group({
+      name: [this.customerData?.name || '', Validators.required],
+      email: [this.customerData?.email || '', [Validators.required, Validators.email]],
+      phone: [this.customerData?.phone || ''],
+      address: [this.customerData?.address || ''],
+    });
   }
 
+  ngOnChanges(): void {
+    // Update the form values when the customer data changes
+    if (this.customerData) {
+      this.customerForm.patchValue(this.customerData);
+    }
+  }
+
+  onUpdate(): void {
+    if (this.customerForm.valid) {
+      console.log('Updated Customer:', this.customerForm.value);
+      // Add logic to update customer in the backend
+      this.visible = false; // Close the dialog after saving
+    }
+  }
 }
