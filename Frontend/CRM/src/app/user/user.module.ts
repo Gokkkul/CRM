@@ -7,6 +7,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UserHomeComponent } from './components/user-home/user-home.component';
+import { ViewUserComponent } from './components/view-user/view-user.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { UserHomeComponent } from './components/user-home/user-home.component';
     LoginComponent,
     AddUserComponent,
     UpdateUserComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    ViewUserComponent
   ],
   imports: [
     CommonModule,

@@ -26,15 +26,8 @@ export class SalesOpportunityRepository {
     }
 
     // Fetch grouped opportunities for Kanban board
-    // async getOpportunitiesByStage() {
-    //     return this.appDataSource.createQueryBuilder('opportunity')
-    //         .select('opportunity.stage')
-    //         .addSelect('JSON_ARRAYAGG(opportunity) AS opportunities')
-    //         .groupBy('opportunity.stage')
-    //         .getRawMany();
-    // }
-
     async getOpportunitiesByStage() {
+<<<<<<< HEAD
         const queryRunner = AppDataSource.createQueryRunner(); // Create a query runner
         try {
             return await queryRunner.query(`
@@ -54,7 +47,16 @@ export class SalesOpportunityRepository {
         } finally {
             await queryRunner.release(); // Release the query runner after use
         }
+=======
+        return this.appDataSource.createQueryBuilder('opportunity')
+            .select('opportunity.stage')
+            .addSelect('JSON_ARRAYAGG(opportunity) AS opportunities')
+            .groupBy('opportunity.stage')
+            .getRawMany();
+>>>>>>> 37485794123385f62f98ab3761b9b4f9babee936
     }
+
+   
 
     // Fetch summary data
     async getSummaryData() {

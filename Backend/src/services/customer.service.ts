@@ -10,7 +10,7 @@ export class customerService{
             const result = await customerRepo.addCustomer(customer);
             return result;
         } catch (error) {
-            return `Error: ${error}`
+            return `Error: ${error}`;
         }
         
     }

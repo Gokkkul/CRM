@@ -11,6 +11,7 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SalesOpportunityModule } from './sales-opportunity/sales-opportunity.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     SharedModule,
     ButtonModule,
-    UserModule
+    UserModule,
+    SalesOpportunityModule
     
   ],
   providers: [
