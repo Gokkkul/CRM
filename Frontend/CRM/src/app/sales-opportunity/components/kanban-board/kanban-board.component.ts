@@ -21,10 +21,13 @@ kanbanData: any[] = [];
   //     console.log(data); // Check the data structure
   // });
     this.http.get('http://localhost:3000/api/sales-opportunity/kanban').subscribe((data: any) => {
-      this.kanbanData = data.map((stage: any) => ({
-        stage: stage.stage,
-        opportunities: JSON.parse(stage['JSON_ARRAYAGG(opportunity)'])
-      }));
+      // this.kanbanData = data.map((stage: any) => ({
+        // stage: stage.stage,
+        // opportunities: JSON.parse(stage['JSON_ARRAYAGG(opportunity)'])
+      // }));
+
+      console.log(data);
+      
       
       
     });

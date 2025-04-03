@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { LeadRoutingModule } from './lead-routing.module';
 import { LeadHomeComponent } from './components/lead-home/lead-home.component';
+import { ViewLeadComponent } from './components/view-lead/view-lead.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    LeadHomeComponent
+    LeadHomeComponent,
+    ViewLeadComponent
   ],
   imports: [
     CommonModule,
-    LeadRoutingModule
+    LeadRoutingModule,
+    SharedModule
   ]
 })
 export class LeadModule { }

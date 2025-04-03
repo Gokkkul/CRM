@@ -2,27 +2,27 @@
     <div class="p-fluid">
       <div class="field">
         <b><label>Name</label></b>
-        <p>{{ customerData?.name }}</p>
+        <p>{{ customerData.name }}</p>
       </div>
       <div class="field">
         <b><label>Email</label></b>
-        <p>{{ customerData?.email }}</p>
+        <p>{{ customerData.email }}</p>
       </div>
       <div class="field">
         <b><label>Phone</label></b>
-        <p>{{ customerData?.phone || 'N/A' }}</p>
+        <p>{{ customerData.phone || 'N/A' }}</p>
       </div>
       <div class="field">
         <b><label>Address</label></b>
-        <p>{{ customerData?.address || 'N/A' }}</p>
+        <p>{{ customerData.address || 'N/A' }}</p>
       </div>
       <div class="field">
         <b><label>Created At</label></b>
-        <p>{{ customerData?.createdAt | date: 'medium' }}</p>
+        <p>{{ customerData.createdAt | date: 'medium' }}</p>
       </div>
       <div class="field">
         <b><label>Updated At</label></b>
-        <p>{{ customerData?.updatedAt | date: 'medium' }}</p>
+        <p>{{ customerData.updatedAt | date: 'medium' }}</p>
       </div>
     </div>
     <div class="flex justify-end mt-4">

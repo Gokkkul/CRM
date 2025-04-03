@@ -1,0 +1,39 @@
+<p-dialog header="View Lead" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <div class="p-fluid">
+      <div class="field">
+        <b><label>Name</label></b>
+        <p>{{ leadData.name }}</p>
+      </div>
+      <div class="field">
+        <b><label>Email</label></b>
+        <p>{{ leadData.email }}</p>
+      </div>
+      <div class="field">
+        <b><label>Phone</label></b>
+        <p>{{ leadData.phone || 'N/A' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Status</label></b>
+        <p>{{ leadData.status }}</p>
+      </div>
+      <div class="field">
+        <b><label>Assigned To</label></b>
+        <p>{{ leadData.assignedTo || 'N/A' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Source</label></b>
+        <p>{{ leadData.source || 'N/A' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Created At</label></b>
+        <p>{{ leadData.createdAt | date: 'medium' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Updated At</label></b>
+        <p>{{ leadData.updatedAt | date: 'medium' }}</p>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <p-button label="Close" severity="secondary" (click)="closeDialog()" />
+    </div>
+</p-dialog>

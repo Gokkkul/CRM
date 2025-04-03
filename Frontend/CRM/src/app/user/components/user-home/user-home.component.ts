@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-home',
@@ -8,4 +9,16 @@ import { Component } from '@angular/core';
 })
 export class UserHomeComponent {
 
+  users: any;
+
+  constructor(private userService: UserService){}
+
+  ngOnInit(){
+    this.userService.getUser().subscribe((data: any) => {
+      this.users = data;
+    })
+  }
+  showViewUser(user: any){
+
+  }
 }

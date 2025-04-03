@@ -35,17 +35,20 @@ export class SalesOpportunityRepository {
     // }
 
     async getOpportunitiesByStage() {
-        const queryRunner = this.appDataSource.createQueryRunner(); // Create a query runner
+        const queryRunner = AppDataSource.createQueryRunner(); // Create a query runner
         try {
             return await queryRunner.query(`
-                SELECT
-                    stage,
-                    (
-                        SELECT STRING_AGG(CONVERT(NVARCHAR(MAX), JSON_QUERY(sub_opportunity.*)), ',')
-                        FROM [opportunity] sub_opportunity
-                        WHERE sub_opportunity.stage = main_opportunity.stage
-                    ) AS opportunities
-                FROM [opportunity] main_opportunity
+                WITH OpportunitiesJSON AS (
+                    SELECT 
+                        stage,
+                        (SELECT id, value, expectedCloseDate, notes
+                         FROM [sales__opportunity__tbl] sub_opportunity
+                         WHERE sub_opportunity.stage = main.stage
+                         FOR JSON PATH) AS opportunityJson
+                    FROM [sales__opportunity__tbl] main
+                )
+                SELECT stage, STRING_AGG(opportunityJson, ',') AS opportunities
+                FROM OpportunitiesJSON
                 GROUP BY stage;
             `);
         } finally {

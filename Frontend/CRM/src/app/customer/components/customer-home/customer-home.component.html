@@ -29,8 +29,8 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
-            <th>Created At</th>
-            <th>Updated At</th>
+            <!-- <th>Created At</th>
+            <th>Updated At</th> -->
             <th>Options</th>
           </tr>
         </thead>
@@ -40,8 +40,8 @@
                 <td>{{ customer.email }}</td>
                 <td>{{ customer.phone }}</td>
                 <td>{{ customer.address }}</td>
-                <td>{{ customer.createdAt | date:'medium' }}</td>
-                <td>{{ customer.updatedAt | date:'medium' }}</td>
+                <!-- <td>{{ customer.createdAt | date:'medium' }}</td>
+                <td>{{ customer.updatedAt | date:'medium' }}</td> -->
                 <td>
                     <button (click)="showEditCustomer(customer)" class="btn btn-primary btn-sm m-1">
                         <i class="bi bi-pencil"></i>

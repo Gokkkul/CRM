@@ -21,7 +21,7 @@ export class TaskRepository {
     }
 
     async getTasks() {
-        const result = await this.appDataSource.find();
+        const result = await this.appDataSource.find({ relations: ['assignedTo'] });
         return result;
     }
 }

@@ -1,1 +1,47 @@
-<p>lead-home works!</p>
+<div class="">
+    <h2>Leads</h2>
+    <button class="btn btn-primary" (click)="showAddLead()">Add Lead<i class="bi bi-plus"></i></button>
+    <hr>
+    <table id="#example" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Assigned To</th>
+            <th>Source</th>
+            <!-- <th>Created At</th>
+            <th>Updated At</th> -->
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let lead of leads">
+                <td>{{ lead.name }}</td>
+                <td>{{ lead.email }}</td>
+                <td>{{ lead.phone }}</td>
+                <td>{{ lead.status }}</td>
+                <td>{{ lead.assignedTo }}</td>
+                <td>{{ lead.source }}</td>
+                <!-- <td>{{ lead.createdAt | date:'medium' }}</td>
+                <td>{{ lead.updatedAt | date:'medium' }}</td> -->
+                <td>
+                    <!-- <button (click)="showEditLead(lead)" class="btn btn-primary btn-sm m-1">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button (click)="deleteLead(lead.id)" class="btn btn-danger btn-sm m-1">
+                        <i class="bi bi-trash"></i>
+                    </button> -->
+                    <button (click)="showViewLead(lead)" class="btn btn-success btn-sm m-1">
+                        <!-- <i class="bi bi-eye"></i> -->
+                         View
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div #editLead></div>
+<div #addLead></div>
+<div #viewLead></div>
