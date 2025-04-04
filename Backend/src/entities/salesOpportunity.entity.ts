@@ -19,6 +19,7 @@ export class SalesOpportunity {
     @Column({ type: "float" })
     value: number;
 
+    
     @Column({type: 'bit'})
     isDeleted: number;
 

@@ -6,18 +6,25 @@ import { SalesOpportunityHomeComponent } from './components/sales-opportunity-ho
 import { FormsModule } from '@angular/forms';
 import { KanbanBoardComponent } from './components/kanban-board/kanban-board.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewSalesOpportunityComponent } from './components/view-sales-opportunity/view-sales-opportunity.component';
+import { SalesOpportunityChartComponent } from './components/sales-opportunity-chart/sales-opportunity-chart.component';
+
+import  {BaseChartDirective} from 'ng2-charts'
 
 
 @NgModule({
   declarations: [
     SalesOpportunityHomeComponent,
-    KanbanBoardComponent
+    KanbanBoardComponent,
+    ViewSalesOpportunityComponent,
+    SalesOpportunityChartComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
-    SalesOpportunityRoutingModule
+    SalesOpportunityRoutingModule,
+    BaseChartDirective
   ]
 })
 export class SalesOpportunityModule { }

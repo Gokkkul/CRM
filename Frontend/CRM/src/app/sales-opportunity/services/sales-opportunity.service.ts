@@ -11,6 +11,11 @@ export class SalesOpportunityService {
   private apiUrl = "http://localhost:3000/api/sales-opportunity";
 
   loadKanbanData(){
-    this.http.get(this.apiUrl+`kanban`)
+    return this.http.get(this.apiUrl+'kanban')
   }
+
+  getSalesOpportunities(){
+    return this.http.get(this.apiUrl+'/get-sales-opportunities')
+  }
+
 }

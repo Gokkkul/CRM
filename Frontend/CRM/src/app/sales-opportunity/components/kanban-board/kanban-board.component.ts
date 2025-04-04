@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SalesOpportunityService } from '../../services/sales-opportunity.service';
+
 
 @Component({
   selector: 'app-kanban-board',
@@ -7,10 +9,10 @@ import { Component } from '@angular/core';
   templateUrl: './kanban-board.component.html',
   styleUrl: './kanban-board.component.css'
 })
-export class KanbanBoardComponent {
+export class KanbanBoardComponent implements OnInit{
 kanbanData: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private salesOppService: SalesOpportunityService) {}
 
   ngOnInit(): void {
     this.loadKanbanData();
@@ -21,16 +23,18 @@ kanbanData: any[] = [];
   //     console.log(data); // Check the data structure
   // });
     this.http.get('http://localhost:3000/api/sales-opportunity/kanban').subscribe((data: any) => {
-      // this.kanbanData = data.map((stage: any) => ({
-        // stage: stage.stage,
-        // opportunities: JSON.parse(stage['JSON_ARRAYAGG(opportunity)'])
-      // }));
+      this.kanbanData = data.map((data: any) => ({
+        stage: data.stage,
+        opportunities: data.opportunities
+      }));
 
-      console.log(data);
+      console.log("Lavanaya",typeof(JSON.parse(this.kanbanData[0].opportunities[0])));
       
       
       
     });
+
+  
   }
 
   onDragStart(event: DragEvent, opportunity: any): void {
