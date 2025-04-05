@@ -13,7 +13,7 @@ export class customerRepository{
 
     async updateCustomer(id:number,customer: Partial<Customer>){
         const data = await this.appDataSource.update(id,customer);
-        return `Customer updated successfully...!`;
+        return data
     }
 
     async deleteCustomer(id: number){
@@ -22,7 +22,7 @@ export class customerRepository{
     }
 
     async getCustomer(){
-        const result = await this.appDataSource.find();
+        const result = await this.appDataSource.find({where:{isDeleted:0}});
         return result;
     }
 }

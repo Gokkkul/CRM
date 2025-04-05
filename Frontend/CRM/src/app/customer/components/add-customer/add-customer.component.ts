@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ICustomer } from '../customer-home/customer-home.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CustomerService } from '../../services/customer.service';
+import { error } from 'jquery';
+import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -12,7 +15,7 @@ export class AddCustomerComponent {
   visible: boolean = false; // Controls dialog visibility
   customerForm!: FormGroup; // Reactive form instance
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private customerService: CustomerService, private swal: SweetAlertService) {}
 
   ngOnInit(): void {
     // Initialize the form with FormBuilder
@@ -29,6 +32,16 @@ export class AddCustomerComponent {
   onSubmit(): void {
     if (this.customerForm.valid) {
       console.log('Customer data:', this.customerForm.value);
+      this.customerService.addCustomer(this.customerForm.value).subscribe(
+        response => {
+          console.log(`Customer successfully added: `, response);
+          this.swal.showToast('Customer Added successfully.','success')
+      },
+      error => {
+        console.error(`Error while adding customer: `, error);
+        this.swal.showToast('There was a problem in adding customer. Please try again.','error')
+      }
+    )
       // Call your service to save customer data to the backend
       this.visible = false; // Close the dialog after saving
     }

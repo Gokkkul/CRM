@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { customerService } from "../services/customer.service";
+import { UpdateResult } from "typeorm";
 
 const custService = new customerService();
 
@@ -30,7 +31,14 @@ export class CustomerController {
     try {
       const id = Number(req.params.id);
       const customer = req.body;
-      const result = await custService.updateCustomer(id, customer);
+      const result = await custService.updateCustomer(id, customer) as UpdateResult;
+
+      if(!result.affected){
+        res.status(501).json({
+          message:"Error while updating"
+        })
+        return;
+      }
       res.status(200).json(result);
     } catch (error) {
       res.status(500).json(`Message: ${error}`);
@@ -62,7 +70,7 @@ export class CustomerController {
   getCustomers = async (req: Request, res: Response) => {
     try {
       const result = await custService.getCustomer();
-      res.status(200).json(result);
+      res.status(200).json({result});
     } catch (error) {
       res.status(500).json(`Message: ${error}`);
     }

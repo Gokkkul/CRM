@@ -5,6 +5,8 @@ import $ from 'jquery';
 import 'datatables.net';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { ViewCustomerComponent } from '../view-customer/view-customer.component';
+import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
+import { ToastrService } from 'ngx-toastr';
 
 export interface ICustomer{
   id: number;
@@ -31,14 +33,16 @@ export class CustomerHomeComponent implements OnInit{
   selectedCustomer: any;
 
 
-  constructor(private customerService: CustomerService){}
+  constructor(private customerService: CustomerService, private swal: SweetAlertService, private toastrService: ToastrService){}
 
   ngOnInit(){
-    this.customerService.getcustomers().subscribe((data:any) => {
+    this.customerService.customer$.subscribe((data:any) => {
       this.customers = data;
-      setTimeout(() => {
-        $('#example').DataTable();
-    }, 1);
+      console.log(`lavanys`,data);
+      
+    //   setTimeout(() => {
+    //     $('#example').DataTable();
+    // }, 1);
     })
 
   }
@@ -52,22 +56,28 @@ export class CustomerHomeComponent implements OnInit{
   @ViewChild('editCustomer', { read: ViewContainerRef }) editCustomerContainer!: ViewContainerRef;
   private editCustomerComponentRef!: ComponentRef<EditCustomerComponent>;
 
+  // @ViewChild('editCustomer', { read: ViewContainerRef }) editCustomerContainer1!: ViewContainerRef;
+  // private editCustomerComponentRef1!: ComponentRef<EditCustomerComponent>;
+
   @ViewChild('addCustomer', { read: ViewContainerRef }) addCusomerContainer!: ViewContainerRef;
   private addCustomerComponentRef!: ComponentRef<AddCustomerComponent>;
 
   @ViewChild('viewCustomer', { read: ViewContainerRef }) viewCustomerContainer!: ViewContainerRef;
   private viewCustomerComponentRef!: ComponentRef<ViewCustomerComponent>;
 
-  showEditCustomer(customer: ICustomer) {
+  showEditCustomer(customer: ICustomer,index:number) {
     this.editCustomerContainer.clear(); // Clear previous instances if any
   
-    this.selectedCustomer = customer; // Assign the selected customer
+    this.selectedCustomer = {customer,index}; // Assign the selected customer
   
     // Dynamically create and inject the child component
     this.editCustomerComponentRef = this.editCustomerContainer.createComponent(EditCustomerComponent);
   
     // Pass the selected customer data to the child component
-    this.editCustomerComponentRef.instance.customerData = this.selectedCustomer; // `@Input()` in EditCustomerComponent
+    this.editCustomerComponentRef.instance.customerData = this.selectedCustomer.customer; 
+    this.editCustomerComponentRef.instance.customerIndex = this.selectedCustomer.index; // `@Input()` in EditCustomerComponent
+
+  
   
     // Make the dialog visible
     this.editCustomerComponentRef.instance.visible = true;
@@ -77,6 +87,7 @@ export class CustomerHomeComponent implements OnInit{
     this.addCusomerContainer.clear();
     this.addCustomerComponentRef = this.addCusomerContainer.createComponent(AddCustomerComponent);
     this.addCustomerComponentRef.instance.visible = true;
+
   }
 
   showViewCustomer(customer: ICustomer) {
@@ -92,6 +103,15 @@ export class CustomerHomeComponent implements OnInit{
 
     // Make the dialog visible
     this.viewCustomerComponentRef.instance.visible = true;
+  }
+
+  deleteCustomer(index: number){
+    this.customerService.deleteCustomer(index).subscribe(() => {
+      console.log("deleted");
+      // this.swal.showSuccess('Customer Deleted Successfully.')
+      this.swal.showToast('Customer Deleted Successfully.', 'success')
+      
+    });
   }
   
 }

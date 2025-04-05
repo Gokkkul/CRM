@@ -27,6 +27,7 @@ import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { DialogModule } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
+import { SweetAlertComponent } from './components/sweet-alert/sweet-alert.component';
 
 
 const ngPrimeModule = [
@@ -53,6 +54,7 @@ const ngPrimeModule = [
     ButtonComponent,
     NavbarComponent,
     SidenavbarComponent,
+    SweetAlertComponent,
   ],
   imports: [
     CommonModule,

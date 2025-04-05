@@ -37,10 +37,15 @@ export class InteractionHomeComponent {
   }
 
   editInteraction(interactions: any){
+console.log();
 
   }
 
   deleteInteraction(id: number){
+
+  }
+
+  addInteraction(data: any){
 
   }
 }

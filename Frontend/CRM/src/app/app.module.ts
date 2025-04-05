@@ -12,11 +12,10 @@ import Aura from '@primeng/themes/aura';
 import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SalesOpportunityModule } from './sales-opportunity/sales-opportunity.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,20 +24,28 @@ import { SalesOpportunityModule } from './sales-opportunity/sales-opportunity.mo
     SharedModule,
     ButtonModule,
     UserModule,
-    SalesOpportunityModule
-    
+    SalesOpportunityModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center', // Position of the toast
+      progressAnimation: 'increasing', // Options: 'decreasing' or 'increasing'
+      easing: 'ease-in-out', // Control animation easing
+      progressBar: true, // Display progress bar
+      timeOut: 3000, // Duration the toast is visible (in milliseconds)
+      extendedTimeOut: 1000, // Extra time after mouse hover
+      enableHtml: true, // Enable HTML in toast messages
+    }),
   ],
   providers: [
     provideAnimationsAsync(),
     providePrimeNG({
-        theme: {
-            preset: Aura,
-            options: {
-               darkModeSelector: false || 'none'
-            }
-        }
-    })
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: false || 'none',
+        },
+      },
+    }),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
