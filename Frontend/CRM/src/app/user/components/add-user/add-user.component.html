@@ -1,4 +1,4 @@
-<div class="container py-5 w-50 border rounded content">
+<!-- <div class="container py-5 w-50 border rounded content">
     <h3 class="heading text-center">Add User</h3>
     <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
         <div class="form-group m-3">
@@ -25,6 +25,51 @@
             <input type="submit" class="btn btn-success btn-block" value="Add User">
         </div>
     </form>
-</div>
+</div> -->
 
-<!-- <router-outlet></router-outlet> -->
+<!-- <router-outlet></router-outlet> -->/
+
+<p-dialog header="Add User" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <span class="p-text-secondary block mb-8">Add a New User</span>
+  
+    <!-- Reactive Form -->
+    <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+      <!-- Name -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="name" class="font-semibold w-24">Name</label>
+        <input pInputText id="name" class="flex-auto" formControlName="name" autocomplete="off" />
+        <p-message *ngIf="addUserForm.controls['name'].invalid && addUserForm.controls['name'].touched" severity="error" text="Name is required"></p-message>
+      </div>
+  
+      <!-- Email -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="email" class="font-semibold w-24">Email</label>
+        <input pInputText id="email" class="flex-auto" formControlName="email" autocomplete="off" />
+        <p-message *ngIf="addUserForm.controls['email'].invalid && addUserForm.controls['email'].touched" severity="error" text="Valid email is required"></p-message>
+      </div>
+  
+      <!-- Password -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="password" class="font-semibold w-24">Password</label>
+        <input pInputText id="password" type="password" class="flex-auto" formControlName="password" autocomplete="off" />
+        <p-message *ngIf="addUserForm.controls['password'].invalid && addUserForm.controls['password'].touched" severity="error" text="Password is required"></p-message>
+      </div>
+  
+      <!-- Role -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="role" class="font-semibold w-24">Role</label>
+        <select pInputText id="role" formControlName="role" class="flex-auto">
+          <option value="" disabled>Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="sales_rep">Sales Representative</option>
+        </select>
+        <p-message *ngIf="addUserForm.controls['role'].invalid && addUserForm.controls['role'].touched" severity="error" text="Role is required"></p-message>
+      </div>
+  
+      <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+        <p-button type="submit" label="Save" [disabled]="addUserForm.invalid" />
+      </div>
+    </form>
+  </p-dialog>
+  

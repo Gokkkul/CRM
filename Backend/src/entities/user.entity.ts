@@ -43,4 +43,7 @@ export class User {
 
     @OneToMany(() => Report, (report) => report.generatedBy)
     reports: Report[];
+
+    // @OneToMany(() => Lead, (lead) => lead.assignedTo)
+    // leads: Lead[]; // This will hold all leads assigned to this user
 }

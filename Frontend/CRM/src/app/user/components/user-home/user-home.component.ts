@@ -21,4 +21,8 @@ export class UserHomeComponent {
   showViewUser(user: any){
 
   }
+
+  showAddUser(){
+    
+  }
 }

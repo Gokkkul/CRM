@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ViewUserComponent } from './components/view-user/view-user.component';
   imports: [
     CommonModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports:[
     LoginComponent,
