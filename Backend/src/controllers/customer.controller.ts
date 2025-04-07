@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { customerService } from "../services/customer.service";
+import { CustomerService } from "../services/customer.service";
 import { UpdateResult } from "typeorm";
 
-const custService = new customerService();
+const custService = new CustomerService();
 
 export class CustomerController {
   /**

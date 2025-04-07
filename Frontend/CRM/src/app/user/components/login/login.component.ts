@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,9 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
+  constructor(private userService: UserService){}
+
   loginForm: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
@@ -23,5 +27,6 @@ export class LoginComponent {
     //   localStorage.setItem("usertoken",result.token)
       // alert(result.message);
     // })
+    this.userService.login();
   }
 }

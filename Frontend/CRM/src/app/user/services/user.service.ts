@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from '../../models/model';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserService {
   private userSubject = new BehaviorSubject<IUser[]>(this.users); // Observable for components
   user$ = this.userSubject.asObservable(); // Expose user data as observable
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.getUsers(); // Fetch users upon initialization
   }
 
@@ -53,5 +54,9 @@ export class UserService {
     this.userSubject.next(this.users); // Emit the updated users
     console.log('Deleted user:', id);
     return this.http.delete(this.apiUrl + `/delete-user/${id}`); // Send delete request to the API
+  }
+
+  login(){
+    this.router.navigate(['/dashboard'])
   }
 }
