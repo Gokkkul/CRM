@@ -17,3 +17,26 @@ export interface ILead {
     createdAt: Date;
     updatedAt: Date;
   }
+
+
+  export interface ITask {
+    id: number; // Unique identifier for the task
+    assignedTo?: {
+      name: string;
+    } // The ID of the assigned user
+    description: string; // Details about the task
+    dueDate: Date; // The deadline for the task
+    status: string; // e.g., "pending", "completed"
+    createdAt: Date; // When the task was created
+  }
+  
+
+  export interface IUser {
+    id: number; // Unique identifier for the user
+    name: string; // Full name of the user
+    email: string; // Email address of the user
+    role: string; // Role (e.g., admin, sales_rep)
+    isDeleted: number; // Soft-delete flag (0: active, 1: deleted)
+    createdAt?: Date; // Date when the user was created
+    updatedAt?: Date; // Last update timestamp
+  }

@@ -1,0 +1,48 @@
+<p-dialog header="Add Interaction" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <span class="p-text-secondary block mb-8">Log a New Interaction</span>
+  
+    <!-- Reactive Form -->
+    <form [formGroup]="interactionForm" (ngSubmit)="onSubmit()">
+      <!-- Customer -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="customer" class="font-semibold w-24 mr-2">Customer</label>
+        <p-dropdown id="customer" class="flex-auto" [options]="customers" formControlName="customer" optionLabel="name"></p-dropdown>
+        <p-message *ngIf="interactionForm.controls['customer'].invalid && interactionForm.controls['customer'].touched" severity="error" 
+          text="Customer is required"></p-message>
+      </div>
+  
+      <!-- Type -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="type" class="font-semibold w-24">Type</label>
+        <p-dropdown id="type" class="flex-auto" [options]="interactionTypes" formControlName="type" optionLabel="type"></p-dropdown>
+        <p-message *ngIf="interactionForm.controls['type'].invalid && interactionForm.controls['type'].touched" severity="error" 
+          text="Type is required"></p-message>
+      </div>
+  
+      <!-- Date -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="date" class="font-semibold w-24">Date</label>
+        <p-calendar id="date" class="flex-auto" formControlName="date" dateFormat="yy-mm-dd"></p-calendar>
+        <p-message *ngIf="interactionForm.controls['date'].invalid && interactionForm.controls['date'].touched" severity="error" 
+          text="Date is required"></p-message>
+      </div>
+  
+      <!-- Notes -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="notes" class="font-semibold w-24">Notes</label>
+        <textarea pInputTextarea id="notes" class="flex-auto" rows="3" formControlName="notes"></textarea>
+      </div>
+  
+      <!-- Follow-Up Date -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="followUpDate" class="font-semibold w-24">Follow-Up</label>
+        <p-calendar id="followUpDate" class="flex-auto" formControlName="followUpDate" dateFormat="yy-mm-dd"></p-calendar>
+      </div>
+  
+      <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+        <p-button type="submit" label="Save" [disabled]="interactionForm.invalid" />
+      </div>
+    </form>
+  </p-dialog>
+  

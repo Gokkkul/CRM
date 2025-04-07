@@ -26,7 +26,7 @@
 
 <div class="">
     <h2>Interactions</h2>
-     <button class="btn btn-primary">Add Interaction<i class="bi bi-plus"></i></button>
+     <button (click)="showAddInteraction()" class="btn btn-primary">Add Interaction<i class="bi bi-plus"></i></button>
     <hr>
     <table class="table table-striped">
         <thead>
@@ -40,7 +40,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let interaction of interactions">
+            <tr *ngFor="let interaction of interactions; let i = index">
                 <td>{{ interaction.type }}</td>
             <td>{{ interaction.date | date:'medium' }}</td>
             <td>{{ interaction.handledBy.name }}</td>
@@ -56,13 +56,13 @@
                     <button class="btn btn-success btn-sm m-1">
                         <i class="bi bi-eye"></i>
                     </button> -->
-                    <button class="btn btn-primary btn-sm m-1">
+                    <button (click)="showEditInteraction(interaction, i )" class="btn btn-primary btn-sm m-1">
                         <i class="bi bi-pencil"></i>
                     </button>
-                    <button class="btn btn-danger btn-sm m-1">
+                    <button (click)="deleteInteraction(i)" class="btn btn-danger btn-sm m-1">
                         <i class="bi bi-trash"></i>
                     </button>
-                    <button class="btn btn-success btn-sm m-1">
+                    <button (click)="showViewInteraction(interaction)" class="btn btn-success btn-sm m-1">
                         <i class="bi bi-eye"></i>
                     </button>
                 </td>
@@ -71,4 +71,6 @@
     </table>
 </div>
 <div #editInteraction></div>
+<div #addInteraction></div>
+<div #viewInteraction></div>
 

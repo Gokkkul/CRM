@@ -3,29 +3,34 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { LoginComponent } from './components/login/login.component';
-import { AddUserComponent } from './components/add-user/add-user.component';
+import {  UserRegistrationComponent } from './components/user-registration/user-registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { SharedModule } from '../shared/shared.module';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    AddUserComponent,
+    UserRegistrationComponent,
     UpdateUserComponent,
     UserHomeComponent,
-    ViewUserComponent
+    ViewUserComponent,
+    AddUserComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports:[
     LoginComponent,
-    AddUserComponent
   ]
 })
 export class UserModule { }

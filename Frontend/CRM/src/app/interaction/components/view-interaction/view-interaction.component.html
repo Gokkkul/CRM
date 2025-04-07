@@ -1,0 +1,35 @@
+<p-dialog header="View Interaction" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <div class="p-fluid">
+        <div class="field">
+            <b><label>Customer</label></b>
+            <p>{{ interactionData.customer?.name || 'N/A' }}</p>
+        </div>
+        <div class="field">
+            <b><label>Type</label></b>
+            <p>{{ interactionData.type || 'N/A' }}</p>
+        </div>
+        <div class="field">
+            <b><label>Date</label></b>
+            <p>{{ interactionData.date | date: 'medium' }}</p>
+        </div>
+        <div class="field">
+            <b><label>Notes</label></b>
+            <p>{{ interactionData.notes || 'N/A' }}</p>
+        </div>
+        <div class="field">
+            <b><label>Follow-Up Date</label></b>
+            <p>{{ interactionData.followUpDate ? (interactionData.followUpDate | date: 'medium') : 'N/A' }}</p>
+        </div>
+        <div class="field">
+            <b><label>Created At</label></b>
+            <p>{{ interactionData.createdAt | date: 'medium' }}</p>
+        </div>
+        <div class="field">
+            <b><label>Updated At</label></b>
+            <p>{{ interactionData.updatedAt | date: 'medium' }}</p>
+        </div>
+    </div>
+    <div class="flex justify-end mt-4">
+        <p-button label="Close" severity="secondary" (click)="closeDialog()" />
+    </div>
+</p-dialog>

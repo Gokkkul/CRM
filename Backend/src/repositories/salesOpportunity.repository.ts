@@ -21,7 +21,7 @@ export class SalesOpportunityRepository {
     }
 
     async getSalesOpportunities() {
-        const result = await this.appDataSource.find();
+        const result = await this.appDataSource.find({relations: ['customer']});
         return result;
     }
 

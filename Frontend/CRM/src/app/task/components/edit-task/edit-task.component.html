@@ -1,0 +1,42 @@
+<p-dialog header="Edit Task" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <span class="p-text-secondary block mb-8">Edit Task</span>
+  
+    <form [formGroup]="taskForm" (ngSubmit)="onUpdate()">
+      <!-- Description -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="description" class="font-semibold w-24">Description</label>
+        <input pInputText id="description" class="flex-auto" formControlName="description" autocomplete="off" />
+        <p-message *ngIf="taskForm.controls['description'].invalid && taskForm.controls['description'].touched"
+                   severity="error" text="Description is required"></p-message>
+      </div>
+  
+      <!-- Due Date -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="dueDate" class="font-semibold w-24">Due Date</label>
+        <input type="date" id="dueDate" class="flex-auto" formControlName="dueDate" />
+        <p-message *ngIf="taskForm.controls['dueDate'].invalid && taskForm.controls['dueDate'].touched"
+                   severity="error" text="Due Date is required"></p-message>
+      </div>
+  
+      <!-- Status -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="status" class="font-semibold w-24">Status</label>
+        <p-dropdown id="status" class="flex-auto" [options]="statusOptions" formControlName="status" optionLabel="label"></p-dropdown>
+        <p-message *ngIf="taskForm.controls['status'].invalid && taskForm.controls['status'].touched"
+                   severity="error" text="Status is required"></p-message>
+      </div>
+  
+      <!-- Assigned To -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="assignedTo" class="font-semibold w-24">Assigned To</label>
+        <input pInputText id="assignedTo" class="flex-auto" formControlName="assignedTo" autocomplete="off" />
+      </div>
+  
+      <!-- Buttons -->
+      <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+        <p-button type="submit" label="Save Changes" [disabled]="taskForm.invalid" />
+      </div>
+    </form>
+  </p-dialog>
+  

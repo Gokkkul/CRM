@@ -1,0 +1,28 @@
+<p-dialog header="View Task" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <div class="p-fluid">
+      <div class="field">
+        <b><label>Description</label></b>
+        <p>{{ taskData.description }}</p>
+      </div>
+      <div class="field">
+        <b><label>Due Date</label></b>
+        <p>{{ taskData.dueDate | date: 'medium' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Status</label></b>
+        <p>{{ taskData.status }}</p>
+      </div>
+      <div class="field">
+        <b><label>Assigned To</label></b>
+        <p>{{ taskData.assignedTo?.name || 'N/A' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Created At</label></b>
+        <p>{{ taskData.createdAt | date: 'medium' }}</p>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <p-button label="Close" severity="secondary" (click)="closeDialog()" />
+    </div>
+  </p-dialog>
+  

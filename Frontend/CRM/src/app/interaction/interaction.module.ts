@@ -6,6 +6,10 @@ import { RouterModule } from '@angular/router';
 import { InteractionHomeComponent } from './components/interaction-home/interaction-home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AddInteractionComponent } from './components/add-interaction/add-interaction.component';
+import { ViewInteractionComponent } from './components/view-interaction/view-interaction.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditInteractionComponent } from './components/edit-interaction/edit-interaction.component';
 
 
 
@@ -13,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
   
     InteractionHomeComponent,
+        AddInteractionComponent,
+        ViewInteractionComponent,
+        EditInteractionComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     InteractionRoutingModule,
     RouterModule,
     HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class InteractionModule { }

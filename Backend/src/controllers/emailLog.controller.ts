@@ -67,4 +67,16 @@ export class EmailLogController {
       res.status(500).json(`Message: ${error}`);
     }
   };
+
+  //  sendEmailController = async (req: Request, res: Response): Promise<void> => {
+  //   const { recipient, subject, message, userId } = req.body;
+  
+  //   try {
+  //     const result = await sendAndLogEmail(recipient, subject, message, userId);
+  //     res.status(200).json(result);
+  //   } catch (error) {
+  //     res.status(500).json({ message: "Error occurred", error: error.message });
+  //   }
+  // };
+
 }

@@ -11,8 +11,8 @@ export class AuthService {
     if (user?.password) {
       const isPasswordValid = await bcrypt.compare(pwd, user.password!); // Compare hashed password
       if (isPasswordValid) {
-        const secret = process.env.SECRET_KEY || "lavanya";
-        const token = jwt.sign({ userEmail, pwd }, secret);
+        const secret = process.env.SECRET_KEY || "secret_key";
+        const token = jwt.sign({ id:user.id, role: user.role }, secret);
         return `User logged in successfully! token: ${token}`;
       } else {
         return `Invalid credentials!`;

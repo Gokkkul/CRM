@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-add-user',
@@ -8,22 +10,48 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './add-user.component.css'
 })
 export class AddUserComponent {
-  addUserForm: FormGroup;
+  @Input() visible: boolean = false; // Controls dialog visibility
+  userForm!: FormGroup; // Reactive form instance
 
-  constructor(private fb: FormBuilder) {
-      this.addUserForm = this.fb.group({
-          name: ['', [Validators.required]],
-          email: ['', [Validators.required, Validators.email]],
-          password: ['', [Validators.required, Validators.minLength(6)]],
-          role: ['', [Validators.required]],
-          isDeleted: [false]
-      });
+  roleOptions = [
+    { label: 'Admin', value: 'admin' },
+    { label: 'Sales Representative', value: 'sales_rep' },
+    { label: 'Manager', value: 'manager' },
+  ];
+
+  constructor(private fb: FormBuilder, private userService: UserService, private swal: SweetAlertService) {
+    this.initForm();
   }
 
-  addUser() {
-      if (this.addUserForm.valid) {
-          console.log(this.addUserForm.value);
-          // Logic to add user
-      }
+  initForm() {
+    // Initialize form fields
+    this.userForm = this.fb.group({
+      name: ['', Validators.required], // Name is required
+      email: ['', [Validators.required, Validators.email]], // Email is required and must be valid
+      password: ['', Validators.required], // Password is required
+      role: ['', Validators.required], // Role is required
+    });
+  }
+
+  onSubmit() {
+    if (this.userForm.valid) {
+      console.log('User data:', this.userForm.value);
+
+      this.userService.addUser(this.userForm.value).subscribe(
+        (response) => {
+          console.log('User successfully added:', response);
+
+          // Show success message
+          this.swal.showToast('User added successfully.', 'success');
+          this.visible = false; // Close the dialog after saving
+        },
+        (error) => {
+          console.error('Error adding user:', error);
+
+          // Show error message
+          this.swal.showToast('Failed to add user. Please try again.', 'error');
+        }
+      );
+    }
   }
 }

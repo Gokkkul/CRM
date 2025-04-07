@@ -33,12 +33,11 @@ export class CustomerHomeComponent implements OnInit{
   selectedCustomer: any;
 
 
-  constructor(private customerService: CustomerService, private swal: SweetAlertService, private toastrService: ToastrService){}
+  constructor(private customerService: CustomerService, private swal: SweetAlertService){}
 
   ngOnInit(){
     this.customerService.customer$.subscribe((data:any) => {
       this.customers = data;
-      console.log(`lavanys`,data);
       
     //   setTimeout(() => {
     //     $('#example').DataTable();
@@ -55,9 +54,6 @@ export class CustomerHomeComponent implements OnInit{
 
   @ViewChild('editCustomer', { read: ViewContainerRef }) editCustomerContainer!: ViewContainerRef;
   private editCustomerComponentRef!: ComponentRef<EditCustomerComponent>;
-
-  // @ViewChild('editCustomer', { read: ViewContainerRef }) editCustomerContainer1!: ViewContainerRef;
-  // private editCustomerComponentRef1!: ComponentRef<EditCustomerComponent>;
 
   @ViewChild('addCustomer', { read: ViewContainerRef }) addCusomerContainer!: ViewContainerRef;
   private addCustomerComponentRef!: ComponentRef<AddCustomerComponent>;

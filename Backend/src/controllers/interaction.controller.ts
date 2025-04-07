@@ -62,7 +62,7 @@ export class InteractionController {
   getInteractions = async (req: Request, res: Response) => {
     try {
       const result = await interactionSvc.getInteractions();
-      res.status(200).json(result);
+      res.status(200).json({result});
     } catch (error) {
       res.status(500).json(`Message: ${error}`);
     }

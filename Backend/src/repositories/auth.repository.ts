@@ -16,8 +16,9 @@ export class AuthRepository{
     async loginUser(email: string, password: string) {
        
         const result = await this.appDataSource.findOne({where: {email: email}});
-        if(result?.email){
-            return {email:result.email, password:result.password}
-        }
+        // if(result?.email){
+        //     return {email:result.email, password:result.password}
+        // }
+        return result as User;
     }
 }

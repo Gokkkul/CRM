@@ -1,1 +1,32 @@
-<p>view-user works!</p>
+<p-dialog header="View User" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <div class="p-fluid">
+      <div class="field">
+        <b><label>Name</label></b>
+        <p>{{ userData.name }}</p>
+      </div>
+      <div class="field">
+        <b><label>Email</label></b>
+        <p>{{ userData.email }}</p>
+      </div>
+      <div class="field">
+        <b><label>Role</label></b>
+        <p>{{ userData.role }}</p>
+      </div>
+      <div class="field">
+        <b><label>Created At</label></b>
+        <p>{{ userData.createdAt | date: 'medium' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Updated At</label></b>
+        <p>{{ userData.updatedAt | date: 'medium' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Deleted</label></b>
+        <p>{{ userData.isDeleted ? 'Yes' : 'No' }}</p>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <p-button label="Close" severity="secondary" (click)="closeDialog()" />
+    </div>
+  </p-dialog>
+  

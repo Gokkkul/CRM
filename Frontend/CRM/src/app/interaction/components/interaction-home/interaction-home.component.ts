@@ -1,9 +1,18 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ComponentRef,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { InteractionService } from '../../services/interaction.service';
-import $ from 'jquery';
+import $, { data } from 'jquery';
 import 'datatables.net';
+import { EditInteractionComponent } from '../edit-interaction/edit-interaction.component';
+import { AddInteractionComponent } from '../add-interaction/add-interaction.component';
+import { ViewInteractionComponent } from '../view-interaction/view-interaction.component';
+import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
 
-export interface IInteraction{
+export interface IInteraction {
   id: number;
   customer: string;
   handledBy: { name: string };
@@ -18,34 +27,81 @@ export interface IInteraction{
   selector: 'app-interaction-home',
   standalone: false,
   templateUrl: './interaction-home.component.html',
-  styleUrl: './interaction-home.component.css'
+  styleUrl: './interaction-home.component.css',
 })
 export class InteractionHomeComponent {
+  interactions: IInteraction[] = [];
+  selectedInteraction: any;
 
-  interactions: IInteraction [] = [];
+  constructor(private interactionService: InteractionService, private swal: SweetAlertService) {}
 
-  constructor(private interactionService: InteractionService){}
-
-  ngOnInit(){
-    this.interactionService.getInteractions().subscribe((data: any) => {
-      // console.log('API Response:', data);
-      this.interactions = data;
-      setTimeout(() => {
-        $('#example').DataTable();
-    }, 1);
-    })
+  ngOnInit() {
+    // this.interactionService.getInteractions().subscribe((data: any) => {
+    //   // console.log('API Response:', data);
+    //   this.interactions = data;
+    //   setTimeout(() => {
+    //     $('#example').DataTable();
+    // }, 1);
+    // })
+   this.interactionService.interaction$.subscribe((data: any) => {
+    this.interactions = data;
+    console.log(data);
+    
+   })
   }
 
-  editInteraction(interactions: any){
-console.log();
+  @ViewChild('editInteraction', { read: ViewContainerRef })
+  editInteractionContainer!: ViewContainerRef;
+  private editInteractionComponentRef!: ComponentRef<EditInteractionComponent>;
 
+  @ViewChild('addInteraction', { read: ViewContainerRef })
+  addInteractionContainer!: ViewContainerRef;
+  private addInteractionComponentRef!: ComponentRef<AddInteractionComponent>;
+
+  @ViewChild('viewInteraction', { read: ViewContainerRef })
+  viewInteractionContainer!: ViewContainerRef;
+  private viewInteractionComponentRef!: ComponentRef<ViewInteractionComponent>;
+
+  showEditInteraction(interaction: any, index: number) {
+    this.editInteractionContainer.clear(); // Clear previous instances if any
+
+    this.selectedInteraction = { interaction, index }; // Assign the selected customer
+
+    // Dynamically create and inject the child component
+    this.editInteractionComponentRef =
+      this.editInteractionContainer.createComponent(EditInteractionComponent);
+
+    // Pass the selected customer data to the child component
+    this.editInteractionComponentRef.instance.interactionData =
+      this.selectedInteraction.interaction;
+    this.editInteractionComponentRef.instance.interactionIndex =
+      this.selectedInteraction.index; // `@Input()` in EditCustomerComponent
+
+    // Make the dialog visible
+    this.editInteractionComponentRef.instance.visible = true;
   }
 
-  deleteInteraction(id: number){
-
+  deleteInteraction(index: number) {
+    this.interactionService.deleteInteraction(index).subscribe(() => {console.log("deleted")});
+    this.swal.showToast('Interaction Deleted Successfully.', 'success')
   }
 
-  addInteraction(data: any){
+  showAddInteraction() {
+    this.addInteractionContainer.clear();
+    this.addInteractionComponentRef =
+      this.addInteractionContainer.createComponent(AddInteractionComponent);
+    this.addInteractionComponentRef.instance.visible = true;
+  }
 
+  showViewInteraction(interaction: IInteraction){
+    this.viewInteractionContainer.clear();
+
+    this.selectedInteraction = interaction;
+
+    this.viewInteractionComponentRef = this.viewInteractionContainer.createComponent(ViewInteractionComponent);
+
+    this.viewInteractionComponentRef.instance.interactionData = this.selectedInteraction;
+
+    this.viewInteractionComponentRef.instance.visible = true;
   }
 }

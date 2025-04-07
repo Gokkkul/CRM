@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let lead of leads">
+            <tr *ngFor="let lead of leads; let i = index">
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.email }}</td>
                 <td>{{ lead.phone }}</td>
@@ -27,15 +27,14 @@
                 <!-- <td>{{ lead.createdAt | date:'medium' }}</td>
                 <td>{{ lead.updatedAt | date:'medium' }}</td> -->
                 <td>
-                    <!-- <button (click)="showEditLead(lead)" class="btn btn-primary btn-sm m-1">
+                    <button (click)="showEditLead(lead, i)" class="btn btn-primary btn-sm m-1">
                         <i class="bi bi-pencil"></i>
                     </button>
-                    <button (click)="deleteLead(lead.id)" class="btn btn-danger btn-sm m-1">
+                    <button (click)="deleteLead(i)" class="btn btn-danger btn-sm m-1">
                         <i class="bi bi-trash"></i>
-                    </button> -->
+                    </button>
                     <button (click)="showViewLead(lead)" class="btn btn-success btn-sm m-1">
-                        <!-- <i class="bi bi-eye"></i> -->
-                         View
+                        <i class="bi bi-eye"></i>
                     </button>
                 </td>
             </tr>

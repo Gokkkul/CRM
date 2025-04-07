@@ -24,4 +24,9 @@ export class emailLogRepository {
         const result = await this.appDataSource.find();
         return result;
     }
+
+    async sendEmail(emailLogData: Partial<EmailLog>){
+        const emailLog = await this.appDataSource.create(emailLogData);
+        return await this.appDataSource.save(emailLog);
+    }
 }
