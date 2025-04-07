@@ -21,6 +21,10 @@ export class Lead {
     @Column({ type: "varchar", length: 255, nullable: true })
     assignedTo: string;
 
+    // @ManyToOne(() => User, (user) => user.leads, { nullable: true })
+    // @JoinColumn({ name: "assignedTo" }) // This will link the assignedTo column to the User entity
+    // assignedTo: User;
+
     @Column({ type: "varchar", length: 255, nullable: true })
     source: string;
 

@@ -5,8 +5,8 @@ import * as dotenv from 'dotenv';
 dotenv.config()
 
 export const AppDataSource = new DataSource({
-    type: "mssql",
-    // type: "mysql",
+    // type: "mssql",
+    type: "mysql",
     port: Number(process.env.DB_PORT),
     host: process.env.DB_HOST,
     username: process.env.DB_USER,
@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
     entities: ["./src/entities/*.ts"],
     synchronize: true,
     logging: false,
-    options: {
-        trustServerCertificate: true
-    }
+    // options: {
+    //     trustServerCertificate: true
+    // }
 })

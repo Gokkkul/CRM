@@ -84,4 +84,8 @@ export class UserHomeComponent {
       this.swal.showToast('User Deleted Successfully.', 'success');
     });
   }
+
+  showAddUser(){
+    
+  }
 }
