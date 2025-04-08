@@ -13,6 +13,8 @@ import { ViewLeadComponent } from '../view-lead/view-lead.component';
 import { EditLeadComponent } from '../edit-lead/edit-lead.component';
 import { AddLeadComponent } from '../add-lead/add-lead.component';
 import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
+import { SalesOpportunityService } from '../../../sales-opportunity/services/sales-opportunity.service';
+import { CustomerService } from '../../../customer/services/customer.service';
 
 @Component({
   selector: 'app-lead-home',
@@ -36,14 +38,14 @@ export class LeadHomeComponent {
   addLeadContainer!: ViewContainerRef;
   private addLeadComponentRef!: ComponentRef<AddLeadComponent>;
 
-  constructor(private leadService: LeadService, private swal: SweetAlertService) {}
+  constructor(private leadService: LeadService, private swal: SweetAlertService, private customerService: CustomerService) {}
 
   ngOnInit(): void {
     this.leadService.lead$.subscribe((data: any) => {
       this.leads = data;
-      //   setTimeout(() => {
-      //     $('#example').DataTable();
-      // }, 1);
+        setTimeout(() => {
+          $('#example').DataTable();
+      }, 1);
     });
   }
 
@@ -52,6 +54,12 @@ export class LeadHomeComponent {
   //     this.leads = data;
   //   });
   // }
+
+addToCustomer(){
+  console.log('Button Clicked');
+  
+  this.customerService.addLeadToCustomer()
+}
 
   showAddLead() {
     this.addLeadContainer.clear();

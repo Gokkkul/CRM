@@ -39,9 +39,9 @@ export class CustomerHomeComponent implements OnInit{
     this.customerService.customer$.subscribe((data:any) => {
       this.customers = data;
       
-    //   setTimeout(() => {
-    //     $('#example').DataTable();
-    // }, 1);
+      setTimeout(() => {
+        $('#example').DataTable();
+    }, 1);
     })
 
   }

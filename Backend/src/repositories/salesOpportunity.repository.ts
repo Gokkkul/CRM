@@ -21,32 +21,32 @@ export class SalesOpportunityRepository {
     }
 
     async getSalesOpportunities() {
-        const result = await this.appDataSource.find({relations: ['customer']});
+        const result = await this.appDataSource.find({relations: ['customer'], where:{isDeleted:0}});
         return result;
     }
 
     // Fetch grouped opportunities for Kanban board
-    async getOpportunitiesByStage() {
-        const queryRunner = AppDataSource.createQueryRunner(); // Create a query runner
-        try {
-            return await queryRunner.query(`
-                WITH OpportunitiesJSON AS (
-                    SELECT 
-                        stage,
-                        (SELECT id, value, expectedCloseDate, notes
-                         FROM [sales__opportunity__tbl] sub_opportunity
-                         WHERE sub_opportunity.stage = main.stage
-                         FOR JSON PATH) AS opportunityJson
-                    FROM [sales__opportunity__tbl] main
-                )
-                SELECT stage, STRING_AGG(opportunityJson, ',') AS opportunities
-                FROM OpportunitiesJSON
-                GROUP BY stage;
-            `);
-        } finally {
-            await queryRunner.release(); // Release the query runner after use
-        }
-    }
+    // async getOpportunitiesByStage() {
+    //     const queryRunner = AppDataSource.createQueryRunner(); // Create a query runner
+    //     try {
+    //         return await queryRunner.query(`
+    //             WITH OpportunitiesJSON AS (
+    //                 SELECT 
+    //                     stage,
+    //                     (SELECT id, value, expectedCloseDate, notes
+    //                      FROM [sales__opportunity__tbl] sub_opportunity
+    //                      WHERE sub_opportunity.stage = main.stage
+    //                      FOR JSON PATH) AS opportunityJson
+    //                 FROM [sales__opportunity__tbl] main
+    //             )
+    //             SELECT stage, STRING_AGG(opportunityJson, ',') AS opportunities
+    //             FROM OpportunitiesJSON
+    //             GROUP BY stage;
+    //         `);
+    //     } finally {
+    //         await queryRunner.release(); // Release the query runner after use
+    //     }
+    // }
 
    
 
@@ -63,5 +63,22 @@ export class SalesOpportunityRepository {
     // Fetch Opportunities by id
     async getOpportunityById(id: number) {
         return this.appDataSource.findOne({ where: { id } });
+    }
+
+    async getSalesOpportunitiesByCustomer() {
+        const opportunities = await this.appDataSource.find({ 
+            relations: ["customer"],
+            where: { isDeleted: 0 } // Fetch only active opportunities
+        });
+
+        // Group & aggregate sales values by customer
+        const groupedData: { [key: string]: number } = {};
+        opportunities.forEach(opportunity => {
+            const customerName = opportunity.customer?.name || "Unknown";
+            groupedData[customerName] = (groupedData[customerName] || 0) + opportunity.value;
+        });
+
+        // Convert object to array format
+        return Object.entries(groupedData).map(([customer, totalValue]) => ({ customer, totalValue }));
     }
 }

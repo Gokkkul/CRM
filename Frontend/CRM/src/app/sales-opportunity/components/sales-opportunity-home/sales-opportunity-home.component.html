@@ -1,32 +1,38 @@
-<!-- <div>
-    <h2>Sales Opportunities</h2> -->
-  
-    <!-- Display Existing Opportunities -->
-    <!-- <ul>
-      <li *ngFor="let opportunity of opportunities">
-        {{ opportunity.name }} - {{ opportunity.stage }}
-        <button (click)="selectedOpportunity = opportunity">Edit</button>
-        <button (click)="deleteOpportunity(opportunity._id)">Delete</button>
-      </li>
-    </ul> -->
-  
-    <!-- Add New Opportunity -->
-    <!-- <h3>Add New Opportunity</h3>
-    <form (submit)="addOpportunity()">
-      <input [(ngModel)]
-      ="newOpportunity.name" placeholder="Name" />
-      <input [(ngModel)]="newOpportunity.stage" placeholder="Stage" />
-      <button type="submit">Add</button>
-    </form>
-   -->
-    <!-- Update Opportunity -->
-    <!-- <h3>Edit Opportunity</h3>
-    <form *ngIf="selectedOpportunity" (submit)="updateOpportunity()">
-      <input [(ngModel)]="selectedOpportunity.name" placeholder="Name" />
-      <input [(ngModel)]="selectedOpportunity.stage" placeholder="Stage" />
-      <button type="submit">Update</button>
-    </form>
-  </div> -->
-
-  
-  <!-- <app-kanban-board></app-kanban-board> -->
+<div class="">
+  <h2>Sales Opportunities</h2>
+  <button class="btn btn-primary" (click)="showAddSalesOpportunity()">Add Sales Opportunity <i class="bi bi-plus"></i></button>
+  <hr>
+  <table id="example" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Customer</th>
+          <th>Value</th>
+          <th>Expected Close Date</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let opportunity of salesOpportunities; let i = index">
+              <td>{{ opportunity.stage }}</td>
+              <td>{{ opportunity.customer?.name }}</td>
+              <td>{{ opportunity.value | currency: 'INR' }}</td>
+              <td>{{ opportunity.expectedCloseDate | date:'medium' }}</td>
+              <td>
+                  <button (click)="showEditSalesOpportunity(opportunity, i)" class="btn btn-primary btn-sm m-1">
+                      <i class="bi bi-pencil"></i>
+                  </button>
+                  <button (click)="deleteSalesOpportunity(i)" class="btn btn-danger btn-sm m-1">
+                      <i class="bi bi-trash"></i>
+                  </button>
+                  <button (click)="showViewSalesOpportunity(opportunity)" class="btn btn-success btn-sm m-1">
+                      <i class="bi bi-eye"></i>
+                  </button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+<div #editSalesOpportunity></div>
+<div #addSalesOpportunity></div>
+<div #viewSalesOpportunity></div>

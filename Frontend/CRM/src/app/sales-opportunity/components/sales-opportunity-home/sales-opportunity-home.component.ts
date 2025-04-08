@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { SalesOpportunityService } from '../../services/sales-opportunity.service';
+import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
+import { ViewSalesOpportunityComponent } from '../view-sales-opportunity/view-sales-opportunity.component';
+import { ISalesOpportunity } from '../../../models/model';
+import { EditSalesOpportunityComponent } from '../edit-sales-opportunity/edit-sales-opportunity.component';
+import { AddSalesOpportunityComponent } from '../add-sales-opportunity/add-sales-opportunity.component';
 
 @Component({
   selector: 'app-sales-opportunity-home',
@@ -8,42 +13,65 @@ import { SalesOpportunityService } from '../../services/sales-opportunity.servic
   styleUrl: './sales-opportunity-home.component.css'
 })
 export class SalesOpportunityHomeComponent {
-  opportunities: any[] = [];
-  newOpportunity: any = {}; // for adding a new opportunity
-  selectedOpportunity: any = {}; // for updating an opportunity
+  visible = false;
+  salesOpportunities: ISalesOpportunity[] = [];
+  selectedOpportunity: any;
 
-  constructor() {}
+  constructor(private salesOpportunityService: SalesOpportunityService, private swal: SweetAlertService) {}
 
-  // ngOnInit(): void {
-  //   this.loadOpportunities();
-  // }
+  ngOnInit() {
+    this.salesOpportunityService.salesOpportunity$.subscribe((data: any) => {
+      this.salesOpportunities = data;
+      console.log(data);
+      
+      setTimeout(() => {
+        $('#example').DataTable();
+      }, 1);
+    });
+  }
 
-  // loadOpportunities(): void {
-  //   this.salesService.getOpportunities().subscribe((data) => {
-  //     this.opportunities = data;
-  //   });
-  // }
+  @ViewChild('editSalesOpportunity', { read: ViewContainerRef }) editSalesOpportunityContainer!: ViewContainerRef;
+  private editSalesOpportunityComponentRef!: ComponentRef<EditSalesOpportunityComponent>;
 
-  // addOpportunity(): void {
-  //   this.salesService.addOpportunity(this.newOpportunity).subscribe(() => {
-  //     this.loadOpportunities();
-  //     this.newOpportunity = {};
-  //   });
-  // }
+  @ViewChild('addSalesOpportunity', { read: ViewContainerRef }) addSalesOpportunityContainer!: ViewContainerRef;
+  private addSalesOpportunityComponentRef!: ComponentRef<AddSalesOpportunityComponent>;
 
-  // updateOpportunity(): void {
-  //   this.salesService
-  //     .updateOpportunity(this.selectedOpportunity._id, this.selectedOpportunity)
-  //     .subscribe(() => {
-  //       this.loadOpportunities();
-  //       this.selectedOpportunity = {};
-  //     });
-  // }
+  @ViewChild('viewSalesOpportunity', { read: ViewContainerRef }) viewSalesOpportunityContainer!: ViewContainerRef;
+  private viewSalesOpportunityComponentRef!: ComponentRef<ViewSalesOpportunityComponent>;
 
-  // deleteOpportunity(id: string): void {
-  //   this.salesService.deleteOpportunity(id).subscribe(() => {
-  //     this.loadOpportunities();
-  //   });
-  // }
+  showEditSalesOpportunity(opportunity: ISalesOpportunity, index: number) {
+    this.editSalesOpportunityContainer.clear(); // Clear previous instances if any
+
+    this.selectedOpportunity = { opportunity, index }; // Assign the selected opportunity
+
+    this.editSalesOpportunityComponentRef = this.editSalesOpportunityContainer.createComponent(EditSalesOpportunityComponent);
+
+    this.editSalesOpportunityComponentRef.instance.salesOpportunityData = this.selectedOpportunity.opportunity;
+    this.editSalesOpportunityComponentRef.instance.salesOpportunityIndex = this.selectedOpportunity.index;
+
+    this.editSalesOpportunityComponentRef.instance.visible = true;
+  }
+
+  showAddSalesOpportunity() {
+    this.addSalesOpportunityContainer.clear();
+    this.addSalesOpportunityComponentRef = this.addSalesOpportunityContainer.createComponent(AddSalesOpportunityComponent);
+    this.addSalesOpportunityComponentRef.instance.visible = true;
+  }
+
+  showViewSalesOpportunity(opportunity: ISalesOpportunity) {
+    this.viewSalesOpportunityContainer.clear(); // Clear previous instances if any
+
+    this.selectedOpportunity = opportunity;
+
+    this.viewSalesOpportunityComponentRef = this.viewSalesOpportunityContainer.createComponent(ViewSalesOpportunityComponent);
+
+    this.viewSalesOpportunityComponentRef.instance.salesOpportunityData = this.selectedOpportunity;
+
+    this.viewSalesOpportunityComponentRef.instance.visible = true;
+  }
+
+  deleteSalesOpportunity(index: number) {
+    this.salesOpportunityService.deleteSalesOpportunity(index)
+  }
 }
 

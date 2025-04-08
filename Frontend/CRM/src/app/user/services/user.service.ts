@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { IUser } from '../../models/model';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { SweetAlertService } from '../../shared/services/sweet-alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class UserService {
   private userSubject = new BehaviorSubject<IUser[]>(this.users); // Observable for components
   user$ = this.userSubject.asObservable(); // Expose user data as observable
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService, private swal: SweetAlertService) {
     this.getUsers(); // Fetch users upon initialization
   }
 
@@ -56,7 +58,34 @@ export class UserService {
     return this.http.delete(this.apiUrl + `/delete-user/${id}`); // Send delete request to the API
   }
 
-  login(){
-    this.router.navigate(['/dashboard'])
-  }
+  login(form: any) {
+    console.log(form.username, form.password);
+    this.http.post(`${this.apiUrl}/login`, { email: form.username, password: form.password })
+    
+      .subscribe((response: any) => {
+        console.log(response);
+        
+        if (response.result.token) {
+          this.cookieService.set('userData', JSON.stringify(response.result));
+          console.log(this.cookieService.get('userData'));
+          
+           // Store JWT token
+          this.swal.showToast('Login Successful', 'success')
+          this.router.navigate(['/dashboard']); // Redirect user
+        } else {
+          this.swal.showToast('Invalid Credentials!', 'error')
+          console.error("Login failed:", response.message);
+        }
+      }, error => {
+        console.error("Login error:", error);
+      });
+
+}
+
+logout(){
+  this.cookieService.delete('userData');
+  this.router.navigate(['/login']);
+}
+
+
 }

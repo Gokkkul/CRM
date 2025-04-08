@@ -68,14 +68,14 @@ export class SalesOpportunityController {
     }
   };
 
-  getOpportunitiesByStage = async(req: Request, res: Response) => {
-    try {
-      const result = await salesOpportunityService.getOpportunitiesByStage();
-      res.status(200).json(result);
-    } catch (error) {
-      res.status(500).json(`Message: ${error}`);
-    }
-  }
+  // getOpportunitiesByStage = async(req: Request, res: Response) => {
+  //   try {
+  //     const result = await salesOpportunityService.getOpportunitiesByStage();
+  //     res.status(200).json(result);
+  //   } catch (error) {
+  //     res.status(500).json(`Message: ${error}`);
+  //   }
+  // }
 
   getSummaryData = async(req: Request, res: Response) => {
     try {
@@ -94,6 +94,15 @@ export class SalesOpportunityController {
 
     } catch (error) {
       res.status(500).json(`Message: ${error}`);
+    }
+  }
+
+  getSalesOpportunitiesByCustomer = async (req: Request, res: Response) => {
+    try {
+      const result = await salesOpportunityService.getSalesOpportunitiesByCustomer();
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`)
     }
   }
 }

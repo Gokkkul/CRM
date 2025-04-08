@@ -1,1 +1,31 @@
-<app-sales-opportunity-chart/>
+<p-dialog header="View Sales Opportunity" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <div class="p-fluid">
+      <div class="field">
+        <b><label>Stage</label></b>
+        <p>{{ salesOpportunityData.stage }}</p>
+      </div>
+      <div class="field">
+        <b><label>Customer</label></b>
+        <p>{{ salesOpportunityData.customer?.name || 'N/A' }}</p>
+      </div>
+      <!-- <div class="field">
+        <b><label>Lead</label></b>
+        <p>{{ salesOpportunityData.lead?.id || 'N/A' }}</p>
+      </div> -->
+      <div class="field">
+        <b><label>Value</label></b>
+        <p>{{ salesOpportunityData.value | currency: 'INR' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Expected Close Date</label></b>
+        <p>{{ salesOpportunityData.expectedCloseDate | date: 'medium' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Notes</label></b>
+        <p>{{ salesOpportunityData.notes || 'N/A' }}</p>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <p-button label="Close" severity="secondary" (click)="closeDialog()" />
+    </div>
+</p-dialog>

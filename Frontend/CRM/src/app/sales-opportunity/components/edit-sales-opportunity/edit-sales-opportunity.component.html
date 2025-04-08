@@ -1,0 +1,57 @@
+<p-dialog header="Edit Sales Opportunity" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <span class="p-text-secondary block mb-8">Edit Sales Opportunity</span>
+  
+    <form [formGroup]="salesOpportunityForm" (ngSubmit)="onUpdate()">
+      <!-- Stage -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="stage" class="font-semibold w-24">Stage</label>
+        <input pInputText id="stage" class="flex-auto" formControlName="stage" autocomplete="off" />
+        <p-message *ngIf="salesOpportunityForm.controls['stage'].invalid && salesOpportunityForm.controls['stage'].touched"
+                   severity="error" text="Stage is required"></p-message>
+      </div>
+  
+      <!-- Customer (Dropdown) -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="customer" class="font-semibold w-24">Customer</label>
+        <p-dropdown [options]="customers" id="customer" class="flex-auto"
+                    formControlName="customer"
+                    optionLabel="name" optionValue="id"
+                    placeholder="Select a customer">
+        </p-dropdown>
+        <p-message *ngIf="salesOpportunityForm.controls['customer'].invalid && salesOpportunityForm.controls['customer'].touched"
+                   severity="error" text="Customer is required"></p-message>
+      </div>
+  
+      <!-- Lead -->
+      <!-- <div class="flex items-center gap-4 mb-4">
+        <label for="lead" class="font-semibold w-24">Lead</label>
+        <input pInputText id="lead" class="flex-auto" formControlName="lead" autocomplete="off" />
+      </div> -->
+  
+      <!-- Value -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="value" class="font-semibold w-24">Value</label>
+        <input pInputText id="value" class="flex-auto" formControlName="value" type="number" autocomplete="off" />
+        <p-message *ngIf="salesOpportunityForm.controls['value'].invalid && salesOpportunityForm.controls['value'].touched"
+                   severity="error" text="Value must be a positive number"></p-message>
+      </div>
+  
+      <!-- Expected Close Date -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="expectedCloseDate" class="font-semibold w-24">Expected Close Date</label>
+        <input pInputText id="expectedCloseDate" class="flex-auto" formControlName="expectedCloseDate" type="date" />
+      </div>
+  
+      <!-- Notes -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="notes" class="font-semibold w-24">Notes</label>
+        <textarea pInputText id="notes" class="flex-auto" formControlName="notes"></textarea>
+      </div>
+  
+      <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+        <p-button type="submit" label="Save Changes" [disabled]="salesOpportunityForm.invalid" />
+      </div>
+    </form>
+  </p-dialog>
+  

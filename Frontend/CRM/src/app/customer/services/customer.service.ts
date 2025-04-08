@@ -2,6 +2,8 @@
   import { Injectable } from '@angular/core';
   import { ICustomer } from '../components/customer-home/customer-home.component';
   import { BehaviorSubject } from 'rxjs';
+import { event } from 'jquery';
+import { SweetAlertService } from '../../shared/services/sweet-alert.service';
 
   @Injectable({
     providedIn: 'root',
@@ -13,7 +15,7 @@
     private customerSubject = new BehaviorSubject<ICustomer[]>(this.customers);
     customer$ = this.customerSubject.asObservable();
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private swal: SweetAlertService) {
       this.getcustomers();
     }
 
@@ -63,8 +65,17 @@
     }
 
 
-  salesOpportunity(){
-    
+  addLeadToCustomer(){
+    this.http.post(this.apiUrl+`/add-lead-to-customer`,'').subscribe({
+      next: (res) => {
+        this.getcustomers()
+        this.swal.showToast('Lead Added to Customer...!', 'success')
+      },
+
+      error: (err) => {
+        this.swal.showToast('Failed to Add Lead to Customer', 'error')
+      }
+    })
   } 
     
   }

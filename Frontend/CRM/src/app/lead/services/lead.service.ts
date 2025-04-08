@@ -56,4 +56,8 @@ export class LeadService {
     console.log('Deleted lead:', id);
     return this.http.delete(this.apiUrl + `/delete-lead/${id}`); // Send delete request to API
   }
+
+  addToCustomer(){
+    
+  }
 }

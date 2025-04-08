@@ -13,11 +13,14 @@ import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SalesOpportunityModule } from './sales-opportunity/sales-opportunity.module';
 import { ToastrModule } from 'ngx-toastr';
+import {CookieService} from 'ngx-cookie-service';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    // DashboardModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -36,6 +39,7 @@ import { ToastrModule } from 'ngx-toastr';
     }),
   ],
   providers: [
+    CookieService,
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {

@@ -21,7 +21,7 @@ export class UserRepository {
     }
 
     async getUsers() {
-        const result = await this.appDataSource.find();
+        const result = await this.appDataSource.find({where: {isDeleted: 0}});
         return result;
     }
 }

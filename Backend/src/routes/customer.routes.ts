@@ -13,5 +13,6 @@ router.post('/add-customer', customerController.addCustomer);
 router.delete('/delete-customer/:id', customerController.deleteCustomer);
 router.put('/update-customer/:id', customerController.updateCustomer);
 router.get('/get-customers', customerController.getCustomers);
+router.post('/add-lead-to-customer', customerController.addLeadToCustomer);
 
 export { router as customerRouter };

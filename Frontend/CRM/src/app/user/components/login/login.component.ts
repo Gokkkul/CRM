@@ -27,6 +27,6 @@ export class LoginComponent {
     //   localStorage.setItem("usertoken",result.token)
       // alert(result.message);
     // })
-    this.userService.login();
+    this.userService.login(this.loginForm.value);
   }
 }

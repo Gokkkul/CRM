@@ -36,6 +36,8 @@ export class UserHomeComponent {
   ngOnInit(): void {
     this.userService.user$.subscribe((data: any) => {
       this.users = data;
+      console.log(data);
+      
     });
   }
 

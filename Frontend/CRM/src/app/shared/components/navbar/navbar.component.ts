@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../../user/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+constructor(private userService: UserService){}
 
+logout(){
+  this.userService.logout()
+}
 }

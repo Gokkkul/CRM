@@ -40,14 +40,14 @@ export class SalesOpportunityService {
         }
     }
 
-    async getOpportunitiesByStage(){
-        try {
-            const result = await salesOpportunityRepo.getOpportunitiesByStage();
-            return result;
-        } catch (error) {
-            return `Error: ${error}`;
-        }
-    }
+    // async getOpportunitiesByStage(){
+    //     try {
+    //         const result = await salesOpportunityRepo.getOpportunitiesByStage();
+    //         return result;
+    //     } catch (error) {
+    //         return `Error: ${error}`;
+    //     }
+    // }
 
     async getSummaryData() {
         try {
@@ -65,5 +65,9 @@ export class SalesOpportunityService {
         } catch (error) {
             return `Error: ${error}`;
         }
+    }
+
+    async getSalesOpportunitiesByCustomer() {
+        return await salesOpportunityRepo.getSalesOpportunitiesByCustomer();
     }
 }

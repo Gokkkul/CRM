@@ -40,3 +40,16 @@ export interface ILead {
     createdAt?: Date; // Date when the user was created
     updatedAt?: Date; // Last update timestamp
   }
+
+
+  export interface ISalesOpportunity {
+    id: number;
+    stage: string;
+    customer?: { id: number; name: string };
+    lead?: { id: number };
+    value: number;
+    expectedCloseDate?: string;
+    notes?: string;
+    createdAt: string;
+    updatedAt: string;
+  }

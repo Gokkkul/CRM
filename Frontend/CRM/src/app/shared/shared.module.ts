@@ -28,6 +28,7 @@ import { InputIcon } from 'primeng/inputicon';
 import { DialogModule } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
 import { SweetAlertComponent } from './components/sweet-alert/sweet-alert.component';
+import { ChartModule } from 'primeng/chart';
 
 
 const ngPrimeModule = [
@@ -45,7 +46,8 @@ const ngPrimeModule = [
   IconField,
   InputIcon,
   DialogModule,
-  MessageModule
+  MessageModule,
+  ChartModule
 ];
 
 

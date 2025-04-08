@@ -75,4 +75,13 @@ export class CustomerController {
       res.status(500).json(`Message: ${error}`);
     }
   };
+
+  addLeadToCustomer = async (req: Request, res: Response) => {
+    try {
+      const result = await custService.addLeadToCustomer();
+      res.status(200).json({result});
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`)
+    }
+  } 
 }

@@ -1,8 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne } from "typeorm";
 import { SalesOpportunity } from "./salesOpportunity.entity";
+import { Exclude } from "class-transformer";
 
 @Entity('lead__tbl')
 export class Lead {
+    @Exclude()
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -15,9 +17,11 @@ export class Lead {
     @Column({ type: "varchar", length: 15, nullable: true })
     phone: string;
 
+    @Exclude()
     @Column({ type: "varchar", length: 50 })
     status: string; // e.g., "new", "contacted", "qualified"
 
+    @Exclude()
     @Column({ type: "varchar", length: 255, nullable: true })
     assignedTo: string;
 
@@ -25,6 +29,7 @@ export class Lead {
     // @JoinColumn({ name: "assignedTo" }) // This will link the assignedTo column to the User entity
     // assignedTo: User;
 
+    @Exclude()
     @Column({ type: "varchar", length: 255, nullable: true })
     source: string;
 
@@ -37,6 +42,7 @@ export class Lead {
     @UpdateDateColumn()
     updatedAt: Date;
 
+    @Exclude()
     @OneToOne(() => SalesOpportunity, (opportunity) => opportunity.lead, { nullable: true })
     salesOpportunity: SalesOpportunity;
 }

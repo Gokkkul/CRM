@@ -69,4 +69,20 @@ export class UserController {
       res.status(500).json(`Message: ${error}`);
     }
   };
+
+  /**
+   * This method is used for user login
+   * @param req 
+   * @param res 
+   */
+
+  login = async(req: Request, res: Response) => {
+    try {
+      const {email, password} = req.body;
+      const result = await authService.loginUser(email, password);
+      res.status(200).json({result});
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`);
+    }
+  }
 }

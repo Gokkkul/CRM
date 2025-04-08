@@ -39,13 +39,14 @@ export class InteractionHomeComponent {
     // this.interactionService.getInteractions().subscribe((data: any) => {
     //   // console.log('API Response:', data);
     //   this.interactions = data;
-    //   setTimeout(() => {
-    //     $('#example').DataTable();
-    // }, 1);
+    //  
     // })
    this.interactionService.interaction$.subscribe((data: any) => {
     this.interactions = data;
     console.log(data);
+    setTimeout(() => {
+          $('#example').DataTable();
+      }, 1);
     
    })
   }

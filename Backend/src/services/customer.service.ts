@@ -51,22 +51,42 @@ export class CustomerService {
     private customerRepo = new CustomerRepository();
     
     // Add Customer
+    
     async addCustomer(customerDto: CreateCustomerDto): Promise<string> {
-        return await this.customerRepo.addCustomer(customerDto);
+        try {
+            
+            return await this.customerRepo.addCustomer(customerDto);
+        } catch (error) {
+            return `Error: ${error}`
+        }
     }
 
     // Update Customer
     async updateCustomer(id: number, customerDto: UpdateCustomerDto): Promise<any> {
-        return await this.customerRepo.updateCustomer(id, customerDto);
+        try {
+            return await this.customerRepo.updateCustomer(id, customerDto);
+            
+        } catch (error) {
+             return `Error: ${error}`
+        }
     }
 
     // Delete Customer
     async deleteCustomer(id: number): Promise<string> {
-        return await this.customerRepo.deleteCustomer(id);
+        try {
+            return await this.customerRepo.deleteCustomer(id);
+            
+        } catch (error) {
+             return `Error: ${error}`
+        }
     }
 
     // Get Customers
     async getCustomer(): Promise<Customer[]> {
         return await this.customerRepo.getCustomer();
+    }
+
+    async addLeadToCustomer(){
+        return await this.customerRepo.addLeadToCustomer();
     }
 }

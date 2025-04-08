@@ -36,8 +36,10 @@ export class TaskHomeComponent {
   ngOnInit(): void {
     this.taskService.task$.subscribe((data: any) => {
       this.tasks = data;
-      console.log(data[0].assignedTo.name);
-      
+      // console.log(data[0].assignedTo.name);
+      setTimeout(() => {
+        $('#example').DataTable();
+    }, 1);
     });
     
   }

@@ -3,28 +3,35 @@ import { CommonModule } from '@angular/common';
 
 import { SalesOpportunityRoutingModule } from './sales-opportunity-routing.module';
 import { SalesOpportunityHomeComponent } from './components/sales-opportunity-home/sales-opportunity-home.component';
-import { FormsModule } from '@angular/forms';
-import { KanbanBoardComponent } from './components/kanban-board/kanban-board.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 import { ViewSalesOpportunityComponent } from './components/view-sales-opportunity/view-sales-opportunity.component';
-import { SalesOpportunityChartComponent } from './components/sales-opportunity-chart/sales-opportunity-chart.component';
 
-import  {BaseChartDirective} from 'ng2-charts'
+
+import  {BaseChartDirective} from 'ng2-charts';
+import { AddSalesOpportunityComponent } from './components/add-sales-opportunity/add-sales-opportunity.component';
+import { EditSalesOpportunityComponent } from './components/edit-sales-opportunity/edit-sales-opportunity.component'
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     SalesOpportunityHomeComponent,
-    KanbanBoardComponent,
+
     ViewSalesOpportunityComponent,
-    SalesOpportunityChartComponent
+
+    AddSalesOpportunityComponent,
+    EditSalesOpportunityComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
     SalesOpportunityRoutingModule,
-    BaseChartDirective
+    BaseChartDirective,
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class SalesOpportunityModule { }

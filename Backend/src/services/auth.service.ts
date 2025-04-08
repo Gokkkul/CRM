@@ -13,7 +13,7 @@ export class AuthService {
       if (isPasswordValid) {
         const secret = process.env.SECRET_KEY || "secret_key";
         const token = jwt.sign({ id:user.id, role: user.role }, secret);
-        return `User logged in successfully! token: ${token}`;
+        return { success: true, token, id: user.id, role: user.role };
       } else {
         return `Invalid credentials!`;
       }
