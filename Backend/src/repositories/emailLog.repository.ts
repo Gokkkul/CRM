@@ -6,7 +6,9 @@ export class emailLogRepository {
 
     async addEmailLog(emailLog: Partial<EmailLog>) {
         const data = this.appDataSource.create(emailLog);
+        console.log('Email log data:', emailLog); // Check input data
         await this.appDataSource.save(data);
+        console.log('Data saved successfully.');
         return `Email log added successfully...!`;
     }
 

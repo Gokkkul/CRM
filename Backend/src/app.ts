@@ -11,6 +11,7 @@ import { reportRouter } from "./routes/report.routes";
 import { salesOpportunityRouter } from "./routes/salesOpportunity.routes";
 import { taskRouter } from "./routes/task.routes";
 import cors from 'cors'
+import { dashboardRouter } from "./routes/dashboard.routes";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use('/api/report',reportRouter );
 app.use('/api/sales-opportunity', salesOpportunityRouter );
 app.use('/api/task', taskRouter );
 app.use('/api/users', userRouter );
+app.use('/api/dashboard', dashboardRouter );
 
 app.listen(Number(process.env.SERVER_PORT), () => {
     console.log("Server started...!", process.env.SERVER_PORT);

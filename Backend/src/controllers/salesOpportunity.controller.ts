@@ -105,4 +105,13 @@ export class SalesOpportunityController {
       res.status(500).json(`Message: ${error}`)
     }
   }
+
+  getOpportunitiesByStage = async (req: Request, res: Response) => {
+    try {
+      const result = await salesOpportunityService.getOpportunitiesByStage();
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`)
+    }
+  }
 }

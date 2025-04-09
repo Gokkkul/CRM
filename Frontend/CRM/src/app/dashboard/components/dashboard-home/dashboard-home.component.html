@@ -2,3 +2,38 @@
 <app-sidenavbar>
     <router-outlet></router-outlet>
 </app-sidenavbar>  -->
+<div class="container mt-5">
+    <div class="row text-center">
+      <!-- Total Customers -->
+      <div class="col-md-4">
+        <div class="card border-primary hover-card">
+          <div class="card-body">
+            <h5 class="card-title">Total Customers</h5>
+            <p id="total-customers" class="card-text display-4">{{totalValue?.totalCustomer}}</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Total Leads -->
+      <div class="col-md-4">
+        <div class="card border-success hover-card">
+          <div class="card-body">
+            <h5 class="card-title">Total Leads</h5>
+            <p id="total-leads" class="card-text display-4">{{totalValue?.totalLeads}}</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Total Sales Opportunity Value -->
+      <div class="col-md-4">
+        <div class="card border-warning hover-card">
+          <div class="card-body">
+            <h5 class="card-title">Total Sales Opportunity Value</h5>
+            <p id="total-sales-value" class="card-text display-4">{{totalValue?.totalSalesOppValue | currency: 'INR'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

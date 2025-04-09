@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
 import { emailLogService } from "../services/emailLog.service";
+import { UserService } from "../services/user.service";
+import { User } from "../entities/user.entity";
 
 const emailService = new emailLogService();
+const userService = new UserService()
 
 export class EmailLogController {
   /**
@@ -68,15 +71,16 @@ export class EmailLogController {
     }
   };
 
-  //  sendEmailController = async (req: Request, res: Response): Promise<void> => {
-  //   const { recipient, subject, message, userId } = req.body;
+   sendEmailController = async (req: Request, res: Response): Promise<void> => {
+    const { recipient, emailSubject, emailBody, userId } = req.body;
   
-  //   try {
-  //     const result = await sendAndLogEmail(recipient, subject, message, userId);
-  //     res.status(200).json(result);
-  //   } catch (error) {
-  //     res.status(500).json({ message: "Error occurred", error: error.message });
-  //   }
-  // };
+    try {
+      const user = await userService.getUserById(userId) as User
+      const result = await emailService.sendAndLogEmail(recipient, emailSubject, emailBody, user);
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`);
+    }
+  };
 
 }

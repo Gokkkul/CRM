@@ -70,4 +70,8 @@ export class SalesOpportunityService {
     return this.http.get(this.apiUrl + `/get-sales-opportunities-by-customers`).subscribe()
   }
 
+  getSalesOpportunitiesByStage(){
+    return this.http.get(this.apiUrl+`/get-sales-opportunities-by-stage`)
+  }
+
 }

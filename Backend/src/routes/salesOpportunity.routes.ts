@@ -10,5 +10,6 @@ router.delete('/delete-sales-opportunity/:id', salesOpportunityController.delete
 router.put('/update-sales-opportunity/:id', salesOpportunityController.updateSalesOpportunity);
 router.get('/get-sales-opportunities', salesOpportunityController.getSalesOpportunities);
 router.get('/get-sales-opportunities-by-customers', salesOpportunityController.getSalesOpportunitiesByCustomer);
+router.get('/get-sales-opportunities-by-stage', salesOpportunityController.getOpportunitiesByStage);
 
 export { router as salesOpportunityRouter };

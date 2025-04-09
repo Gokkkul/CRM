@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ISalesOpportunity } from '../../../models/model';
 import { SalesOpportunityService } from '../../services/sales-opportunity.service';
+import { CustomerService } from '../../../customer/services/customer.service';
 
 @Component({
   selector: 'app-edit-sales-opportunity',
@@ -17,13 +18,16 @@ export class EditSalesOpportunityComponent {
   visible: boolean = false;
   salesOpportunityForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private salesOpportunityService: SalesOpportunityService) {}
+  constructor(private fb: FormBuilder, private salesOpportunityService: SalesOpportunityService, private customerService: CustomerService) {}
 
   ngOnInit(): void {
-    this.initForm();
-  }
 
-  private initForm() {
+    this.customerService.getcustomers();
+
+    this.customerService.customer$.subscribe((data) => {
+      this.customers = data;
+    });
+
     this.salesOpportunityForm = this.fb.group({
       stage: [this.salesOpportunityData.stage, Validators.required],
       customer: [this.salesOpportunityData.customer?.id, Validators.required],
@@ -31,7 +35,18 @@ export class EditSalesOpportunityComponent {
       value: [this.salesOpportunityData.value, [Validators.required, Validators.min(0)]],
       expectedCloseDate: [this.salesOpportunityData.expectedCloseDate],
       notes: [this.salesOpportunityData.notes]
-    });
+    // this.initForm();
+  })
+
+  // private initForm() {
+    // this.salesOpportunityForm = this.fb.group({
+    //   stage: [this.salesOpportunityData.stage, Validators.required],
+    //   customer: [this.salesOpportunityData.customer?.id, Validators.required],
+    //   // lead: [this.salesOpportunityData.lead?.id],
+    //   value: [this.salesOpportunityData.value, [Validators.required, Validators.min(0)]],
+    //   expectedCloseDate: [this.salesOpportunityData.expectedCloseDate],
+    //   notes: [this.salesOpportunityData.notes]
+    // });
   }
 
   onUpdate() {

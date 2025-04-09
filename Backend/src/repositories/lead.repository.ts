@@ -24,4 +24,9 @@ export class leadRepository {
         const result = await this.appDataSource.find({where: {isDeleted: 0}});
         return result;
     }
+
+    async getTotalLeads(){
+        const result = await this.appDataSource.count();
+        return result;
+    }
 }

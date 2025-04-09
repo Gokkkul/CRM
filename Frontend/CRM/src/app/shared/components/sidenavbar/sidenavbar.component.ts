@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-sidenavbar',
@@ -9,6 +10,13 @@ import { Component } from '@angular/core';
 export class SidenavbarComponent {
 
    sidebarMenu = ['dashboard', 'customers', 'interactions', 'sales opportunity', 'leads', 'email logs', 'tasks', 'reports', 'users'];
+   constructor(private sharedService: SharedService){
+    this.sharedService.userRole$.subscribe(role=>{
+      if(role=='employee'){
+        this.sidebarMenu = ['dashboard', 'customers', 'interactions', 'sales opportunity', 'leads', 'email logs', 'tasks']
+      }
+    })
+   }
 
    toggleActive(event: any) {
     const elements = document.querySelectorAll('.nav-item');

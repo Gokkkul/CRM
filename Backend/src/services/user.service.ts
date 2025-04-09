@@ -39,4 +39,13 @@ export class UserService {
             return `Error: ${error}`;
         }
     }
+
+    async getUserById(id: number){
+        try {
+            const result = await userRepo.getUserById(id);
+            return result;
+        } catch (error) {
+            return `Error: ${error}`;
+        }
+    }
 }

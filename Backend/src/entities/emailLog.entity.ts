@@ -15,7 +15,7 @@
         @Column({ type: "varchar", length: 255 })
         recipient: string;
 
-        @Column({type: "bit"})
+        @Column({type: "bit", default: 0})
         isDeleted: number;
 
         @ManyToOne(() => User, (user) => user.emailLogs)

@@ -1,0 +1,27 @@
+<p-dialog header="View Email" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <div class="p-fluid">
+      <div class="field">
+        <b><label>Subject</label></b>
+        <p>{{ emailLogData.emailSubject }}</p>
+      </div>
+      <div class="field">
+        <b><label>Recipient</label></b>
+        <p>{{ emailLogData.recipient }}</p>
+      </div>
+      <div class="field">
+        <b><label>Body</label></b>
+        <p>{{ emailLogData.emailBody }}</p>
+      </div>
+      <div class="field">
+        <b><label>Sent By</label></b>
+        <p>{{ emailLogData.sentBy || 'N/A' }}</p>
+      </div>
+      <div class="field">
+        <b><label>Sent At</label></b>
+        <p>{{ emailLogData.sentAt | date: 'medium' }}</p>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <p-button label="Close" severity="secondary" (click)="closeDialog()" />
+    </div>
+</p-dialog>

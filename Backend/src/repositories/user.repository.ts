@@ -24,4 +24,10 @@ export class UserRepository {
         const result = await this.appDataSource.find({where: {isDeleted: 0}});
         return result;
     }
+
+    async getUserById(id: number){
+        const result = await this.appDataSource.findOne({where: {id: id}});
+        return result;
+    }
+
 }

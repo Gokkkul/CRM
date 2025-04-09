@@ -59,7 +59,7 @@ export class UserService {
   }
 
   login(form: any) {
-    console.log(form.username, form.password);
+    // console.log(form.username, form.password);
     this.http.post(`${this.apiUrl}/login`, { email: form.username, password: form.password })
     
       .subscribe((response: any) => {

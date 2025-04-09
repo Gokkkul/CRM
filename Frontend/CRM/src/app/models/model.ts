@@ -43,6 +43,7 @@ export interface ILead {
 
 
   export interface ISalesOpportunity {
+    count: any;
     id: number;
     stage: string;
     customer?: { id: number; name: string };
@@ -52,4 +53,13 @@ export interface ILead {
     notes?: string;
     createdAt: string;
     updatedAt: string;
+  }
+
+  export interface IEmail {
+    id?: number;
+    emailSubject: string;
+    emailBody: string;
+    recipient: string;
+    sentBy: number;
+    sentAt?: string;
   }

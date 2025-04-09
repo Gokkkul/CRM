@@ -1,1 +1,37 @@
-<p>email-log-home works!</p>
+<div>
+    <h2>Email Logs</h2>
+    <button (click)="showSendEmail()" class="btn btn-primary">Send Email</button>
+    <hr>
+    <table id="example" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Recipient</th>
+            <th>Body</th>
+            <th>Sent By</th>
+            <th>Sent At</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let emailLog of emailLogs; let i = index">
+                <td>{{ emailLog.emailSubject }}</td>
+                <td>{{ emailLog.recipient }}</td>
+                <td>{{ emailLog.emailBody }}</td>
+                <td>{{ emailLog.sentBy }}</td>
+                <td>{{ emailLog.sentAt | date: 'medium' }}</td>
+                <td>
+                    <button (click)="deleteEmailLog(i)" class="btn btn-danger btn-sm m-1">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                    <button (click)="showViewEmailLog(emailLog)" class="btn btn-success btn-sm m-1">
+                        view
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div #sendEmail></div>
+<div #viewEmailLog></div>

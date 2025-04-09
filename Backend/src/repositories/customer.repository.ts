@@ -95,4 +95,10 @@ export class CustomerRepository {
 
     return `${customerDataArray.length} Customers added successfully!`;
   }
+
+   
+  async getTotalCustomers(){
+    const result = await this.appDataSource.count();
+    return result;
+  }
 }

@@ -81,4 +81,30 @@ export class SalesOpportunityRepository {
         // Convert object to array format
         return Object.entries(groupedData).map(([customer, totalValue]) => ({ customer, totalValue }));
     }
+
+    async getOpportunitiesByStage() {
+        const opportunities = await this.appDataSource.find({
+            where: { isDeleted: 0 }, // Fetch only active opportunities
+        });
+
+        // Group opportunities by stage
+        const groupedData: { [key: string]: number } = {};
+        opportunities.forEach(opportunity => {
+            groupedData[opportunity.stage] = (groupedData[opportunity.stage] || 0) + 1;
+        });
+
+        // Convert object to array format
+        return Object.entries(groupedData).map(([stage, count]) => ({ stage, count }));
+    }
+
+    async getTotalSalesValue() {
+        const totalValue = await this.appDataSource
+          .createQueryBuilder("salesOpportunity")
+          .select("SUM(salesOpportunity.value)", "totalValue")
+          .where("salesOpportunity.isDeleted = :isDeleted", { isDeleted: 0 }) // Optional filter for non-deleted records
+          .getRawOne();
+      
+        // console.log("Total Sales Value:", totalValue.totalValue);
+        return totalValue.totalValue;
+      }
 }

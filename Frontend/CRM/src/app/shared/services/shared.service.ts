@@ -8,7 +8,11 @@ import { BehaviorSubject, interval } from 'rxjs';
 export class SharedService {
   constructor(private cookieService: CookieService) {
     this.monitorUserId();
+    this.monitorUserRole();
   }
+
+  private userRole = new BehaviorSubject<string>('user');
+  userRole$ = this.userRole.asObservable();
 
   private userId = new BehaviorSubject<number>(0);
   userId$ = this.userId.asObservable();
@@ -16,10 +20,10 @@ export class SharedService {
   getIdFromUser() {
     const userData = this.cookieService.get('userData');
     // console.log("Shared service",userData);
-    if(!userData){
-      return 0
+    if (!userData) {
+      return 0;
     }
-    
+
     return JSON.parse(userData);
   }
 
@@ -31,6 +35,12 @@ export class SharedService {
       this.userId.next(userId);
     });
   }
+  monitorUserRole() {
+    interval(300).subscribe(() => {
+      const user = this.getIdFromUser();
+      const userRole = user.role;
 
-  
+      this.userRole.next(userRole);
+    });
+  }
 }

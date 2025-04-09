@@ -67,4 +67,18 @@ export class TaskController {
       res.status(500).json(`Message: ${error}`);
     }
   };
+/**
+ * This method is used to get all tasks of a particular user
+ * @param req 
+ * @param res 
+ */
+  getTasksByUserId = async (req: Request, res: Response) => {
+    try {
+      const id = Number(req.params.id);
+      const result = await taskService.getTasksByUserId(id);
+      res.status(200).json({result})
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`)
+    }
+  }
 }

@@ -43,25 +43,26 @@ export class EditInteractionComponent {
 
     // Initialize the form
     this.interactionForm = this.fb.group({
-      customer: [this.interactionData.customer || '', ],
+      // customer: [this.interactionData.customer || '', ],
       type: [this.interactionData.type || '',],
       date: [this.interactionData?.date || '', ],
       notes: [this.interactionData?.notes || ''],
       followUpDate: [this.interactionData?.followUpDate || ''],
     });
+    
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // Update form when interaction data changes
-    if (this.interactionData) {
-      this.interactionForm.patchValue(this.interactionData);
-    }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   // Update form when interaction data changes
+  //   if (this.interactionData) {
+  //     this.interactionForm.patchValue(this.interactionData);
+  //   }
 
-    // Check if 'visible' has changed
-    if (changes['visible']?.currentValue) {
-      this.visible = false; // Your logic here, if needed
-    }
-  }
+  //   // Check if 'visible' has changed
+  //   if (changes['visible']?.currentValue) {
+  //     this.visible = false; // Your logic here, if needed
+  //   }
+  // }
 
   onUpdate(): void {
     if (this.interactionForm.valid) {

@@ -37,6 +37,9 @@ export class UserHomeComponent {
     this.userService.user$.subscribe((data: any) => {
       this.users = data;
       console.log(data);
+      setTimeout(() => {
+        $('#example').DataTable();
+    }, 1);
       
     });
   }

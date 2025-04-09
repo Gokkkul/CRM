@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn, ManyToOne } from "typeorm";
 import { SalesOpportunity } from "./salesOpportunity.entity";
 import { Exclude } from "class-transformer";
+import { User } from "./user.entity";
 
 @Entity('lead__tbl')
 export class Lead {
@@ -21,13 +22,14 @@ export class Lead {
     @Column({ type: "varchar", length: 50 })
     status: string; // e.g., "new", "contacted", "qualified"
 
-    @Exclude()
-    @Column({ type: "varchar", length: 255, nullable: true })
-    assignedTo: string;
+    // @Exclude()
+    // @Column({ type: "varchar", length: 255, nullable: true })
+    // assignedTo: string;
 
-    // @ManyToOne(() => User, (user) => user.leads, { nullable: true })
-    // @JoinColumn({ name: "assignedTo" }) // This will link the assignedTo column to the User entity
-    // assignedTo: User;
+    @Exclude()
+    @ManyToOne(() => User, (user) => user.leads, { nullable: true })
+    @JoinColumn({ name: "assignedTo" }) // This will link the assignedTo column to the User entity
+    assignedTo: User;
 
     @Exclude()
     @Column({ type: "varchar", length: 255, nullable: true })

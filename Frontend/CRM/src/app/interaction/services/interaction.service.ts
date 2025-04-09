@@ -44,6 +44,8 @@ export class InteractionService {
 
     console.log('Updated interaction:', this.interactions[index]);
     const { id, ...updatedObj } = this.interactions[index];
+    console.log("from interaction",updatedObj);
+    
     return this.http.put(this.apiUrl + `/update-interaction/${id}`, updatedObj);
   }
 

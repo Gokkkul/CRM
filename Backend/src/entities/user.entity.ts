@@ -3,6 +3,7 @@ import { Interaction } from "./interaction.entity";
 import { Task } from "./task.entity";
 import { EmailLog } from "./emailLog.entity";
 import { Report } from "./report.entity";
+import { Lead } from "./lead.entity";
 
 @Entity('user___tbl')
 export class User {
@@ -44,6 +45,6 @@ export class User {
     @OneToMany(() => Report, (report) => report.generatedBy)
     reports: Report[];
 
-    // @OneToMany(() => Lead, (lead) => lead.assignedTo)
-    // leads: Lead[]; // This will hold all leads assigned to this user
+    @OneToMany(() => Lead, (lead) => lead.assignedTo)
+    leads: Lead[]; // This will hold all leads assigned to this user
 }

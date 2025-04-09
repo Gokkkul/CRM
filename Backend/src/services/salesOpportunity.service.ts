@@ -70,4 +70,8 @@ export class SalesOpportunityService {
     async getSalesOpportunitiesByCustomer() {
         return await salesOpportunityRepo.getSalesOpportunitiesByCustomer();
     }
+
+    async getOpportunitiesByStage(){
+        return await salesOpportunityRepo.getOpportunitiesByStage();
+    }
 }

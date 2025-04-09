@@ -9,5 +9,6 @@ router.post('/add-email-log', emailLogController.addEmailLog);
 router.delete('/delete-email-log/:id', emailLogController.deleteEmailLog);
 router.put('/update-email-log/:id', emailLogController.updateEmailLog);
 router.get('/get-email-logs', emailLogController.getEmailLogs);
+router.post('/send-email', emailLogController.sendEmailController)
 
 export { router as emailLogRouter };

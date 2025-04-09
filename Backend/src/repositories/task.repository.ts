@@ -24,4 +24,9 @@ export class TaskRepository {
         const result = await this.appDataSource.find({relations: ['assignedTo'], where: {isDeleted: 0}});
         return result;
     }
+
+    async getTasksByUserId(id: number){
+        const result = await this.appDataSource.find({where: {assignedTo: {id}}, relations: ['assignedTo']})
+        return result;
+    }
 }
