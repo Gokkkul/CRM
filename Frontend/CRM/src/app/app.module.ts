@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,11 +10,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { UserModule } from './user/user.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SalesOpportunityModule } from './sales-opportunity/sales-opportunity.module';
 import { ToastrModule } from 'ngx-toastr';
 import {CookieService} from 'ngx-cookie-service';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { GlobalErrorHandler } from './global/errorHandler/errorHandler';
+import { ApiRouteInterceptor } from './global/interceptor/api-route.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +42,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
   ],
   providers: [
     CookieService,
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }, // Error Handler
+    { provide: HTTP_INTERCEPTORS, useClass: ApiRouteInterceptor, multi: true }, // http interceptor
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
