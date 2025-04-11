@@ -18,7 +18,7 @@ export class Task {
     @Column({ type: "varchar", length: 50 })
     status: string; // e.g., "pending", "completed"
 
-    @Column({type: 'bit'})
+    @Column({type: 'bit', default: 0})
     isDeleted: number
 
     @CreateDateColumn()

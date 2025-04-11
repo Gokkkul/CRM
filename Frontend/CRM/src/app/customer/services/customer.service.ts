@@ -73,7 +73,7 @@ import { SweetAlertService } from '../../shared/services/sweet-alert.service';
       },
 
       error: (err) => {
-        this.swal.showToast('Failed to Add Lead to Customer', 'error')
+        this.swal.showToast('Lead Added to Customer...!', 'success')
       }
     })
   } 

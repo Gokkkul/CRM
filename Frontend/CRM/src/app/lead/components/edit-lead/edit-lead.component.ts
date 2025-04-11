@@ -15,7 +15,13 @@ export class EditLeadComponent {
   @Input() leadIndex!: number; // Receives the lead index
   @Input() visible: boolean = false; // Controls visibility of the dialog
 
-  statusOptions = [] = ['new', 'contacted', 'qualified']
+  statusOptions = [
+    
+      {status: 'New', value: 'new'},
+      {status: 'Contacted', value: 'contacted'},
+      {status: 'Qualified', value: 'qualified'},
+      {status: 'Lost', value: 'lost'}
+  ]
 
   leadForm!: FormGroup;
 
@@ -24,10 +30,11 @@ export class EditLeadComponent {
   ngOnInit(): void {
     // Initialize the form with the incoming lead data
     this.leadForm = this.fb.group({
-      name: [this.leadData?.name || '', Validators.required],
-      email: [this.leadData?.email || '', [Validators.required, Validators.email]],
+      name: [this.leadData?.name || '', ],
+      email: [this.leadData?.email || '', [ Validators.email]],
       phone: [this.leadData?.phone || '', [Validators.pattern(/^[0-9]+$/)]],
-      status: [this.leadData?.status || '', Validators.required],
+      // status: [this.leadData?.status || ''],
+      status: [this.leadData.status || ''],
       assignedTo: [this.leadData?.assignedTo || ''],
       source: [this.leadData?.source || ''],
     });

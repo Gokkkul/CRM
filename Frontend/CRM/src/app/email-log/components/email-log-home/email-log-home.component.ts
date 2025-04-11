@@ -42,7 +42,7 @@ export class EmailLogHomeComponent {
 
       setTimeout(() => {
         $('#example').DataTable();
-      }, 100);
+      }, 300);
     });
   }
 

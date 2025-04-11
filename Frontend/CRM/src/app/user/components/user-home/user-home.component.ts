@@ -39,7 +39,7 @@ export class UserHomeComponent {
       console.log(data);
       setTimeout(() => {
         $('#example').DataTable();
-    }, 1);
+    }, 300);
       
     });
   }

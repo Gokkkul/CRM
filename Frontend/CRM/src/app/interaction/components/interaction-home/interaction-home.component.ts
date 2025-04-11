@@ -46,7 +46,7 @@ export class InteractionHomeComponent {
     console.log(data);
     setTimeout(() => {
           $('#example').DataTable();
-      }, 100);
+      }, 300);
     
    })
   }

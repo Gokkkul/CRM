@@ -16,6 +16,7 @@ export class InteractionService {
     this.getInteractions();
   }
 
+
   // Fetch all interactions
   getInteractions() {
     this.http
@@ -38,13 +39,21 @@ export class InteractionService {
   }
 
   // Update an existing interaction
-  updateInteraction(data: any, index: number) {
-    this.interactions[index] = { ...this.interactions[index], ...data };
-    this.interactionSubject.next(this.interactions);
+  updateInteraction(data: IInteraction, index: number) {
+
+    this.interactions[index].type = data.type;
+    this.interactions[index].date = data.date;
+    this.interactions[index].notes = data.notes;
+    this.interactions[index].followUpDate = data.followUpDate;
+
+    this.interactionSubject.next(this.interactions)
+    // this.interactions[index] = { ...this.interactions[index], ...data };
+    // this.interactionSubject.next(this.interactions);
 
     console.log('Updated interaction:', this.interactions[index]);
     const { id, ...updatedObj } = this.interactions[index];
     console.log("from interaction",updatedObj);
+    
     
     return this.http.put(this.apiUrl + `/update-interaction/${id}`, updatedObj);
   }

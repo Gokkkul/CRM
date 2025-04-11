@@ -15,6 +15,7 @@ import { AddLeadComponent } from '../add-lead/add-lead.component';
 import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
 import { SalesOpportunityService } from '../../../sales-opportunity/services/sales-opportunity.service';
 import { CustomerService } from '../../../customer/services/customer.service';
+import { SharedService } from '../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-lead-home',
@@ -38,14 +39,20 @@ export class LeadHomeComponent {
   addLeadContainer!: ViewContainerRef;
   private addLeadComponentRef!: ComponentRef<AddLeadComponent>;
 
-  constructor(private leadService: LeadService, private swal: SweetAlertService, private customerService: CustomerService) {}
+  userRole = 'employee'
+
+  constructor(private leadService: LeadService, private swal: SweetAlertService, private customerService: CustomerService, private sharedService: SharedService) {
+    this.sharedService.userRole$.subscribe(role => {
+      this.userRole = role;
+    })
+  }
 
   ngOnInit(): void {
     this.leadService.lead$.subscribe((data: any) => {
       this.leads = data;
         setTimeout(() => {
           $('#example').DataTable();
-      }, 1);
+      }, 300);
     });
   }
 

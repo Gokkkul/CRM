@@ -21,17 +21,22 @@ export class EditInteractionComponent {
   interactionForm!: FormGroup;
   customers: any[] = []; // List of customers
   interactionTypes: string[] = ['Email', 'Call', 'Meeting']; // Predefined interaction types
-  interactionTypesOptions = this.interactionTypes.map((type) => ({
-    label: type,
-    value: type,
-  }));
+  interactionTypesOptions = [
+    { type: 'Call', value: 'call' },
+    { type: 'Meeting', value: 'meeting' },
+    { type: 'Email', value: 'email' }
+  ];
+  
 
   constructor(
     private fb: FormBuilder,
     private interactionService: InteractionService,
     private customerService: CustomerService,
-    private swal: SweetAlertService
-  ) {}
+    private swal: SweetAlertService,
+  ) {
+    // console.log(this.interactionData.type);
+    
+  }
 
   ngOnInit(): void {
     // Fetch customers for dropdown
@@ -41,10 +46,17 @@ export class EditInteractionComponent {
       this.customers = data;
     });
 
+    console.log({
+     data: this.interactionData
+    });
+    
+
     // Initialize the form
     this.interactionForm = this.fb.group({
       // customer: [this.interactionData.customer || '', ],
-      type: [this.interactionData.type || '',],
+      type: [this.interactionData.type || ''], 
+      // type: ['call'], 
+      // type: [this.interactionData?.type || 'Call'], 
       date: [this.interactionData?.date || '', ],
       notes: [this.interactionData?.notes || ''],
       followUpDate: [this.interactionData?.followUpDate || ''],

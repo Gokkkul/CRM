@@ -20,7 +20,7 @@ export class SalesOpportunity {
     value: number;
 
     
-    @Column({type: 'bit'})
+    @Column({type: 'bit', default: 0})
     isDeleted: number;
 
     @Column({ type: "date", nullable: true })

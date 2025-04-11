@@ -18,11 +18,13 @@ export class EditTaskComponent {
   taskForm!: FormGroup; // Reactive form instance
 
   statusOptions = [
-    { label: 'Pending', value: 'pending' },
-    { label: 'Completed', value: 'completed' },
+    { status: 'Pending', value: 'pending' },
+    { status: 'Completed', value: 'completed' },
   ];
 
   constructor(private fb: FormBuilder, private taskService: TaskService, private swal: SweetAlertService) {
+    console.log("From Edit Task: ",this.taskData);
+    
     this.initForm();
   }
 
@@ -37,7 +39,8 @@ export class EditTaskComponent {
     this.taskForm = this.fb.group({
       description: [this.taskData?.description || '', ],
       dueDate: [this.taskData?.dueDate || '', ],
-      status: [this.taskData?.status || '', ],
+      status: [this.taskData?.status || '' ],
+      // status: [ 'pending' ],
       assignedTo: [this.taskData?.assignedTo || ''], // Optional field
     });
   }

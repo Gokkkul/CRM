@@ -1,7 +1,7 @@
 <div class="">
     <h2>Leads</h2>
     <button class="btn btn-primary m-2" (click)="showAddLead()">Add Lead<i class="bi bi-plus"></i></button>
-    <button class="btn btn-warning m-2" (click)="addToCustomer()">Add to Customer</button>
+    <button *ngIf ="userRole == 'Admin'" class="btn btn-warning m-2" (click)="addToCustomer()">Add to Customer</button>
     <hr>
     <table id="example" class="table table-striped">
         <thead>
@@ -10,7 +10,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Status</th>
-            <th>Assigned To</th>
+            <!-- <th>Assigned To</th> -->
             <th>Source</th>
             <!-- <th>Created At</th>
             <th>Updated At</th> -->
@@ -23,7 +23,7 @@
                 <td>{{ lead.email }}</td>
                 <td>{{ lead.phone }}</td>
                 <td>{{ lead.status }}</td>
-                <td>{{ lead.assignedTo }}</td>
+                <!-- <td>{{ lead.assignedTo }}</td> -->
                 <td>{{ lead.source }}</td>
                 <!-- <td>{{ lead.createdAt | date:'medium' }}</td>
                 <td>{{ lead.updatedAt | date:'medium' }}</td> -->

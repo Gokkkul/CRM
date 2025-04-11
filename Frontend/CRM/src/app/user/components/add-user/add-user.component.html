@@ -28,9 +28,15 @@
       </div>
   
       <!-- Role -->
-      <div class="flex items-center gap-4 mb-4">
+      <!-- <div class="flex items-center gap-4 mb-4">
         <label for="role" class="font-semibold w-24">Role</label>
         <p-dropdown id="role" class="flex-auto" [options]="roleOptions" formControlName="role" optionLabel="label"></p-dropdown>
+        <p-message *ngIf="userForm.controls['role'].invalid && userForm.controls['role'].touched" severity="error"
+                   text="Role is required"></p-message>
+      </div> -->
+      <div class="flex items-center gap-4 mb-4">
+        <label for="role" class="font-semibold w-24">Role</label>
+        <input pInputText id="role" class="flex-auto" formControlName="role" optionLabel="label"/>
         <p-message *ngIf="userForm.controls['role'].invalid && userForm.controls['role'].touched" severity="error"
                    text="Role is required"></p-message>
       </div>

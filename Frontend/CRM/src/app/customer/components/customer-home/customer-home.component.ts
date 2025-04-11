@@ -41,7 +41,7 @@ export class CustomerHomeComponent implements OnInit{
       
       setTimeout(() => {
         $('#example').DataTable();
-    }, 100);
+    }, 300);
     })
 
   }

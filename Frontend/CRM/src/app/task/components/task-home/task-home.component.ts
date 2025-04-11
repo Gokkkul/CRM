@@ -31,7 +31,10 @@ export class TaskHomeComponent {
   addTaskContainer!: ViewContainerRef;
   private addTaskComponentRef!: ComponentRef<AddTaskComponent>;
 
-  constructor(private taskService: TaskService, private swal: SweetAlertService) {}
+  constructor(private taskService: TaskService, private swal: SweetAlertService) {
+    // console.log("From Task Home: ",this.selectedTask.task);
+    // console.log("From Task Home: ",this.selectedTask.index);
+  }
 
   ngOnInit(): void {
     this.taskService.task$.subscribe((data: any) => {
@@ -39,7 +42,7 @@ export class TaskHomeComponent {
       // console.log(data[0].assignedTo.name);
       setTimeout(() => {
         $('#example').DataTable();
-    }, 1);
+    }, 300);
     });
     
   }

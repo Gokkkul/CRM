@@ -29,7 +29,7 @@ export class User {
     updatedAt: Date;
 
     @Column({type: 'bit', 
-        nullable: true
+        nullable: true, default: 0
     })
     isDeleted: number;
 

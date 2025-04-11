@@ -13,7 +13,7 @@
       <!-- Type -->
       <div class="flex items-center gap-4 mb-4">
         <label for="type" class="font-semibold w-24">Type</label>
-        <p-dropdown id="type" class="flex-auto" [options]="interactionTypesOptions" formControlName="type" optionLabel="type"></p-dropdown>
+        <p-dropdown id="type" class="flex-auto" [options]="interactionTypesOptions" formControlName="type" optionLabel="type" optionValue="value"></p-dropdown>
         <p-message
         *ngIf="interactionForm.controls['type'].invalid && interactionForm.controls['type'].touched"
         severity="error"

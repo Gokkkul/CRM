@@ -25,7 +25,7 @@ export class Interaction {
     @Column({ type: "date", nullable: true })
     followUpDate: Date;
 
-    @Column({type: 'bit'})
+    @Column({type: 'bit', default: 0})
     isDeleted: number;
 
     @CreateDateColumn()

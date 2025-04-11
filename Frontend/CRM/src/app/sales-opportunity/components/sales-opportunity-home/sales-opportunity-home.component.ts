@@ -26,7 +26,7 @@ export class SalesOpportunityHomeComponent {
       
       setTimeout(() => {
         $('#example').DataTable();
-      }, 1);
+      }, 300);
     });
   }
 

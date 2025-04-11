@@ -27,10 +27,16 @@
       <!-- Status -->
       <div class="flex items-center gap-4 mb-4">
         <label for="status" class="font-semibold w-24">Status</label>
-        <p-dropdown id="status" class="flex-auto" [options]="statusOptions" formControlName="status" optionLabel="label"></p-dropdown>
+        <p-dropdown id="status" class="flex-auto" [options]="statusOptions" formControlName="status" optionLabel="status" optionValue="value"></p-dropdown>
         <p-message *ngIf="leadForm.controls['status'].invalid && leadForm.controls['status'].touched"
                    severity="error" text="Status is required"></p-message>
       </div>
+      <!-- <div class="flex items-center gap-4 mb-4">
+        <label for="status" class="font-semibold w-24">Status</label>
+        <input pInputText id="status" class="flex-auto" formControlName="status" optionLabel="label"/>
+        <p-message *ngIf="leadForm.controls['status'].invalid && leadForm.controls['status'].touched"
+                   severity="error" text="Status is required"></p-message>
+      </div> -->
   
       <!-- Assigned To -->
       <div class="flex items-center gap-4 mb-4">
