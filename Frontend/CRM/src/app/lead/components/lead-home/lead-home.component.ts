@@ -45,15 +45,18 @@ export class LeadHomeComponent {
     this.sharedService.userRole$.subscribe(role => {
       this.userRole = role;
     })
-  }
 
+  }
+  
   ngOnInit(): void {
     this.leadService.lead$.subscribe((data: any) => {
       this.leads = data;
-        setTimeout(() => {
-          $('#example').DataTable();
+      console.log("This is from lead home",this.leads)
+      setTimeout(() => {
+        $('#example').DataTable();
       }, 300);
     });
+   
   }
 
   // loadLeads() {
@@ -63,7 +66,7 @@ export class LeadHomeComponent {
   // }
 
 addToCustomer(){
-  console.log('Button Clicked');
+  // console.log('Button Clicked');
   
   this.customerService.addLeadToCustomer()
 }

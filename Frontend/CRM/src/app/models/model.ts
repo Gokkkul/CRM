@@ -12,7 +12,9 @@ export interface ILead {
     email: string;
     phone: string;
     status: string;
-    assignedTo?: string;
+    assignedTo?: {
+      name: string;
+    }
     source?: string;
     createdAt: Date;
     updatedAt: Date;

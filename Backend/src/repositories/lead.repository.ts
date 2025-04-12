@@ -21,7 +21,7 @@ export class leadRepository {
     }
 
     async getLeads() {
-        const result = await this.appDataSource.find({where: {isDeleted: 0}});
+        const result = await this.appDataSource.find({where: {isDeleted: 0}, relations: ['assignedTo']});
         return result;
     }
 

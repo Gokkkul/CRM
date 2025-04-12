@@ -21,7 +21,7 @@
       <!-- Status -->
       <div class="flex items-center gap-4 mb-4">
         <label for="status" class="font-semibold w-24">Status</label>
-        <p-dropdown id="status" class="flex-auto" [options]="statusOptions" formControlName="status" optionLabel="status" optionValue="value"></p-dropdown>
+        <p-dropdown id="status" class="flex-auto" [options]="statusOptions" formControlName="status" optionLabel="status"   ></p-dropdown>
         
         <p-message *ngIf="taskForm.controls['status'].invalid && taskForm.controls['status'].touched"
                    severity="error" text="Status is required"></p-message>

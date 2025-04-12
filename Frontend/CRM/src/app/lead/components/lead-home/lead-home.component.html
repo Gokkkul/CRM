@@ -10,7 +10,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Status</th>
-            <!-- <th>Assigned To</th> -->
+            <th>Assigned To</th>
             <th>Source</th>
             <!-- <th>Created At</th>
             <th>Updated At</th> -->
@@ -23,7 +23,7 @@
                 <td>{{ lead.email }}</td>
                 <td>{{ lead.phone }}</td>
                 <td>{{ lead.status }}</td>
-                <!-- <td>{{ lead.assignedTo }}</td> -->
+                <td>{{ lead.assignedTo?.name }}</td>
                 <td>{{ lead.source }}</td>
                 <!-- <td>{{ lead.createdAt | date:'medium' }}</td>
                 <td>{{ lead.updatedAt | date:'medium' }}</td> -->

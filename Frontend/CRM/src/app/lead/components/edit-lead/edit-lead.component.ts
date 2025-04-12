@@ -1,8 +1,10 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ILead } from '../../../models/model';
+import { ILead, IUser } from '../../../models/model';
 import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
 import { LeadService } from '../../services/lead.service';
+import { UserService } from '../../../user/services/user.service';
+import { data, valHooks } from 'jquery';
 
 @Component({
   selector: 'app-edit-lead',
@@ -15,6 +17,9 @@ export class EditLeadComponent {
   @Input() leadIndex!: number; // Receives the lead index
   @Input() visible: boolean = false; // Controls visibility of the dialog
 
+  users!: IUser[]
+  userOptions: {user: string, value: string}[] = [];
+
   statusOptions = [
     
       {status: 'New', value: 'new'},
@@ -22,12 +27,20 @@ export class EditLeadComponent {
       {status: 'Qualified', value: 'qualified'},
       {status: 'Lost', value: 'lost'}
   ]
-
+  
   leadForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private leadService: LeadService, private swal: SweetAlertService) {}
+  constructor(private fb: FormBuilder, private leadService: LeadService, private swal: SweetAlertService, private userService: UserService) {}
 
   ngOnInit(): void {
+
+    this.userService.user$.subscribe((data: any[]) => {
+      // Assuming `data` is an array of users with properties like `name` and `id`
+      this.userOptions = data.map(user => ({
+        user: user.name, // Replace `name` with the actual property of user data
+        value: user.name   // Replace `id` with the unique identifier or relevant value
+      }));
+    });
     // Initialize the form with the incoming lead data
     this.leadForm = this.fb.group({
       name: [this.leadData?.name || '', ],
@@ -35,7 +48,7 @@ export class EditLeadComponent {
       phone: [this.leadData?.phone || '', [Validators.pattern(/^[0-9]+$/)]],
       // status: [this.leadData?.status || ''],
       status: [this.leadData.status || ''],
-      assignedTo: [this.leadData?.assignedTo || ''],
+      assignedTo: [this.leadData?.assignedTo?.name || ''],
       source: [this.leadData?.source || ''],
     });
   }

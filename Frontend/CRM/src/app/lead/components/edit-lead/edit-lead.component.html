@@ -39,10 +39,18 @@
       </div> -->
   
       <!-- Assigned To -->
+
       <div class="flex items-center gap-4 mb-4">
         <label for="assignedTo" class="font-semibold w-24">Assigned To</label>
-        <input pInputText id="assignedTo" class="flex-auto" formControlName="assignedTo" autocomplete="off" />
+        <p-dropdown id="assignedTo" class="flex-auto" [options]="userOptions" formControlName="assignedTo" optionLabel="user" optionValue="value"></p-dropdown>
+        <p-message *ngIf="leadForm.controls['assignedTo'].invalid && leadForm.controls['assignedTo'].touched"
+                   severity="error" text="assignedTo is required"></p-message>
       </div>
+
+      <!-- <div class="flex items-center gap-4 mb-4">
+        <label for="assignedTo" class="font-semibold w-24">Assigned To</label>
+        <input pInputText id="assignedTo" class="flex-auto" formControlName="assignedTo" autocomplete="off" />
+      </div> -->
   
       <!-- Source -->
       <div class="flex items-center gap-4 mb-4">

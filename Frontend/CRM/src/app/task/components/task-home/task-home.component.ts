@@ -57,13 +57,18 @@ export class TaskHomeComponent {
     this.editTaskContainer.clear(); // Clear previous instances if any
 
     this.selectedTask = { task, index }; // Assign the selected task
+    console.log(this.selectedTask.task);
+    
+    
 
     // Dynamically create and inject the child component
     this.editTaskComponentRef = this.editTaskContainer.createComponent(EditTaskComponent);
 
     // Pass the selected task data to the child component
     this.editTaskComponentRef.instance.taskData = this.selectedTask.task;
+    
     this.editTaskComponentRef.instance.taskIndex = this.selectedTask.index;
+    
 
     // Make the dialog visible
     this.editTaskComponentRef.instance.visible = true;
