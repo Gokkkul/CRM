@@ -3,12 +3,12 @@
   
     <form [formGroup]="interactionForm" (ngSubmit)="onUpdate()">
       <!-- Customer -->
-      <!-- <div class="flex items-center gap-4 mb-4">
+      <div class="flex items-center gap-4 mb-4">
         <label for="customer" class="font-semibold w-24">Customer</label>
-        <p-dropdown id="customer" class="flex-auto" [options]="customers" formControlName="customer" optionLabel="name"></p-dropdown>
+        <p-dropdown id="customer" class="flex-auto" [options]="customers" formControlName="customer" optionLabel="name" [disabled]="true"></p-dropdown>
         <p-message *ngIf="interactionForm.controls['customer'].invalid && interactionForm.controls['customer'].touched"
                    severity="error" text="Customer is required"></p-message>
-      </div> -->
+      </div>
   
       <!-- Type -->
       <div class="flex items-center gap-4 mb-4">

@@ -4,16 +4,16 @@
         <div class="field">
           <b><label for="recipient">Recipient</label></b>
           <input id="recipient" type="email" pInputText [(ngModel)]="emailForm.recipient" name="recipient" required />
-        </div>
+        </div><br>
         <div class="field">
           <b><label for="emailSubject">Subject</label></b>
           <input id="emailSubject" type="text" pInputText [(ngModel)]="emailForm.emailSubject" name="emailSubject" required />
-        </div>
+        </div><br>
         <div class="field">
           <b><label for="emailBody">Message</label></b>
           <textarea id="emailBody" rows="5" pInputTextarea [(ngModel)]="emailForm.emailBody" name="emailBody" required></textarea>
         </div>
-      </div>
+      </div><br>
       <div class="flex justify-end mt-4">
         <p-button label="Send" type="submit" severity="primary"></p-button>
         <p-button label="Cancel" severity="secondary" (click)="closeDialog()"></p-button>

@@ -19,17 +19,17 @@
       </div>
   
       <!-- Password -->
-      <div class="flex items-center gap-4 mb-4">
+      <!-- <div class="flex items-center gap-4 mb-4">
         <label for="password" class="font-semibold w-24">Password</label>
         <input type="password" id="password" class="flex-auto" formControlName="password" autocomplete="off" />
         <p-message *ngIf="userForm.controls['password'].invalid && userForm.controls['password'].touched"
                    severity="error" text="Password is required"></p-message>
-      </div>
+      </div> -->
   
       <!-- Role -->
       <div class="flex items-center gap-4 mb-4">
         <label for="role" class="font-semibold w-24">Role</label>
-        <p-dropdown id="role" class="flex-auto" [options]="roleOptions" formControlName="role" optionLabel="label"></p-dropdown>
+        <p-dropdown id="role" class="flex-auto" [options]="roleOptions" formControlName="role" optionLabel="label" optionValue="value"></p-dropdown>
         <p-message *ngIf="userForm.controls['role'].invalid && userForm.controls['role'].touched"
                    severity="error" text="Role is required"></p-message>
       </div>

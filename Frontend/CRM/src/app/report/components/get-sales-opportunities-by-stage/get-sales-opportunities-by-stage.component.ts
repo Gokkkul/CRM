@@ -5,7 +5,7 @@ import { SalesOpportunityService } from '../../../sales-opportunity/services/sal
   selector: 'app-get-sales-opportunities-by-stage',
   standalone: false,
   templateUrl: './get-sales-opportunities-by-stage.component.html',
-  styleUrl: './get-sales-opportunities-by-stage.component.css'
+  styleUrl: './get-sales-opportunities-by-stage.component.css',
 })
 export class GetSalesOpportunitiesByStageComponent {
   data: any;
@@ -15,30 +15,46 @@ export class GetSalesOpportunitiesByStageComponent {
 
   async ngOnInit() {
     // const opportunitiesByStage = await this.salesOpportunityService.getSalesOpportunitiesByStage();
-this.salesOpportunityService.salesOpportunity$.subscribe((opportunitiesByStage) => {
-  this.data = {
-    labels: opportunitiesByStage.map(o => o.stage), // Stages as labels
-    datasets: [
-      {
-        data: opportunitiesByStage.map(o => o.count), // Counts as data points
-        backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726', '#AB47BC', '#FF7043'], // Custom colors
-        hoverBackgroundColor: ['#64B5F6', '#81C784', '#FFB74D', '#BA68C8', '#FF8A65']
-      }
-    ]
-  };
-
-  this.options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'bottom'
+    this.salesOpportunityService.salesOpportunity$.subscribe(
+      (opportunitiesByStage) => {
+        this.data = {
+          labels: opportunitiesByStage.map((o) => o.stage),
+          datasets: [
+            {
+              data: opportunitiesByStage.map((o) => o.count),
+              backgroundColor: [
+                '#42A5F5',
+                '#66BB6A',
+                '#FFA726',
+                '#AB47BC',
+                '#FF7043',
+              ],
+              hoverBackgroundColor: [
+                '#64B5F6',
+                '#81C784',
+                '#FFB74D',
+                '#BA68C8',
+                '#FF8A65',
+              ],
+            },
+          ],
+        };
+        this.options = {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+            },
+            tooltip: {
+              enabled: true,
+            },
+          }
+        };
       },
-      tooltip: {
-        enabled: true
+      (error) => {
+        console.error('Failed to fetch data:', error);
       }
-    }
-  };
-})
+    );
     
   }
 }

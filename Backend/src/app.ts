@@ -12,6 +12,7 @@ import { salesOpportunityRouter } from "./routes/salesOpportunity.routes";
 import { taskRouter } from "./routes/task.routes";
 import cors from 'cors'
 import { dashboardRouter } from "./routes/dashboard.routes";
+import cookieParser from 'cookie-parser'
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ const app = express();
 
 app.use(cors())
 
+app.use(cookieParser())
 
 AppDataSource.initialize()
 .then(() => console.log("Database Connected Successfully...!"))

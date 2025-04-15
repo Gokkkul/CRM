@@ -70,6 +70,18 @@ export class UserController {
     }
   };
 
+  getUserById = async (req: any, res: Response) => {
+    try {
+      const id = +req.user.id;
+      // console.log();
+      
+      const result = await userService.getUserById(id);
+      res.status(200).json({result});
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`)
+    }
+  }
+
   /**
    * This method is used for user login
    * @param req 

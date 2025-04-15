@@ -9,6 +9,21 @@
         <p-message *ngIf="taskForm.controls['description'].invalid && taskForm.controls['description'].touched"
                    severity="error" text="Description is required"></p-message>
       </div>
+
+  <!-- Assigned To -->
+      <!-- <div class="flex items-center gap-4 mb-4">
+        <label for="assignedTo" class="font-semibold w-24">Assigned To</label>
+        <input pInputText id="assignedTo" class="flex-auto" formControlName="assignedTo" autocomplete="off" />
+      </div> -->
+
+      <div class="flex items-center gap-4 mb-4">
+        <label for="assignedTo" class="font-semibold w-24">Assigned To</label>
+        <p-dropdown id="assignedTo" class="flex-auto" [options]="userOptions" formControlName="assignedTo" optionLabel="user" optionValue="value"></p-dropdown>
+        
+        <p-message *ngIf="taskForm.controls['status'].invalid && taskForm.controls['status'].touched"
+                   severity="error" text="Status is required"></p-message>
+      </div>
+
   
       <!-- Due Date -->
       <div class="flex items-center gap-4 mb-4">
@@ -21,17 +36,14 @@
       <!-- Status -->
       <div class="flex items-center gap-4 mb-4">
         <label for="status" class="font-semibold w-24">Status</label>
-        <p-dropdown id="status" class="flex-auto" [options]="statusOptions" formControlName="status" optionLabel="status"   ></p-dropdown>
+        <p-dropdown id="status" class="flex-auto" [options]="statusOptions" formControlName="status" optionLabel="status" optionValue="value"></p-dropdown>
         
         <p-message *ngIf="taskForm.controls['status'].invalid && taskForm.controls['status'].touched"
                    severity="error" text="Status is required"></p-message>
       </div>
   
-      <!-- Assigned To -->
-      <div class="flex items-center gap-4 mb-4">
-        <label for="assignedTo" class="font-semibold w-24">Assigned To</label>
-        <input pInputText id="assignedTo" class="flex-auto" formControlName="assignedTo" autocomplete="off" />
-      </div>
+    
+ 
   
       <!-- Buttons -->
       <div class="flex justify-end gap-2">

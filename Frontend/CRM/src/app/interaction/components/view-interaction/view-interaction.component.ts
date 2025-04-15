@@ -13,4 +13,8 @@ export class ViewInteractionComponent {
   closeDialog(): void {
     this.visible = false;
   }
+
+  ngOnInit(){
+    console.log(this.interactionData)
+  }
 }

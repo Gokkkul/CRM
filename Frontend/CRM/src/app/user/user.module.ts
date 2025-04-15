@@ -11,6 +11,7 @@ import { ViewUserComponent } from './components/view-user/view-user.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { SharedModule } from '../shared/shared.module';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     UserHomeComponent,
     ViewUserComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

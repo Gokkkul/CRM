@@ -1,0 +1,28 @@
+.profile-page {
+    margin: 2rem auto;
+    max-width: 800px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-details {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .profile-sections h3 {
+    margin-top: 1.5rem;
+  }
+  
+  .profile-sections ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .profile-sections li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+  }
+  

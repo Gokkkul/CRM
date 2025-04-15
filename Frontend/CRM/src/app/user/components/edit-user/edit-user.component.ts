@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
 import { UserService } from '../../services/user.service';
@@ -9,7 +9,7 @@ import { UserService } from '../../services/user.service';
   templateUrl: './edit-user.component.html',
   styleUrl: './edit-user.component.css',
 })
-export class EditUserComponent {
+export class EditUserComponent implements OnInit{
   @Input() visible: boolean = false; // Controls dialog visibility
   @Input() userData: any; // Receives selected user data
   @Input() userIndex!: number; // Index of the user being edited
@@ -18,7 +18,7 @@ export class EditUserComponent {
 
   roleOptions = [
     { label: 'Admin', value: 'admin' },
-    { label: 'Sales Representative', value: 'sales_rep' },
+    { label: 'Employee', value: 'employee' },
     { label: 'Manager', value: 'manager' },
   ];
 
@@ -27,6 +27,9 @@ export class EditUserComponent {
     private userService: UserService,
     private swal: SweetAlertService
   ) {
+    
+  }
+  ngOnInit(): void {
     this.initForm();
   }
 

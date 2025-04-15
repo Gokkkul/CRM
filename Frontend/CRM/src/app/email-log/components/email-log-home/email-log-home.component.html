@@ -8,7 +8,7 @@
             <th>Subject</th>
             <th>Recipient</th>
             <th>Body</th>
-            <th>Sent By</th>
+            <!-- <th>Sent By</th> -->
             <th>Sent At</th>
             <th>Options</th>
           </tr>
@@ -18,7 +18,7 @@
                 <td>{{ emailLog.emailSubject }}</td>
                 <td>{{ emailLog.recipient }}</td>
                 <td>{{ emailLog.emailBody }}</td>
-                <td>{{ emailLog.sentBy }}</td>
+                <!-- <td>{{ emailLog.sentBy }}</td> -->
                 <td>{{ emailLog.sentAt | date: 'medium' }}</td>
                 <td>
                     <button (click)="deleteEmailLog(i)" class="btn btn-danger btn-sm m-1">

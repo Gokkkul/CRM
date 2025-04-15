@@ -1,0 +1,64 @@
+Dialog Box Styling
+p-dialog {
+    padding: 1.5rem;
+  }
+  
+  p-dialog span {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  
+  /* Form Styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Input Fields */
+  input[pInputText] {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Labels */
+  label {
+    color: #333;
+    font-size: 1rem;
+  }
+  
+  /* Error Messages */
+  p-message {
+    font-size: 0.875rem;
+    color: #dc3545; /* Error color */
+  }
+  
+  /* Buttons */
+  p-button {
+    margin-top: 1rem;
+  }
+  
+  p-button[label="Cancel"] {
+    background-color: #6c757d; /* Secondary button */
+    color: white;
+  }
+  
+  p-button[label="Save"] {
+    /* background-color: #007bff; Primary button */
+    color: white;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    p-dialog {
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    input[pInputText] {
+      width: 100%;
+    }
+  }
+  

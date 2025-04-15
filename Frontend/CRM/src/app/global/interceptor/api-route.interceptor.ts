@@ -19,7 +19,7 @@ export class ApiRouteInterceptor implements HttpInterceptor {
         const cookieData = this.cookieService.get('userData').trim();
         if (cookieData) {
           const userData = JSON.parse(cookieData);
-          token = userData?.Token || ''; // Extract token safely
+          token = userData?.token || ''; // Extract token safely
         }
       }
       console.log("Token",token);

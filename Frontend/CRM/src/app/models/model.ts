@@ -13,6 +13,7 @@ export interface ILead {
     phone: string;
     status: string;
     assignedTo?: {
+      id: number
       name: string;
     }
     source?: string;
@@ -22,25 +23,26 @@ export interface ILead {
 
 
   export interface ITask {
-    id: number; // Unique identifier for the task
+    id: number; 
     assignedTo?: {
+      id: number;
       name: string;
-    } // The ID of the assigned user
-    description: string; // Details about the task
-    dueDate: Date; // The deadline for the task
-    status: string; // e.g., "pending", "completed"
-    createdAt: Date; // When the task was created
+    } 
+    description: string; 
+    dueDate: Date; 
+    status: string; 
+    createdAt: Date; 
   }
   
 
   export interface IUser {
-    id: number; // Unique identifier for the user
-    name: string; // Full name of the user
-    email: string; // Email address of the user
-    role: string; // Role (e.g., admin, sales_rep)
-    isDeleted: number; // Soft-delete flag (0: active, 1: deleted)
-    createdAt?: Date; // Date when the user was created
-    updatedAt?: Date; // Last update timestamp
+    id: number; 
+    name: string; 
+    email: string; 
+    role: string; 
+    isDeleted: number; 
+    createdAt?: Date; 
+    updatedAt?: Date; 
   }
 
 

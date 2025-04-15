@@ -35,11 +35,16 @@ export class EditLeadComponent {
   ngOnInit(): void {
 
     this.userService.user$.subscribe((data: any[]) => {
-      // Assuming `data` is an array of users with properties like `name` and `id`
       this.userOptions = data.map(user => ({
         user: user.name, // Replace `name` with the actual property of user data
-        value: user.name   // Replace `id` with the unique identifier or relevant value
+        value: user.id   // Replace `id` with the unique identifier or relevant value
       }));
+
+      console.log(this.userOptions);
+      
+
+      // console.log("Hello",typeof(data[0].id));
+      
     });
     // Initialize the form with the incoming lead data
     this.leadForm = this.fb.group({
@@ -48,9 +53,13 @@ export class EditLeadComponent {
       phone: [this.leadData?.phone || '', [Validators.pattern(/^[0-9]+$/)]],
       // status: [this.leadData?.status || ''],
       status: [this.leadData.status || ''],
-      assignedTo: [this.leadData?.assignedTo?.name || ''],
+      assignedTo: [this.leadData?.assignedTo?.id || ''],
       source: [this.leadData?.source || ''],
     });
+    console.log(this.leadForm.value);
+    
+
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {

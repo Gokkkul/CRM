@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { SweetAlertService } from '../../shared/services/sweet-alert.service';
+import { SharedService } from '../../shared/services/shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,13 @@ import { SweetAlertService } from '../../shared/services/sweet-alert.service';
 export class UserService {
 
   private apiUrl = 'http://localhost:3000/api/users'; // Replace with your actual API endpoint
+  userId!: number;
 
   private users: IUser[] = []; // Local user array
   private userSubject = new BehaviorSubject<IUser[]>(this.users); // Observable for components
   user$ = this.userSubject.asObservable(); // Expose user data as observable
 
-  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService, private swal: SweetAlertService) {
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService, private swal: SweetAlertService, private sharedService: SharedService) {
     this.getUsers(); // Fetch users upon initialization
   }
 
@@ -27,6 +29,10 @@ export class UserService {
       this.users = data.result; // Update the local user array
       this.userSubject.next(this.users); // Emit the updated users
     });
+  }
+
+  getUserById(){
+    return this.http.get(`${this.apiUrl}/get-user`);
   }
 
   // Add a new user

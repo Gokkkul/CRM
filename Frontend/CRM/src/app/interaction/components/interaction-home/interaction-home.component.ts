@@ -14,7 +14,9 @@ import { SweetAlertService } from '../../../shared/services/sweet-alert.service'
 
 export interface IInteraction {
   id: number;
-  customer: string;
+  customer: {
+    name: string;
+  }
   handledBy: { name: string };
   type: string;
   date: string;

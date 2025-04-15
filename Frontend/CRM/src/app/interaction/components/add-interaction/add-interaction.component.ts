@@ -14,7 +14,11 @@ export class AddInteractionComponent {
   visible: boolean = false; // Controls dialog visibility
   interactionForm!: FormGroup; // Reactive form instance
   customers: any[] = []; // Array to hold customer data
-  interactionTypes: string[] = ['Email', 'Call', 'Meeting']; // Predefined interaction types
+  interactionTypes = [
+    {type: 'Email', value: 'email'},
+    {type: 'Call', value: 'call'},
+    {type: 'Meeting', value: 'meeting'}
+  ]; // Predefined interaction types
 
   constructor(
     private fb: FormBuilder,

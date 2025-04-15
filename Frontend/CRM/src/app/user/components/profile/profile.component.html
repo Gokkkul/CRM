@@ -1,0 +1,49 @@
+<div class="profile-page">
+    <h1>User Profile</h1>
+    <div class="profile-details">
+      <h2>{{ user?.result.name }}</h2>
+      <p>Email: {{ user?.result.email }}</p>
+      <p>Role: {{ user?.result.role }}</p>
+      <p>Account Created On: {{ user?.result.createdAt | date: 'short' }}</p>
+      <!-- <p>Last Updated On: {{ user?.updatedAt | date: 'short' }}</p> -->
+      <p>Status: {{ user?.isDeleted ? 'Deleted' : 'Active' }}</p>
+    </div>
+  
+    <!-- <div class="profile-sections">
+      <h3>Interactions</h3>
+      <ul>
+        <li *ngFor="let interaction of user?.interactions">
+          Interaction ID: {{ interaction.id }}, Date: {{ interaction.date }}
+        </li>
+      </ul>
+  
+      <h3>Tasks</h3>
+      <ul>
+        <li *ngFor="let task of user?.tasks">
+          Task ID: {{ task.id }}, Description: {{ task.description }}
+        </li>
+      </ul>
+  
+      <h3>Email Logs</h3>
+      <ul>
+        <li *ngFor="let emailLog of user?.emailLogs">
+          Email ID: {{ emailLog.id }}, Sent On: {{ emailLog.sentOn | date: 'short' }}
+        </li>
+      </ul>
+  
+      <h3>Reports</h3>
+      <ul>
+        <li *ngFor="let report of user?.reports">
+          Report ID: {{ report.id }}, Generated On: {{ report.generatedOn | date: 'short' }}
+        </li>
+      </ul>
+  
+      <h3>Leads</h3>
+      <ul>
+        <li *ngFor="let lead of user?.leads">
+          Lead ID: {{ lead.id }}, Name: {{ lead.name }}
+        </li>
+      </ul>
+    </div> -->
+  </div>
+  

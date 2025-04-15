@@ -53,7 +53,7 @@ export class EditInteractionComponent {
 
     // Initialize the form
     this.interactionForm = this.fb.group({
-      // customer: [this.interactionData.customer || '', ],
+      customer: [this.interactionData.customer || '', ],
       type: [this.interactionData.type || ''], 
       // type: ['call'], 
       // type: [this.interactionData?.type || 'Call'], 
