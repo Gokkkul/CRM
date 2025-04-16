@@ -11,6 +11,7 @@ import { EditInteractionComponent } from '../edit-interaction/edit-interaction.c
 import { AddInteractionComponent } from '../add-interaction/add-interaction.component';
 import { ViewInteractionComponent } from '../view-interaction/view-interaction.component';
 import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
+import { SharedService } from '../../../shared/services/shared.service';
 
 export interface IInteraction {
   id: number;
@@ -34,8 +35,15 @@ export interface IInteraction {
 export class InteractionHomeComponent {
   interactions: IInteraction[] = [];
   selectedInteraction: any;
+  userRole = 'employee';
 
-  constructor(private interactionService: InteractionService, private swal: SweetAlertService) {}
+  filteredInteractions: IInteraction[] = [];
+
+  constructor(private interactionService: InteractionService, private swal: SweetAlertService, private sharedService: SharedService) {
+    sharedService.userRole$.subscribe(role => {
+      this.userRole = role;
+    })
+  }
 
   ngOnInit() {
     // this.interactionService.getInteractions().subscribe((data: any) => {
@@ -45,12 +53,22 @@ export class InteractionHomeComponent {
     // })
    this.interactionService.interaction$.subscribe((data: any) => {
     this.interactions = data;
+    this.filteredInteractions = [...this.interactions];
     console.log(data);
-    setTimeout(() => {
-          $('#example').DataTable();
-      }, 300);
+    // setTimeout(() => {
+    //       $('#example').DataTable();
+    //   }, 300);
     
    })
+  }
+
+  handleSearch(keyword: string): void {
+    this.filteredInteractions = this.interactions.filter(interaction =>
+      interaction.customer.name.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
+      interaction.type.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
+      interaction.date.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
+      interaction.handledBy.name.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
+    );
   }
 
   @ViewChild('editInteraction', { read: ViewContainerRef })

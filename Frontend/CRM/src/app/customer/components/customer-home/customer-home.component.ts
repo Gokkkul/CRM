@@ -6,7 +6,7 @@ import 'datatables.net';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { ViewCustomerComponent } from '../view-customer/view-customer.component';
 import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
-import { ToastrService } from 'ngx-toastr';
+import { SharedService } from '../../../shared/services/shared.service';
 
 export interface ICustomer{
   id: number;
@@ -31,26 +31,36 @@ export class CustomerHomeComponent implements OnInit{
 
   customers: ICustomer [] = [];
   selectedCustomer: any;
+  userRole = 'employee';
+  filteredCustomers: ICustomer[] = [];
 
 
-  constructor(private customerService: CustomerService, private swal: SweetAlertService){}
+  constructor(private customerService: CustomerService, private swal: SweetAlertService, private sharedService: SharedService){
+    sharedService.userRole$.subscribe(role => {
+      this.userRole = role;
+    })
+  }
 
   ngOnInit(){
     this.customerService.customer$.subscribe((data:any) => {
       this.customers = data;
+      this.filteredCustomers = [...this.customers];
       
-      setTimeout(() => {
-        $('#example').DataTable();
-    }, 300);
+    //   setTimeout(() => {
+    //     $('#example').DataTable();
+    // }, 300);
     })
 
   }
 
-//   ngAfterViewInit(): void {
-//     setTimeout(() => {
-//         $('#example').DataTable();
-//     }, 0); // Delay ensures table initializes after data is rendered
-// }
+  handleSearch(keyword: string): void {
+    this.filteredCustomers = this.customers.filter(customer =>
+      customer.name.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
+      customer.email.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
+      customer.phone?.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
+      customer.address?.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
+    );
+  }
 
   @ViewChild('editCustomer', { read: ViewContainerRef }) editCustomerContainer!: ViewContainerRef;
   private editCustomerComponentRef!: ComponentRef<EditCustomerComponent>;

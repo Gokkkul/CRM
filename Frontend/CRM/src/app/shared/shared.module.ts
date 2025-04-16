@@ -29,6 +29,8 @@ import { DialogModule } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
 import { SweetAlertComponent } from './components/sweet-alert/sweet-alert.component';
 import { ChartModule } from 'primeng/chart';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const ngPrimeModule = [
@@ -57,6 +59,7 @@ const ngPrimeModule = [
     NavbarComponent,
     SidenavbarComponent,
     SweetAlertComponent,
+    SearchBarComponent,
   ],
   imports: [
     CommonModule,
@@ -68,11 +71,13 @@ const ngPrimeModule = [
     MatIconModule,
     MatButtonModule,
     ngPrimeModule,
+    ReactiveFormsModule
   ],
   exports: [
     ButtonComponent,
     NavbarComponent,
     SidenavbarComponent,
+    SearchBarComponent,
     ngPrimeModule,
   ]
 })

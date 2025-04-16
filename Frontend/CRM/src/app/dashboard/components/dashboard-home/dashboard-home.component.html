@@ -6,7 +6,7 @@
     <div class="row text-center">
       <!-- Total Customers -->
       <div class="col-md-4">
-        <div class="card border-primary hover-card">
+        <div routerLink="/customers" class="card border-primary hover-card" style="cursor: pointer;">
           <div class="card-body">
             <h5 class="card-title">Total Customers</h5>
             <p id="total-customers" class="card-text display-4">{{totalValue?.totalCustomer}}</p>
@@ -16,7 +16,7 @@
   
       <!-- Total Leads -->
       <div class="col-md-4">
-        <div class="card border-success hover-card">
+        <div routerLink="/leads" class="card border-success hover-card" style="cursor: pointer;">
           <div class="card-body">
             <h5 class="card-title">Total Leads</h5>
             <p id="total-leads" class="card-text display-4">{{totalValue?.totalLeads}}</p>
@@ -26,7 +26,7 @@
   
       <!-- Total Sales Opportunity Value -->
       <div class="col-md-4">
-        <div class="card border-warning hover-card">
+        <div routerLink="/sales opportunity" class="card border-warning hover-card" style="cursor: pointer;">
           <div class="card-body">
             <h5 class="card-title">Total Sales Opportunity Value</h5>
             <p id="total-sales-value" class="card-text display-4">{{totalValue?.totalSalesOppValue | currency: 'INR'}}</p>

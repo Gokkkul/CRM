@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate{
    if(this.cookieService.check('userData')){
     return true
    }
-    return true;
+    return false;
   }
 
 }

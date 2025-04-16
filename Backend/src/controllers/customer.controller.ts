@@ -76,6 +76,12 @@ export class CustomerController {
     }
   };
 
+  /**
+   * This method is used to add qualified lead as customer
+   * @param req 
+   * @param res 
+   */
+
   addLeadToCustomer = async (req: Request, res: Response) => {
     try {
       const result = await custService.addLeadToCustomer();

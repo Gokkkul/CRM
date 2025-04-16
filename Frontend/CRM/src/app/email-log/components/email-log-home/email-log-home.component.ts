@@ -9,6 +9,7 @@ import { SweetAlertService } from '../../../shared/services/sweet-alert.service'
 import { ViewEmailComponent } from '../view-email/view-email.component';
 import { EmailLogService } from '../../services/email-log.service';
 import { SendEmailComponent } from '../send-email/send-email.component';
+import { SharedService } from '../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-email-log-home',
@@ -28,10 +29,18 @@ export class EmailLogHomeComponent {
   sendEmailContainer!: ViewContainerRef;
   private sendEmailComponentRef!: ComponentRef<SendEmailComponent>;
 
+
+  userRole = 'employee'
+
   constructor(
     private emailService: EmailLogService,
-    private swal: SweetAlertService
-  ) {}
+    private swal: SweetAlertService,
+    private sharedService: SharedService
+  ) {
+    sharedService.userRole$.subscribe(role => {
+      this.userRole = role;
+    })
+  }
 
   ngOnInit() {
     // Subscribe to the email data observable and initialize DataTable

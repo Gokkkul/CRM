@@ -21,7 +21,7 @@
                 <!-- <td>{{ emailLog.sentBy }}</td> -->
                 <td>{{ emailLog.sentAt | date: 'medium' }}</td>
                 <td>
-                    <button (click)="deleteEmailLog(i)" class="btn btn-danger btn-sm m-1">
+                    <button *ngIf="userRole == 'admin'" (click)="deleteEmailLog(i)" class="btn btn-danger btn-sm m-1">
                         <i class="bi bi-trash"></i>
                     </button>
                     <button (click)="showViewEmailLog(emailLog)" class="btn btn-success btn-sm m-1">

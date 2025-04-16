@@ -7,6 +7,7 @@ import { SweetAlertService } from '../../../shared/services/sweet-alert.service'
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
 import { ViewTaskComponent } from '../view-task/view-task.component';
+import { SharedService } from '../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-task-home',
@@ -31,9 +32,13 @@ export class TaskHomeComponent {
   addTaskContainer!: ViewContainerRef;
   private addTaskComponentRef!: ComponentRef<AddTaskComponent>;
 
-  constructor(private taskService: TaskService, private swal: SweetAlertService) {
-    // console.log("From Task Home: ",this.selectedTask.task);
-    // console.log("From Task Home: ",this.selectedTask.index);
+
+  userRole = 'employee'
+
+  constructor(private taskService: TaskService, private swal: SweetAlertService, sharedService: SharedService) {
+    sharedService.userRole$.subscribe(role => {
+      this.userRole = role;
+    })
   }
 
   ngOnInit(): void {

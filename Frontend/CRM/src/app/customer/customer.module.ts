@@ -12,6 +12,7 @@ import { AddCustomerComponent } from './components/add-customer/add-customer.com
 import { ViewCustomerComponent } from './components/view-customer/view-customer.component';
 
 
+
 @NgModule({
   declarations: [
     CustomerHomeComponent,
@@ -25,7 +26,8 @@ import { ViewCustomerComponent } from './components/view-customer/view-customer.
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
-  ]
+    FormsModule,
+    SharedModule
+]
 })
 export class CustomerModule { }
