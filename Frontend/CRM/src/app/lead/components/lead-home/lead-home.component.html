@@ -3,6 +3,7 @@
     <button class="btn btn-primary m-2" (click)="showAddLead()">Add Lead<i class="bi bi-plus"></i></button>
     <button *ngIf ="userRole == 'Admin'" class="btn btn-warning m-2" (click)="addToCustomer()">Add to Customer</button>
     <hr>
+    <app-search-bar (search)="handleSearch($event)"></app-search-bar>
     <table id="example" class="table table-striped">
         <thead>
           <tr>
@@ -18,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let lead of leads; let i = index">
+            <tr *ngFor="let lead of filteredLeads; let i = index">
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.email }}</td>
                 <td>{{ lead.phone }}</td>

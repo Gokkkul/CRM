@@ -19,6 +19,7 @@ export class TaskHomeComponent {
   
   selectedTask: any;
   tasks: ITask[] = [];
+  filteredTasks: ITask[] = [];
 
   @ViewChild('viewTask', { read: ViewContainerRef })
   viewTaskContainer!: ViewContainerRef;
@@ -44,12 +45,22 @@ export class TaskHomeComponent {
   ngOnInit(): void {
     this.taskService.task$.subscribe((data: any) => {
       this.tasks = data;
+      this.filteredTasks = [...this.tasks];
       // console.log(data[0].assignedTo.name);
-      setTimeout(() => {
-        $('#example').DataTable();
-    }, 300);
+    //   setTimeout(() => {
+    //     $('#example').DataTable();
+    // }, 300);
     });
     
+  }
+
+  handleSearch(keyword: string): void {
+    this.filteredTasks = this.tasks.filter(task =>
+      task.description.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
+      task.assignedTo?.name.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
+      task.status.toLowerCase().includes(keyword.toLowerCase())  // Search by phone (optional)
+      // task.handledBy.name.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
+    );
   }
 
   showAddTask() {

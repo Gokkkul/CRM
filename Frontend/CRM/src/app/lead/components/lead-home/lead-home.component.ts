@@ -26,6 +26,7 @@ import { SharedService } from '../../../shared/services/shared.service';
 export class LeadHomeComponent {
   selectedLead: any;
   leads: ILead[] = [];
+  filteredLeads: ILead[] = [];
 
   @ViewChild('viewLead', { read: ViewContainerRef })
   viewLeadContainer!: ViewContainerRef;
@@ -47,14 +48,26 @@ export class LeadHomeComponent {
     })
 
   }
+
+
+  handleSearch(keyword: string): void {
+    this.filteredLeads = this.leads.filter(lead =>
+      lead.assignedTo?.name.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
+      lead.email.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
+      lead.name.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
+      lead.status.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
+    );
+  }
+
   
   ngOnInit(): void {
     this.leadService.lead$.subscribe((data: any) => {
       this.leads = data;
-      console.log("This is from lead home",this.leads)
-      setTimeout(() => {
-        $('#example').DataTable();
-      }, 300);
+      this.filteredLeads = [...this.leads];
+      // console.log("This is from lead home",this.leads)
+      // setTimeout(() => {
+      //   $('#example').DataTable();
+      // }, 300);
     });
    
   }

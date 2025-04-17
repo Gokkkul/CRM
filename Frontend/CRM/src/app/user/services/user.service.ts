@@ -73,9 +73,8 @@ export class UserService {
         
         if (response.result.token) {
           this.cookieService.set('userData', JSON.stringify(response.result));
-          console.log(this.cookieService.get('userData'));
+          // console.log(this.cookieService.get('userData'));
           
-           // Store JWT token
           this.swal.showToast('Login Successful', 'success')
           this.router.navigate(['/dashboard']); // Redirect user
         } else {

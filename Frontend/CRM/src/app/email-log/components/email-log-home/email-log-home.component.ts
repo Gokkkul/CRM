@@ -20,6 +20,7 @@ import { SharedService } from '../../../shared/services/shared.service';
 export class EmailLogHomeComponent {
   emailLogs: IEmail[] = [];
   selectedEmailLog: any;
+  filteredEmailLogs: IEmail[] = [];
 
   @ViewChild('viewEmailLog', { read: ViewContainerRef })
   viewEmailLogContainer!: ViewContainerRef;
@@ -46,14 +47,26 @@ export class EmailLogHomeComponent {
     // Subscribe to the email data observable and initialize DataTable
     this.emailService.emailLogs$.subscribe((data: any) => {
       this.emailLogs = data;
-      console.log("Email log Component: ",data);
+      this.filteredEmailLogs = [...this.emailLogs]
+      // console.log("Email log Component: ",data);
       
 
-      setTimeout(() => {
-        $('#example').DataTable();
-      }, 300);
+      // setTimeout(() => {
+      //   $('#example').DataTable();
+      // }, 300);
     });
   }
+
+  handleSearch(keyword: string): void {
+    this.filteredEmailLogs = this.emailLogs.filter(emailLog =>
+      emailLog.emailSubject.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
+      emailLog.recipient.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
+      emailLog.emailBody.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
+      emailLog.sentAt?.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
+    );
+  }
+
+  
 
   showSendEmail() {
     // Logic to trigger the email sending process

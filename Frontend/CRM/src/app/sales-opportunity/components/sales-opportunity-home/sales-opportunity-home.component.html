@@ -1,6 +1,6 @@
 <div class="">
   <h2>Sales Opportunities</h2>
-  <button class="btn btn-primary" *ngIf="userRole == 'Admin'" (click)="showAddSalesOpportunity()">Add Sales Opportunity <i class="bi bi-plus"></i></button>
+  <button class="btn btn-primary" *ngIf="userRole == 'admin'" (click)="showAddSalesOpportunity()">Add Sales Opportunity <i class="bi bi-plus"></i></button>
   <hr>
 
   <app-search-bar (search)="handleSearch($event)"></app-search-bar>

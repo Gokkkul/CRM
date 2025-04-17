@@ -2,6 +2,7 @@
     <h2>Tasks</h2>
     <button (click)="showAddTask()" class="btn btn-primary" >Add Task<i class="bi bi-plus"></i></button>
     <hr>
+    <app-search-bar (search)="handleSearch($event)"></app-search-bar>
     <table id="example" class="table table-striped">
         <thead>
           <tr>
@@ -14,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of tasks; let i = index">
+            <tr *ngFor="let task of filteredTasks; let i = index">
                 <td>{{ task.description }}</td>
                 <td>{{ task.assignedTo?.name }}</td>
                 <td>{{ task.dueDate | date: 'medium' }}</td>

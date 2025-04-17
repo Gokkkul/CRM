@@ -2,6 +2,7 @@
     <h2>Email Logs</h2>
     <button (click)="showSendEmail()" class="btn btn-primary">Send Email</button>
     <hr>
+    <app-search-bar (search)="handleSearch($event)"></app-search-bar>
     <table id="example" class="table table-striped">
         <thead>
           <tr>
@@ -14,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let emailLog of emailLogs; let i = index">
+            <tr *ngFor="let emailLog of filteredEmailLogs; let i = index">
                 <td>{{ emailLog.emailSubject }}</td>
                 <td>{{ emailLog.recipient }}</td>
                 <td>{{ emailLog.emailBody }}</td>

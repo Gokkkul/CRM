@@ -19,7 +19,7 @@ export class SharedService {
 
   getIdFromUser() {
     const userData = this.cookieService.get('userData');
-    // console.log("Shared service",userData);
+    // console.log("Shared service",userData);  
     if (!userData) {
       return 0;
     }

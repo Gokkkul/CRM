@@ -15,6 +15,7 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 export class UserHomeComponent {
   selectedUser: any;
   users: IUser[] = [];
+  filteredUsers: IUser[] = [];
 
   @ViewChild('viewUser', { read: ViewContainerRef })
   viewUserContainer!: ViewContainerRef;
@@ -36,12 +37,22 @@ export class UserHomeComponent {
   ngOnInit(): void {
     this.userService.user$.subscribe((data: any) => {
       this.users = data;
-      console.log(data);
-      setTimeout(() => {
-        $('#example').DataTable();
-    }, 300);
+      this.filteredUsers = [...this.users];
+      // console.log(data);
+    //   setTimeout(() => {
+    //     $('#example').DataTable();
+    // }, 300);
       
     });
+  }
+
+  handleSearch(keyword: string): void {
+    this.filteredUsers = this.users.filter(user =>
+      user.name.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
+      user.email.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
+      user.role.toLowerCase().includes(keyword.toLowerCase()) // Search by phone (optional)
+      // user.handledBy.name.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
+    );
   }
 
   showAddUser() {
