@@ -21,6 +21,9 @@ export class EmailLogHomeComponent {
   emailLogs: IEmail[] = [];
   selectedEmailLog: any;
   filteredEmailLogs: IEmail[] = [];
+  page: number = 1;
+  pageSize: number = 5;
+  isLoading: boolean = false;
 
   @ViewChild('viewEmailLog', { read: ViewContainerRef })
   viewEmailLogContainer!: ViewContainerRef;
@@ -44,11 +47,12 @@ export class EmailLogHomeComponent {
   }
 
   ngOnInit() {
-    // Subscribe to the email data observable and initialize DataTable
+    this.isLoading = true;
     this.emailService.emailLogs$.subscribe((data: any) => {
+      if (data.length) this.isLoading = false;
       this.emailLogs = data;
       this.filteredEmailLogs = [...this.emailLogs]
-      // console.log("Email log Component: ",data);
+
       
 
       // setTimeout(() => {

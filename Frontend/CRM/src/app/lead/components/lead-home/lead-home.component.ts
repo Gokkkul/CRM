@@ -27,6 +27,9 @@ export class LeadHomeComponent {
   selectedLead: any;
   leads: ILead[] = [];
   filteredLeads: ILead[] = [];
+  page: number = 1;
+  pageSize: number = 5;
+  isLoading: boolean = false;
 
   @ViewChild('viewLead', { read: ViewContainerRef })
   viewLeadContainer!: ViewContainerRef;
@@ -61,7 +64,9 @@ export class LeadHomeComponent {
 
   
   ngOnInit(): void {
+    this.isLoading = true;
     this.leadService.lead$.subscribe((data: any) => {
+      if (data.length) this.isLoading = false;
       this.leads = data;
       this.filteredLeads = [...this.leads];
       // console.log("This is from lead home",this.leads)

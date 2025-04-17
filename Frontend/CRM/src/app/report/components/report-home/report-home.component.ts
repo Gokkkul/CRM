@@ -10,11 +10,14 @@ import { SalesOpportunityService } from '../../../sales-opportunity/services/sal
 export class ReportHomeComponent {
   data: any;
   options: any;
+  isLoading = false;
 
   constructor(private salesOpportunityService: SalesOpportunityService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.salesOpportunityService.salesOpportunity$.subscribe((groupedData) => {
+      if(groupedData.length) this.isLoading = false;
       console.log("Chart Data:", groupedData);
       this.data = {
         labels: groupedData.map(item => item.customer?.name),

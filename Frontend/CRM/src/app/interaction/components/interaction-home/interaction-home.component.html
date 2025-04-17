@@ -1,30 +1,8 @@
-<!-- <p>interaction-home works!</p> -->
-<!-- <p-table [value]="interactions" [paginator]="true">
-    <ng-container>
-        <tr>
-            <th>Type</th>
-            <th>Date</th>
-            <th>Handled By</th>
-            <th>Notes</th>
-            <th>Follow-Up Date</th>
-            <th>Actions</th>
-        </tr>
-        <tr *ngFor="let interaction of interactions">
-            <td>{{ interaction.type }}</td>
-            <td>{{ interaction.date | date:'medium' }}</td>
-            <td>{{ interaction.handledBy }}</td>
-            <td>{{ interaction.notes }}</td>
-            <td>{{ interaction.followUpDate | date:'medium' }}</td>
-            <td>
-                <p-button label="Edit" (click)="editInteraction(interaction)" />
-                <p-button label="Delete" severity="danger" (click)="deleteInteraction(interaction.id)" />
-            </td>
-        </tr>
-    </ng-container>
-</p-table> -->
+<div *ngIf="isLoading">
+    <app-progress-spinner></app-progress-spinner>
+</div>
 
-
-<div class="">
+<div class="" *ngIf="!isLoading">
     <h2>Interactions</h2>
      <button (click)="showAddInteraction()" class="btn btn-primary">Add Interaction<i class="bi bi-plus"></i></button>
     <hr>
@@ -37,28 +15,17 @@
             <th>Date</th>
             <th>Handled By</th>
             <th>Notes</th>
-            <!-- <th>Follow-Up Date</th> -->
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let interaction of filteredInteractions; let i = index">
+            <tr *ngFor="let interaction of filteredInteractions | paginate: { itemsPerPage: pageSize, currentPage: page }; let i = index">
                 <td>{{ interaction.customer.name }}</td>
                 <td>{{ interaction.type }}</td>
             <td>{{ interaction.date | date:'medium' }}</td>
             <td>{{ interaction.handledBy.name }}</td>
             <td>{{ interaction.notes }}</td>
-            <!-- <td>{{ interaction.followUpDate | date:'medium' }}</td> -->
                 <td>
-                    <!-- <button [routerLink]="['edit-customer', customer.id]" class="btn btn-primary btn-sm m-1">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-danger btn-sm m-1">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                    <button class="btn btn-success btn-sm m-1">
-                        <i class="bi bi-eye"></i>
-                    </button> -->
                     <button (click)="showEditInteraction(interaction, i )" class="btn btn-primary btn-sm m-1">
                         <i class="bi bi-pencil"></i>
                     </button>
@@ -72,6 +39,10 @@
             </tr>
         </tbody>
     </table>
+    <div class="d-flex align-items-center justify-content-center ">
+
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
 </div>
 <div #editInteraction></div>
 <div #addInteraction></div>

@@ -10,6 +10,7 @@ import { AddInteractionComponent } from './components/add-interaction/add-intera
 import { ViewInteractionComponent } from './components/view-interaction/view-interaction.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditInteractionComponent } from './components/edit-interaction/edit-interaction.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -27,7 +28,8 @@ import { EditInteractionComponent } from './components/edit-interaction/edit-int
     InteractionRoutingModule,
     RouterModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ]
 })
 export class InteractionModule { }

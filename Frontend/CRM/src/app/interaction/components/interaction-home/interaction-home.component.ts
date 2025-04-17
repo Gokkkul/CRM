@@ -17,7 +17,7 @@ export interface IInteraction {
   id: number;
   customer: {
     name: string;
-  }
+  };
   handledBy: { name: string };
   type: string;
   date: string;
@@ -36,38 +36,45 @@ export class InteractionHomeComponent {
   interactions: IInteraction[] = [];
   selectedInteraction: any;
   userRole = 'employee';
+  page: number = 1;
+  pageSize: number = 5;
+  isLoading: boolean = false;
 
   filteredInteractions: IInteraction[] = [];
 
-  constructor(private interactionService: InteractionService, private swal: SweetAlertService, private sharedService: SharedService) {
-    sharedService.userRole$.subscribe(role => {
+  constructor(
+    private interactionService: InteractionService,
+    private swal: SweetAlertService,
+    private sharedService: SharedService
+  ) {
+    sharedService.userRole$.subscribe((role) => {
       this.userRole = role;
-    })
+    });
   }
 
   ngOnInit() {
-    // this.interactionService.getInteractions().subscribe((data: any) => {
-    //   // console.log('API Response:', data);
-    //   this.interactions = data;
-    //  
-    // })
-   this.interactionService.interaction$.subscribe((data: any) => {
-    this.interactions = data;
-    this.filteredInteractions = [...this.interactions];
-    console.log(data);
-    // setTimeout(() => {
-    //       $('#example').DataTable();
-    //   }, 300);
-    
-   })
+
+    this.isLoading = true;
+    this.interactionService.interaction$.subscribe((data: any) => {
+      if (data.length) this.isLoading = false;
+      this.interactions = data;
+      this.filteredInteractions = [...this.interactions];
+      console.log(data);
+      // setTimeout(() => {
+      //       $('#example').DataTable();
+      //   }, 300);
+    });
   }
 
   handleSearch(keyword: string): void {
-    this.filteredInteractions = this.interactions.filter(interaction =>
-      interaction.customer.name.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
-      interaction.type.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
-      interaction.date.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
-      interaction.handledBy.name.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
+    this.filteredInteractions = this.interactions.filter(
+      (interaction) =>
+        interaction.customer.name
+          .toLowerCase()
+          .includes(keyword.toLowerCase()) || // Search by name
+        interaction.type.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
+        interaction.date.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
+        interaction.handledBy.name.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
     );
   }
 
@@ -103,8 +110,10 @@ export class InteractionHomeComponent {
   }
 
   deleteInteraction(index: number) {
-    this.interactionService.deleteInteraction(index).subscribe(() => {console.log("deleted")});
-    this.swal.showToast('Interaction Deleted Successfully.', 'success')
+    this.interactionService.deleteInteraction(index).subscribe(() => {
+      console.log('deleted');
+    });
+    this.swal.showToast('Interaction Deleted Successfully.', 'success');
   }
 
   showAddInteraction() {
@@ -114,14 +123,16 @@ export class InteractionHomeComponent {
     this.addInteractionComponentRef.instance.visible = true;
   }
 
-  showViewInteraction(interaction: IInteraction){
+  showViewInteraction(interaction: IInteraction) {
     this.viewInteractionContainer.clear();
 
     this.selectedInteraction = interaction;
 
-    this.viewInteractionComponentRef = this.viewInteractionContainer.createComponent(ViewInteractionComponent);
+    this.viewInteractionComponentRef =
+      this.viewInteractionContainer.createComponent(ViewInteractionComponent);
 
-    this.viewInteractionComponentRef.instance.interactionData = this.selectedInteraction;
+    this.viewInteractionComponentRef.instance.interactionData =
+      this.selectedInteraction;
 
     this.viewInteractionComponentRef.instance.visible = true;
   }

@@ -1,4 +1,8 @@
-<div>
+<div *ngIf="isLoading">
+    <app-progress-spinner></app-progress-spinner>
+</div>
+
+<div *ngIf="!isLoading">
     <h2>Email Logs</h2>
     <button (click)="showSendEmail()" class="btn btn-primary">Send Email</button>
     <hr>
@@ -15,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let emailLog of filteredEmailLogs; let i = index">
+            <tr *ngFor="let emailLog of filteredEmailLogs | paginate: { itemsPerPage: pageSize, currentPage: page }; let i = index">
                 <td>{{ emailLog.emailSubject }}</td>
                 <td>{{ emailLog.recipient }}</td>
                 <td>{{ emailLog.emailBody }}</td>
@@ -32,6 +36,10 @@
             </tr>
         </tbody>
     </table>
+    <div class="d-flex align-items-center justify-content-center ">
+
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
 </div>
 
 <div #sendEmail></div>

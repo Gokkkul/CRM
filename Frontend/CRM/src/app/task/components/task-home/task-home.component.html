@@ -1,4 +1,8 @@
-<div class="">
+<div *ngIf="isLoading">
+    <app-progress-spinner></app-progress-spinner>
+</div>
+
+<div class="" *ngIf="!isLoading">
     <h2>Tasks</h2>
     <button (click)="showAddTask()" class="btn btn-primary" >Add Task<i class="bi bi-plus"></i></button>
     <hr>
@@ -15,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of filteredTasks; let i = index">
+            <tr *ngFor="let task of filteredTasks | paginate: { itemsPerPage: pageSize, currentPage: page }; let i = index">
                 <td>{{ task.description }}</td>
                 <td>{{ task.assignedTo?.name }}</td>
                 <td>{{ task.dueDate | date: 'medium' }}</td>
@@ -34,6 +38,10 @@
             </tr>
         </tbody>
     </table>
+    <div class="d-flex align-items-center justify-content-center ">
+
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
 </div>
 <div #editTask></div>
 <div #addTask></div>

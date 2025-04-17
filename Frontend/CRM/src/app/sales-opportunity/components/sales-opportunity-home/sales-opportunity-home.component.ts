@@ -23,6 +23,9 @@ export class SalesOpportunityHomeComponent {
   salesOpportunities: ISalesOpportunity[] = [];
   selectedOpportunity: any;
   filteredsalesOpportunities: ISalesOpportunity[] = [];
+  page: number = 1;
+  pageSize: number = 5;
+  isLoading: boolean = false;
 
   userRole = 'employee';
 
@@ -37,7 +40,10 @@ export class SalesOpportunityHomeComponent {
   }
 
   ngOnInit() {
+
+    this.isLoading = true;
     this.salesOpportunityService.salesOpportunity$.subscribe((data: any) => {
+      if (data.length) this.isLoading = false;
       this.salesOpportunities = data;
       this.filteredsalesOpportunities = [...this.salesOpportunities];
       console.log(data);

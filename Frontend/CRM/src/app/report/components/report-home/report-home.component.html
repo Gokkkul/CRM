@@ -1,6 +1,13 @@
 <!-- <p>report-home works!</p> -->
-<app-get-sales-opportunities-by-customer></app-get-sales-opportunities-by-customer>
-<app-get-sales-opportunities-by-stage></app-get-sales-opportunities-by-stage>
+<div *ngIf="isLoading">
+   <app-progress-spinner></app-progress-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+   <app-get-sales-opportunities-by-customer></app-get-sales-opportunities-by-customer>
+   <!-- <app-get-sales-opportunities-by-stage></app-get-sales-opportunities-by-stage> -->
+</div>
+
 
  <!-- <div class="container">
     <p-chart type="bar" [data]="data" [options]="options"  />

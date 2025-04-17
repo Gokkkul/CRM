@@ -1,4 +1,8 @@
-<div class="">
+<div *ngIf="isLoading">
+    <app-progress-spinner></app-progress-spinner>
+</div>
+
+<div class="" *ngIf="!isLoading">
   <h2>Sales Opportunities</h2>
   <button class="btn btn-primary" *ngIf="userRole == 'admin'" (click)="showAddSalesOpportunity()">Add Sales Opportunity <i class="bi bi-plus"></i></button>
   <hr>
@@ -15,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let opportunity of filteredsalesOpportunities; let i = index">
+          <tr *ngFor="let opportunity of filteredsalesOpportunities | paginate: { itemsPerPage: pageSize, currentPage: page }; let i = index">
               <td>{{ opportunity.stage }}</td>
               <td>{{ opportunity.customer?.name }}</td>
               <td>{{ opportunity.value | currency: 'INR' }}</td>
@@ -34,6 +38,10 @@
           </tr>
       </tbody>
   </table>
+  <div class="d-flex align-items-center justify-content-center ">
+
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
 </div>
 <div #editSalesOpportunity></div>
 <div #addSalesOpportunity></div>

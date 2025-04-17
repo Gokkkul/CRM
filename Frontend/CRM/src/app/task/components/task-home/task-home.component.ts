@@ -20,6 +20,9 @@ export class TaskHomeComponent {
   selectedTask: any;
   tasks: ITask[] = [];
   filteredTasks: ITask[] = [];
+  page: number = 1;
+  pageSize: number = 5;
+  isLoading = false;
 
   @ViewChild('viewTask', { read: ViewContainerRef })
   viewTaskContainer!: ViewContainerRef;
@@ -43,7 +46,9 @@ export class TaskHomeComponent {
   }
 
   ngOnInit(): void {
+    this.isLoading = true
     this.taskService.task$.subscribe((data: any) => {
+      if(data.length) this.isLoading = false;
       this.tasks = data;
       this.filteredTasks = [...this.tasks];
       // console.log(data[0].assignedTo.name);

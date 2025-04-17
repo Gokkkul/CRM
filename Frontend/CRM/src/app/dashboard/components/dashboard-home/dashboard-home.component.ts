@@ -16,11 +16,16 @@ interface total{
 export class DashboardHomeComponent {
 
   totalValue:total | undefined
+  isLoading = false;
 
   constructor(private dashboardService: DashboardService){
+    this.isLoading = true;
     this.dashboardService.getTotalValue().subscribe((data:any)=>{
+      if(data.result.totalCustomer) this.isLoading = false;
       this.totalValue = data.result;
-      console.log("from dashboard",this.totalValue?.totalCustomer );
+      // console.log(data);
+      
+      // console.log("from dashboard",this.totalValue?.totalCustomer );
       
     })
   }

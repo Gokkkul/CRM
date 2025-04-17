@@ -1,4 +1,9 @@
-<div class="">
+<div *ngIf="isLoading">
+    <app-progress-spinner></app-progress-spinner>
+</div>
+
+
+<div class="" *ngIf="!isLoading">
     <h2>Leads</h2>
     <button class="btn btn-primary m-2" (click)="showAddLead()">Add Lead<i class="bi bi-plus"></i></button>
     <button *ngIf ="userRole == 'Admin'" class="btn btn-warning m-2" (click)="addToCustomer()">Add to Customer</button>
@@ -19,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let lead of filteredLeads; let i = index">
+            <tr *ngFor="let lead of filteredLeads | paginate: { itemsPerPage: pageSize, currentPage: page }; let i = index">
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.email }}</td>
                 <td>{{ lead.phone }}</td>
@@ -42,6 +47,10 @@
             </tr>
         </tbody>
     </table>
+    <div class="d-flex align-items-center justify-content-center ">
+
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
 </div>
 <div #editLead></div>
 <div #addLead></div>

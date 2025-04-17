@@ -1,8 +1,8 @@
-<!-- <app-navbar></app-navbar>
-<app-sidenavbar>
-    <router-outlet></router-outlet>
-</app-sidenavbar>  -->
-<div class="container mt-5">
+<div *ngIf="isLoading">
+  <app-progress-spinner></app-progress-spinner>
+</div>
+
+<div class="container mt-5" *ngIf="!isLoading">
     <div class="row text-center">
       <!-- Total Customers -->
       <div class="col-md-4">

@@ -16,6 +16,9 @@ export class UserHomeComponent {
   selectedUser: any;
   users: IUser[] = [];
   filteredUsers: IUser[] = [];
+  page: number = 1;
+  pageSize: number = 5;
+  isLoading = false;
 
   @ViewChild('viewUser', { read: ViewContainerRef })
   viewUserContainer!: ViewContainerRef;
@@ -35,7 +38,9 @@ export class UserHomeComponent {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.userService.user$.subscribe((data: any) => {
+      if(data.length) this.isLoading = false;
       this.users = data;
       this.filteredUsers = [...this.users];
       // console.log(data);

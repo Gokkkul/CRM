@@ -33,6 +33,9 @@ export class CustomerHomeComponent implements OnInit{
   selectedCustomer: any;
   userRole = 'employee';
   filteredCustomers: ICustomer[] = [];
+  page: number = 1;
+  pageSize: number = 5;
+  isLoading: boolean = false;
 
 
   constructor(private customerService: CustomerService, private swal: SweetAlertService, private sharedService: SharedService){
@@ -42,9 +45,14 @@ export class CustomerHomeComponent implements OnInit{
   }
 
   ngOnInit(){
+
+    this.isLoading = true;
     this.customerService.customer$.subscribe((data:any) => {
+      if (data.length) this.isLoading = false;
       this.customers = data;
       this.filteredCustomers = [...this.customers];
+
+      // this.isLoading = false;
       
     //   setTimeout(() => {
     //     $('#example').DataTable();
@@ -60,6 +68,8 @@ export class CustomerHomeComponent implements OnInit{
       customer.phone?.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
       customer.address?.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
     );
+
+    this.page = 1; // Resetting pagination after filtering
   }
 
   @ViewChild('editCustomer', { read: ViewContainerRef }) editCustomerContainer!: ViewContainerRef;

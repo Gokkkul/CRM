@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AddCustomerComponent } from './components/add-customer/add-customer.component';
 import { ViewCustomerComponent } from './components/view-customer/view-customer.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -27,7 +28,8 @@ import { ViewCustomerComponent } from './components/view-customer/view-customer.
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
 ]
 })
 export class CustomerModule { }

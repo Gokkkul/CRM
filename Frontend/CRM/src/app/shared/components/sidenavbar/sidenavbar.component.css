@@ -17,6 +17,11 @@
   padding: 10px;
 }
 
+.active-item{
+  background-color: #0d6efd;
+  color: white;
+}
+
 @media (max-width: 768px) {
   #sidebar {
     width: 70px; /* Adjust width for smaller screens */

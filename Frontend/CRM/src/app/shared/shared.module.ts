@@ -31,6 +31,10 @@ import { SweetAlertComponent } from './components/sweet-alert/sweet-alert.compon
 import { ChartModule } from 'primeng/chart';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TableViewComponent } from './components/table-view/table-view.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
 
 
 const ngPrimeModule = [
@@ -49,7 +53,8 @@ const ngPrimeModule = [
   InputIcon,
   DialogModule,
   MessageModule,
-  ChartModule
+  ChartModule,
+  ProgressSpinnerModule
 ];
 
 
@@ -60,6 +65,8 @@ const ngPrimeModule = [
     SidenavbarComponent,
     SweetAlertComponent,
     SearchBarComponent,
+    TableViewComponent,
+    ProgressSpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -71,7 +78,8 @@ const ngPrimeModule = [
     MatIconModule,
     MatButtonModule,
     ngPrimeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   exports: [
     ButtonComponent,
@@ -79,6 +87,8 @@ const ngPrimeModule = [
     SidenavbarComponent,
     SearchBarComponent,
     ngPrimeModule,
+    NgxPaginationModule,
+    ProgressSpinnerComponent
   ]
 })
 export class SharedModule { }
