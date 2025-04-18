@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './user/components/login/login.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch:'full'},
+  { path: '', component: LandingPageComponent},
+  // { path: '', redirectTo: 'login', pathMatch:'full'},
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'customers', loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule) },

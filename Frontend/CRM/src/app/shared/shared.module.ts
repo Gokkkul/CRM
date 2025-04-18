@@ -31,10 +31,11 @@ import { SweetAlertComponent } from './components/sweet-alert/sweet-alert.compon
 import { ChartModule } from 'primeng/chart';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TableViewComponent } from './components/table-view/table-view.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
+import { GenericTableComponent } from './components/generic-table/generic-table.component';
+import { Skeleton, SkeletonModule } from 'primeng/skeleton';
 
 
 const ngPrimeModule = [
@@ -65,8 +66,8 @@ const ngPrimeModule = [
     SidenavbarComponent,
     SweetAlertComponent,
     SearchBarComponent,
-    TableViewComponent,
     ProgressSpinnerComponent,
+    GenericTableComponent,
   ],
   imports: [
     CommonModule,
@@ -79,7 +80,8 @@ const ngPrimeModule = [
     MatButtonModule,
     ngPrimeModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SkeletonModule
   ],
   exports: [
     ButtonComponent,

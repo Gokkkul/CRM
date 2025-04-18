@@ -1,4 +1,10 @@
-import { Component, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  ComponentRef,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { EditCustomerComponent } from '../edit-customer/edit-customer.component';
 import $ from 'jquery';
@@ -8,11 +14,11 @@ import { ViewCustomerComponent } from '../view-customer/view-customer.component'
 import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
 import { SharedService } from '../../../shared/services/shared.service';
 
-export interface ICustomer{
+export interface ICustomer {
   id: number;
   name: string;
   email: string;
-  phone?: string; 
+  phone?: string;
   address?: string;
   company?: string;
   createdAt: string;
@@ -23,87 +29,99 @@ export interface ICustomer{
   selector: 'app-customer-home',
   standalone: false,
   templateUrl: './customer-home.component.html',
-  styleUrl: './customer-home.component.css'
+  styleUrl: './customer-home.component.css',
 })
-export class CustomerHomeComponent implements OnInit{
-
+export class CustomerHomeComponent implements OnInit {
   visible = false;
 
-  customers: ICustomer [] = [];
+  customers: ICustomer[] = [];
   selectedCustomer: any;
   userRole = 'employee';
   filteredCustomers: ICustomer[] = [];
   page: number = 1;
   pageSize: number = 5;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
-
-  constructor(private customerService: CustomerService, private swal: SweetAlertService, private sharedService: SharedService){
-    sharedService.userRole$.subscribe(role => {
+  constructor(
+    private customerService: CustomerService,
+    private swal: SweetAlertService,
+    private sharedService: SharedService
+  ) {
+    sharedService.userRole$.subscribe((role) => {
       this.userRole = role;
-    })
+    });
   }
 
-  ngOnInit(){
-
-    this.isLoading = true;
-    this.customerService.customer$.subscribe((data:any) => {
-      if (data.length) this.isLoading = false;
+  ngOnInit() {
+    // this.isLoading = true;
+    // if (data.length ) this.isLoading = false;
+    // if (data.length)
+    this.customerService.customer$.subscribe({
+      next:(data: any) => {
       this.customers = data;
+      
+      this.isLoading = this.customerService.isLoading
       this.filteredCustomers = [...this.customers];
+      },
+      
 
       // this.isLoading = false;
-      
-    //   setTimeout(() => {
-    //     $('#example').DataTable();
-    // }, 300);
-    })
 
+      //   setTimeout(() => {
+      //     $('#example').DataTable();
+      // }, 300);
+    });
   }
 
   handleSearch(keyword: string): void {
-    this.filteredCustomers = this.customers.filter(customer =>
-      customer.name.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
-      customer.email.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
-      customer.phone?.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
-      customer.address?.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
+    this.filteredCustomers = this.customers.filter(
+      (customer) =>
+        customer.name.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
+        customer.email.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
+        customer.phone?.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
+        customer.address?.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
     );
 
     this.page = 1; // Resetting pagination after filtering
   }
 
-  @ViewChild('editCustomer', { read: ViewContainerRef }) editCustomerContainer!: ViewContainerRef;
+  @ViewChild('editCustomer', { read: ViewContainerRef })
+  editCustomerContainer!: ViewContainerRef;
   private editCustomerComponentRef!: ComponentRef<EditCustomerComponent>;
 
-  @ViewChild('addCustomer', { read: ViewContainerRef }) addCusomerContainer!: ViewContainerRef;
+  @ViewChild('addCustomer', { read: ViewContainerRef })
+  addCusomerContainer!: ViewContainerRef;
   private addCustomerComponentRef!: ComponentRef<AddCustomerComponent>;
 
-  @ViewChild('viewCustomer', { read: ViewContainerRef }) viewCustomerContainer!: ViewContainerRef;
+  @ViewChild('viewCustomer', { read: ViewContainerRef })
+  viewCustomerContainer!: ViewContainerRef;
   private viewCustomerComponentRef!: ComponentRef<ViewCustomerComponent>;
 
-  showEditCustomer(customer: ICustomer,index:number) {
+  showEditCustomer(customer: ICustomer, index: number) {
     this.editCustomerContainer.clear(); // Clear previous instances if any
-  
-    this.selectedCustomer = {customer,index}; // Assign the selected customer
-  
-    // Dynamically create and inject the child component
-    this.editCustomerComponentRef = this.editCustomerContainer.createComponent(EditCustomerComponent);
-  
-    // Pass the selected customer data to the child component
-    this.editCustomerComponentRef.instance.customerData = this.selectedCustomer.customer; 
-    this.editCustomerComponentRef.instance.customerIndex = this.selectedCustomer.index; // `@Input()` in EditCustomerComponent
 
-  
-  
+    this.selectedCustomer = { customer, index }; // Assign the selected customer
+
+    // Dynamically create and inject the child component
+    this.editCustomerComponentRef = this.editCustomerContainer.createComponent(
+      EditCustomerComponent
+    );
+
+    // Pass the selected customer data to the child component
+    this.editCustomerComponentRef.instance.customerData =
+      this.selectedCustomer.customer;
+    this.editCustomerComponentRef.instance.customerIndex =
+      this.selectedCustomer.index; // `@Input()` in EditCustomerComponent
+
     // Make the dialog visible
     this.editCustomerComponentRef.instance.visible = true;
   }
 
-  showAddCustomer(){
+  showAddCustomer() {
     this.addCusomerContainer.clear();
-    this.addCustomerComponentRef = this.addCusomerContainer.createComponent(AddCustomerComponent);
+    this.addCustomerComponentRef =
+      this.addCusomerContainer.createComponent(AddCustomerComponent);
     this.addCustomerComponentRef.instance.visible = true;
-
   }
 
   showViewCustomer(customer: ICustomer) {
@@ -112,7 +130,9 @@ export class CustomerHomeComponent implements OnInit{
     this.selectedCustomer = customer; // Assign the selected customer
 
     // Dynamically create and inject the child component
-    this.viewCustomerComponentRef = this.viewCustomerContainer.createComponent(ViewCustomerComponent);
+    this.viewCustomerComponentRef = this.viewCustomerContainer.createComponent(
+      ViewCustomerComponent
+    );
 
     // Pass the selected customer data to the child component
     this.viewCustomerComponentRef.instance.customerData = this.selectedCustomer;
@@ -121,13 +141,11 @@ export class CustomerHomeComponent implements OnInit{
     this.viewCustomerComponentRef.instance.visible = true;
   }
 
-  deleteCustomer(index: number){
+  deleteCustomer(index: number) {
     this.customerService.deleteCustomer(index).subscribe(() => {
-      console.log("deleted");
+      console.log('deleted');
       // this.swal.showSuccess('Customer Deleted Successfully.')
-      this.swal.showToast('Customer Deleted Successfully.', 'success')
-      
+      this.swal.showToast('Customer Deleted Successfully.', 'success');
     });
   }
-  
 }

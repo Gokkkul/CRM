@@ -18,13 +18,17 @@ export class CustomerService {
     this.getcustomers();
   }
 
+  isLoading: boolean = true;
+
+
   getcustomers() {
-    this.http
+   return this.http
       .get<{
         result: ICustomer[];
       }>(this.apiUrl + '/get-customers')
       .subscribe((data) => {
         this.customers = data.result;
+        this.isLoading = false;
 
         this.customerSubject.next(this.customers);
       });

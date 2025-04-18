@@ -17,9 +17,10 @@ import {CookieService} from 'ngx-cookie-service';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { GlobalErrorHandler } from './global/errorHandler/errorHandler';
 import { ApiRouteInterceptor } from './global/interceptor/api-route.interceptor';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LandingPageComponent],
   imports: [
     BrowserModule,
     // DashboardModule,

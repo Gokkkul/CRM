@@ -3,37 +3,73 @@
 </div>
 
 <div class="container mt-5" *ngIf="!isLoading">
-    <div class="row text-center">
-      <!-- Total Customers -->
-      <div class="col-md-4">
-        <div routerLink="/customers" class="card border-primary hover-card" style="cursor: pointer;">
-          <div class="card-body">
-            <h5 class="card-title">Total Customers</h5>
-            <p id="total-customers" class="card-text display-4">{{totalValue?.totalCustomer}}</p>
-          </div>
+  <div class="row text-center">
+    <!-- Total Customers -->
+    <!-- <div class="col-md-4">
+      <div routerLink="/customers" class="card border-primary hover-card" style="cursor: pointer;">
+        <div class="card-body">
+          <h5 class="card-title">Total Customers</h5>
+          <p id="total-customers" class="card-text display-4">{{totalValue?.totalCustomer}}</p>
         </div>
       </div>
-  
-      <!-- Total Leads -->
-      <div class="col-md-4">
-        <div routerLink="/leads" class="card border-success hover-card" style="cursor: pointer;">
-          <div class="card-body">
-            <h5 class="card-title">Total Leads</h5>
-            <p id="total-leads" class="card-text display-4">{{totalValue?.totalLeads}}</p>
-          </div>
+    </div> -->
+
+    <!-- Total Leads -->
+    <!-- <div class="col-md-4">
+      <div routerLink="/leads" class="card border-success hover-card" style="cursor: pointer;">
+        <div class="card-body">
+          <h5 class="card-title">Total Leads</h5>
+          <p id="total-leads" class="card-text display-4">{{totalValue?.totalLeads}}</p>
         </div>
       </div>
-  
-      <!-- Total Sales Opportunity Value -->
-      <div class="col-md-4">
-        <div routerLink="/sales opportunity" class="card border-warning hover-card" style="cursor: pointer;">
-          <div class="card-body">
-            <h5 class="card-title">Total Sales Opportunity Value</h5>
-            <p id="total-sales-value" class="card-text display-4">{{totalValue?.totalSalesOppValue | currency: 'INR'}}</p>
+    </div> -->
+
+    <!-- Total Sales Opportunity Value -->
+    <!-- <div class="col-md-4">
+      <div routerLink="/sales opportunity" class="card border-warning hover-card" style="cursor: pointer;">
+        <div class="card-body">
+          <h5 class="card-title">Total Sales Opportunity Value</h5>
+          <p id="total-sales-value" class="card-text display-4">{{totalValue?.totalSalesOppValue | currency: 'INR'}}</p>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
+
+
+
+
+<div class="surface-ground px-4 py-5 md:px-6 lg:px-8" *ngIf="!isLoading">
+  <div class="grid">
+    <div class="col-12 lg:col-4 p-3 ">
+      <div routerLink="/customers" class="shadow-2 surface-card p-3 hover-card" style="border-radius: 12px; cursor: pointer ;">
+        <div class="flex align-items-center justify-content-between">
+          <div><span class="text-3xl text-900 font-bold">{{totalValue?.totalCustomer}}</span>
+            <p class="mt-1 mb-0 text-600 text-xl">Total Customers</p>
           </div>
+          <!-- <div><img src="assets/images/blocks/illustration/stats-illustration-4.svg"></div> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-12 lg:col-4 p-3">
+      <div routerLink="/customers" class="shadow-2 surface-card p-3 hover-card" style="border-radius: 12px; cursor: pointer;">
+        <div class="flex align-items-center justify-content-between">
+          <div><span class="text-3xl text-900 font-bold">{{totalValue?.totalLeads}}</span>
+            <p class="mt-1 mb-0 text-600 text-xl">Total Leads</p>
+          </div>
+          <!-- <div><img src="assets/images/blocks/illustration/stats-illustration-5.svg"></div> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-12 lg:col-4 p-3">
+      <div routerLink="/customers" class="shadow-2 surface-card p-3 hover-card" style="border-radius: 12px; cursor: pointer;">
+        <div class="flex align-items-center justify-content-between">
+          <div><span class="text-3xl text-900 font-bold">{{totalValue?.totalSalesOppValue | currency: 'INR'}}</span>
+            <p class="mt-1 mb-0 text-600 text-xl">Total Sales Opportunity Value</p>
+          </div>
+          <!-- <div><img src="assets/images/blocks/illustration/stats-illustration-6.svg"></div> -->
         </div>
       </div>
     </div>
   </div>
-  
-  
+</div>

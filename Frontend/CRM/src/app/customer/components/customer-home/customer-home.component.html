@@ -3,6 +3,13 @@
 </div>
 
 
+<div *ngIf="!customers || !customers.length">
+    <div *ngIf="!isLoading">
+        <h2>Record Not Found...!</h2>
+    </div>
+</div>
+
+
 <div class="" *ngIf="!isLoading">
     <h2>Customers</h2>
      <button class="btn btn-primary" (click)="showAddCustomer()">Add Customer<i class="bi bi-plus"></i></button>
@@ -20,6 +27,15 @@
           </tr>
         </thead>
         <tbody>
+            <!-- <ng-template #body let-product>
+                <tr>
+                    <td><p-skeleton /></td>
+                    <td><p-skeleton /></td>
+                    <td><p-skeleton /></td>
+                    <td><p-skeleton /></td>
+                    <td><p-skeleton /></td>
+                </tr>
+            </ng-template> -->
             <tr *ngFor="let customer of filteredCustomers | paginate: { itemsPerPage: pageSize, currentPage: page };  let i = index">
                 <td>{{ customer.name }}</td>
                 <td>{{ customer.email }}</td>

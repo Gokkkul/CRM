@@ -71,6 +71,7 @@ export class CustomerController {
     try {
       const result = await custService.getCustomer();
       res.status(200).json({result});
+      // res.status(200).json(result.length ? result : {msg:"no records found"});
     } catch (error) {
       res.status(500).json(`Message: ${error}`);
     }
