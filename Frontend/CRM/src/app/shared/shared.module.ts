@@ -90,7 +90,8 @@ const ngPrimeModule = [
     SearchBarComponent,
     ngPrimeModule,
     NgxPaginationModule,
-    ProgressSpinnerComponent
+    ProgressSpinnerComponent,
+    Skeleton
   ]
 })
 export class SharedModule { }

@@ -3,11 +3,7 @@
 </div>
 
 
-<div *ngIf="!customers || !customers.length">
-    <div *ngIf="!isLoading">
-        <h2>Record Not Found...!</h2>
-    </div>
-</div>
+
 
 
 <div class="" *ngIf="!isLoading">
@@ -27,15 +23,18 @@
           </tr>
         </thead>
         <tbody>
-            <!-- <ng-template #body let-product>
-                <tr>
+            <div *ngIf="!customers || !customers.length">
+                <div *ngIf="!isLoading">
+                    <td [ngStyle]="{'text-align': 'center'}">Record Not Found...!</td>
+                </div>
+            </div>
+                <!-- <tr *ngIf="isLoading">
                     <td><p-skeleton /></td>
                     <td><p-skeleton /></td>
                     <td><p-skeleton /></td>
                     <td><p-skeleton /></td>
                     <td><p-skeleton /></td>
-                </tr>
-            </ng-template> -->
+                </tr> -->
             <tr *ngFor="let customer of filteredCustomers | paginate: { itemsPerPage: pageSize, currentPage: page };  let i = index">
                 <td>{{ customer.name }}</td>
                 <td>{{ customer.email }}</td>

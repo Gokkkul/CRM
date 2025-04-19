@@ -41,6 +41,7 @@ export class SharedService {
       const userRole = user.role;
 
       this.userRole.next(userRole);
+      
     });
   }
 }
