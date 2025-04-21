@@ -7,9 +7,12 @@ import { BehaviorSubject, interval } from 'rxjs';
 })
 export class SharedService {
   constructor(private cookieService: CookieService) {
-    this.monitorUserId();
-    this.monitorUserRole();
+    // this.monitorUserId();
+    // this.monitorUserRole();
+    this.getUserId();
+    this.getUserRole()
   }
+
 
   private userRole = new BehaviorSubject<string>('user');
   userRole$ = this.userRole.asObservable();
@@ -19,7 +22,7 @@ export class SharedService {
 
   getIdFromUser() {
     const userData = this.cookieService.get('userData');
-    // console.log("Shared service",userData);  
+    console.log("Shared service",userData);  
     if (!userData) {
       return 0;
     }
@@ -27,21 +30,38 @@ export class SharedService {
     return JSON.parse(userData);
   }
 
-  monitorUserId() {
-    interval(300).subscribe(() => {
-      const user = this.getIdFromUser();
-      const userId = user.id;
-
-      this.userId.next(userId);
-    });
+  setUserIdUserRole(){
+    this.getUserId();
+    this.getUserRole();
   }
-  monitorUserRole() {
-    interval(300).subscribe(() => {
-      const user = this.getIdFromUser();
-      const userRole = user.role;
 
-      this.userRole.next(userRole);
+  getUserId(){
+    const user = this.getIdFromUser();
+    const userId = user.id;
+    this.userId.next(userId);
+  }
+
+  getUserRole(){
+    const user = this.getIdFromUser();
+    const userRole = user.role;
+    this.userRole.next(userRole)
+  }
+
+  // monitorUserId() {
+  //   interval(300).subscribe(() => {
+  //     const user = this.getIdFromUser();
+  //     const userId = user.id;
+
+  //     this.userId.next(userId);
+  //   });
+  // }
+  // monitorUserRole() {
+  //   interval(300).subscribe(() => {
+  //     const user = this.getIdFromUser();
+  //     const userRole = user.role;
+
+  //     this.userRole.next(userRole);
       
-    });
-  }
+  //   });
+  // }
 }

@@ -74,7 +74,7 @@ export class UserService {
         if (response.result.token) {
           this.cookieService.set('userData', JSON.stringify(response.result));
           // console.log(this.cookieService.get('userData'));
-          
+          this.sharedService.setUserIdUserRole();
           this.swal.showToast('Login Successful', 'success')
           this.router.navigate(['/dashboard']); // Redirect user
         } else {
@@ -89,6 +89,7 @@ export class UserService {
 
 logout(){
   this.cookieService.delete('userData');
+  this.sharedService.setUserIdUserRole();
   this.router.navigate(['/login']);
 }
 

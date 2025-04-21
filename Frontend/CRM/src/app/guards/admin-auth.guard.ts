@@ -15,7 +15,7 @@ export class AdminAuthGuard implements CanActivate{
     this.sharedService.userRole$.subscribe(
     role => {
       this.role = role
-      // console.log(role)
+      console.log(role)
     }
     
   )}

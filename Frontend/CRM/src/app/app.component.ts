@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from './user/services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SharedService } from './shared/services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
 
   isLoggedIn = false;
 
-  constructor(private userService: UserService, private cookieService: CookieService, private sharedService: SharedService){
+  constructor(private userService: UserService, private cookieService: CookieService, private sharedService: SharedService, private router: Router){
     this.checkLogin()
   }
 
@@ -22,9 +23,22 @@ export class AppComponent {
    
   }
 
+  
+  
+
+  
+  // currentRouter = () => {
+  //   if(((this.router.url) === '/') || ((this.router.url) === '/login')){
+  //     return false;
+  //   }
+  //   else{
+  //     return true;
+  //   }
+  // }
+
   checkLogin(){
     this.sharedService.userId$.subscribe((id) => {
-      // console.log("lavanya",id);
+      // console.log("gg",id);
       
       if(id && id !=0){
         this.isLoggedIn = true;

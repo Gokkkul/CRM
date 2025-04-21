@@ -18,6 +18,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { GlobalErrorHandler } from './global/errorHandler/errorHandler';
 import { ApiRouteInterceptor } from './global/interceptor/api-route.interceptor';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import {HighchartsChartModule} from 'highcharts-angular'
 
 @NgModule({
   declarations: [AppComponent, LandingPageComponent],
@@ -40,6 +41,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
       extendedTimeOut: 1000, // Extra time after mouse hover
       enableHtml: true, // Enable HTML in toast messages
     }),
+    HighchartsChartModule,
   ],
   providers: [
     CookieService,
