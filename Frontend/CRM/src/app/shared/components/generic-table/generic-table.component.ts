@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-generic-table',
@@ -13,11 +13,11 @@ export class GenericTableComponent {
   @Input() data: any[] = [];
   // @Input() isLoading: boolean;
   @Input() userRole: string = 'user';
-
+  @Output() viewItemEvent= new EventEmitter<any>()
   
 
   filteredData: any[] = [];
-  pageSize: number = 10;
+  pageSize: number = 5;
   page: number = 1;
   isLoading: boolean = true;
 
@@ -47,6 +47,7 @@ export class GenericTableComponent {
   }
 
   viewItem(item: any) {
-    console.log('View item:', item);
+    this.viewItemEvent.emit(item)
+    // console.log('View item:', item);
   }
 }

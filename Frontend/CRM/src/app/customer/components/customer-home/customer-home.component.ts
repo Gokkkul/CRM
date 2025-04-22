@@ -41,6 +41,8 @@ export class CustomerHomeComponent implements OnInit {
   pageSize: number = 5;
   isLoading: boolean = true;
 
+  columnLabels = ['Company Name', 'Email', 'Phone', 'Address', 'Options']
+
   constructor(
     private customerService: CustomerService,
     private swal: SweetAlertService,
@@ -52,9 +54,6 @@ export class CustomerHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.isLoading = true;
-    // if (data.length ) this.isLoading = false;
-    // if (data.length)
     this.customerService.customer$.subscribe({
       next:(data: any) => {
       this.customers = data;
@@ -62,13 +61,6 @@ export class CustomerHomeComponent implements OnInit {
       this.isLoading = this.customerService.isLoading
       this.filteredCustomers = [...this.customers];
       },
-      
-
-      // this.isLoading = false;
-
-      //   setTimeout(() => {
-      //     $('#example').DataTable();
-      // }, 300);
     });
   }
 
@@ -140,11 +132,20 @@ export class CustomerHomeComponent implements OnInit {
     this.viewCustomerComponentRef.instance.visible = true;
   }
 
-  deleteCustomer(index: number) {
-    this.customerService.deleteCustomer(index).subscribe(() => {
-      console.log('deleted');
-      // this.swal.showSuccess('Customer Deleted Successfully.')
-      this.swal.showToast('Customer Deleted Successfully.', 'success');
-    });
+  deleteCustomer(customerId:number) {
+    this.swal.showConfirmation('You want to delete this customer').then((result) => {
+      if(result.isConfirmed){
+        const index = this.filteredCustomers.findIndex(element => element.id === customerId);
+
+        console.log("this is customer home component",this.filteredCustomers[index]);
+        
+        this.customerService.deleteCustomer(index).subscribe(() => {
+          console.log('deleted');
+          // this.swal.showSuccess('Customer Deleted Successfully.')
+          this.swal.showToast('Customer Deleted Successfully.', 'success');
+        });
+      }
+    })
+    
   }
 }

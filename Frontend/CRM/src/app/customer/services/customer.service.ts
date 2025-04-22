@@ -69,7 +69,7 @@ export class CustomerService {
       },
 
       error: (err) => {
-        this.swal.showToast('Lead Added to Customer...!', 'success');
+        this.swal.showToast('Failed to add customer...!', 'error');
       },
     });
   }
