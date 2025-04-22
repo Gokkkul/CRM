@@ -4,12 +4,21 @@
 </div>
 
 <div *ngIf="!isLoading">
-   <app-get-sales-opportunities-by-customer></app-get-sales-opportunities-by-customer>
-   <!-- <app-get-sales-opportunities-by-stage></app-get-sales-opportunities-by-stage> -->
+   <div>
+      <app-get-sales-opportunities-by-customer></app-get-sales-opportunities-by-customer>
+   </div>
+   <div class="row">
+      <div class="col-6">
+         <app-get-sales-opportunities-by-stage></app-get-sales-opportunities-by-stage>
+      </div>
+
+      <div class="col-6">
+         <app-get-leads-by-status></app-get-leads-by-status>
+      </div>
+   </div>
 </div>
 
 
- <!-- <div class="container">
+<!-- <div class="container">
     <p-chart type="bar" [data]="data" [options]="options"  />
  </div> -->
- 

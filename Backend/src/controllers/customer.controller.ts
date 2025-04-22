@@ -30,8 +30,11 @@ export class CustomerController {
   updateCustomer = async (req: Request, res: Response) => {
     try {
       const id = Number(req.params.id);
-      const customer = req.body;
-      const result = await custService.updateCustomer(id, customer) as UpdateResult;
+      let customer = req.body;
+      const { createdAt, updatedAt, ...newCustomer } = customer;
+      console.log(newCustomer);
+      
+      const result = await custService.updateCustomer(id, newCustomer) as UpdateResult;
 
       if(!result.affected){
         res.status(501).json({

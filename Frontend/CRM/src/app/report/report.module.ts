@@ -6,6 +6,7 @@ import { ReportHomeComponent } from './components/report-home/report-home.compon
 import { SharedModule } from '../shared/shared.module';
 import { GetSalesOpportunitiesByCustomerComponent } from './components/get-sales-opportunities-by-customer/get-sales-opportunities-by-customer.component';
 import { GetSalesOpportunitiesByStageComponent } from './components/get-sales-opportunities-by-stage/get-sales-opportunities-by-stage.component';
+import { GetLeadsByStatusComponent } from './components/get-leads-by-status/get-leads-by-status.component';
 
 
 
@@ -14,6 +15,7 @@ import { GetSalesOpportunitiesByStageComponent } from './components/get-sales-op
     ReportHomeComponent,
     GetSalesOpportunitiesByCustomerComponent,
     GetSalesOpportunitiesByStageComponent,
+    GetLeadsByStatusComponent,
   ],
   imports: [
     CommonModule,

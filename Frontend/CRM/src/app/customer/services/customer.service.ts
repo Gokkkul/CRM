@@ -45,6 +45,7 @@ export class CustomerService {
     this.customers[index].email = data.email;
     this.customers[index].name = data.name;
     this.customers[index].phone = data.phone;
+    this.customers[index].updatedAt = new Date();
     this.customerSubject.next(this.customers);
 
     console.log('This is from customer service:', this.customers[index]);
@@ -73,14 +74,5 @@ export class CustomerService {
     });
   }
 
-
-  // filterCustomers(keyword: string): any[] {
-  //   return this.customers.filter(customer =>
-  //     customer.name.toLowerCase().includes(keyword.toLowerCase()) 
-  //     // customer.address?.toLowerCase().includes(keyword.toLowerCase()) ||
-  //     // customer.address?.toLowerCase().includes(keyword.toLowerCase()) ||
-  //     // customer.address?.toLowerCase().includes(keyword.toLowerCase()) ||
-  //   );
-  // }
 
 }

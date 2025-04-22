@@ -39,5 +39,14 @@ export class leadService {
             return `Error: ${error}`;
         }
     }
+
+    async getLeadsByStatus(){
+        try {
+            const result = await leadRepo.getLeadsCountByStatus();
+            return result;
+        } catch (error) {
+            return `Error: ${error}`;
+        }
+    }
     
 }

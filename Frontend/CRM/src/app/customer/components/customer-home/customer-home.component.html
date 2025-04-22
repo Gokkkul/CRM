@@ -28,20 +28,12 @@
                     <td [ngStyle]="{'text-align': 'center'}">Record Not Found...!</td>
                 </div>
             </div>
-                <!-- <tr *ngIf="isLoading">
-                    <td><p-skeleton /></td>
-                    <td><p-skeleton /></td>
-                    <td><p-skeleton /></td>
-                    <td><p-skeleton /></td>
-                    <td><p-skeleton /></td>
-                </tr> -->
+
             <tr *ngFor="let customer of filteredCustomers | paginate: { itemsPerPage: pageSize, currentPage: page };  let i = index">
                 <td>{{ customer.name }}</td>
                 <td>{{ customer.email }}</td>
                 <td>{{ customer.phone }}</td>
                 <td>{{ customer.address }}</td>
-                <!-- <td>{{ customer.createdAt | date:'medium' }}</td>
-                <td>{{ customer.updatedAt | date:'medium' }}</td> -->
                 <td>
                     <button (click)="showEditCustomer(customer,i)" class="btn btn-primary btn-sm m-1">
                         <i class="bi bi-pencil"></i>
@@ -61,6 +53,13 @@
         <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
 </div>
+
+
+<!-- <app-generic-table
+[title]="'Customers'" 
+[addButtonLabel]="'Add Customer'"
+[displayedColumns]=""
+></app-generic-table>
 <div #editCustomer></div>
 <div #addCustomer></div>
-<div #viewCustomer></div>
+<div #viewCustomer></div> -->

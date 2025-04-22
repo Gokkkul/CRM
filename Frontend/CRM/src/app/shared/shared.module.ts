@@ -91,7 +91,8 @@ const ngPrimeModule = [
     ngPrimeModule,
     NgxPaginationModule,
     ProgressSpinnerComponent,
-    Skeleton
+    Skeleton,
+    GenericTableComponent
   ]
 })
 export class SharedModule { }

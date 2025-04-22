@@ -100,7 +100,7 @@ export class GetSalesOpportunitiesByCustomerComponent implements AfterViewInit {
       };
 
       // Initialize Highcharts
-      Highcharts.chart('container', this.chartOptions);
+      Highcharts.chart('getsalesOpportunityByCustomer', this.chartOptions);
     });
   }
 }

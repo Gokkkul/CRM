@@ -14,6 +14,9 @@ export class LeadService {
   private leadSubject = new BehaviorSubject<ILead[]>(this.leads);
   lead$ = this.leadSubject.asObservable();
 
+    private getLeadsByStatusSubject = new BehaviorSubject<any>([]);
+    getLeadsByStatus$ = this.getLeadsByStatusSubject.asObservable();
+
   constructor(private http: HttpClient) {
     this.getLeads();
   }
@@ -57,7 +60,12 @@ export class LeadService {
     return this.http.delete(this.apiUrl + `/delete-lead/${id}`); // Send delete request to API
   }
 
-  addToCustomer(){
-    
+
+  getLeadsByStatus(){
+    this.http
+    .get(this.apiUrl + `/get-leads-by-status`)
+    .subscribe((data) => {
+      this.getLeadsByStatusSubject.next(data);
+    });
   }
 }

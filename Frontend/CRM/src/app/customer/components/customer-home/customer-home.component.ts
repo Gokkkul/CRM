@@ -21,8 +21,8 @@ export interface ICustomer {
   phone?: string;
   address?: string;
   company?: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 @Component({
@@ -33,7 +33,6 @@ export interface ICustomer {
 })
 export class CustomerHomeComponent implements OnInit {
   visible = false;
-
   customers: ICustomer[] = [];
   selectedCustomer: any;
   userRole = 'employee';

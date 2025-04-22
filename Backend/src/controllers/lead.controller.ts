@@ -67,4 +67,13 @@ export class LeadController {
       res.status(500).json(`Message: ${error}`);
     }
   };
+
+  getLeadsByStatus = async(req: Request, res: Response) => {
+    try {
+      const result = await leadSvc.getLeadsByStatus();
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(500).json(`Message: ${error}`);
+    }
+  }
 }
