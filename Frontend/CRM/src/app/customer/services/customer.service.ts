@@ -31,7 +31,11 @@ export class CustomerService {
         this.isLoading = false;
 
         this.customerSubject.next(this.customers);
-      });
+      }, (error) => {
+        console.log(error);
+        
+      }
+    );
   }
 
   addCustomer(data: any) {

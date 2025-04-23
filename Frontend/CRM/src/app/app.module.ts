@@ -45,7 +45,7 @@ import {HighchartsChartModule} from 'highcharts-angular'
   ],
   providers: [
     CookieService,
-    // { provide: ErrorHandler, useClass: GlobalErrorHandler }, // Error Handler
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }, // Error Handler
     { provide: HTTP_INTERCEPTORS, useClass: ApiRouteInterceptor, multi: true }, // http interceptor
     provideAnimationsAsync(),
     providePrimeNG({

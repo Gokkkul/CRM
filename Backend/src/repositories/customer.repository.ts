@@ -98,7 +98,7 @@ export class CustomerRepository {
 
    
   async getTotalCustomers(){
-    const result = await this.appDataSource.count();
+    const result = await this.appDataSource.count({where: {isDeleted : 0}});
     return result;
   }
 }

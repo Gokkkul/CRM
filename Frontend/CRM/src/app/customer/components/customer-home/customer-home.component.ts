@@ -137,7 +137,7 @@ export class CustomerHomeComponent implements OnInit {
       if(result.isConfirmed){
         const index = this.filteredCustomers.findIndex(element => element.id === customerId);
 
-        console.log("this is customer home component",this.filteredCustomers[index]);
+        // console.log("this is customer home component",this.filteredCustomers[index]);
         
         this.customerService.deleteCustomer(index).subscribe(() => {
           console.log('deleted');

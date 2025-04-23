@@ -33,17 +33,16 @@ export class EmailLogHomeComponent {
   sendEmailContainer!: ViewContainerRef;
   private sendEmailComponentRef!: ComponentRef<SendEmailComponent>;
 
-
-  userRole = 'employee'
+  userRole = 'employee';
 
   constructor(
     private emailService: EmailLogService,
     private swal: SweetAlertService,
     private sharedService: SharedService
   ) {
-    sharedService.userRole$.subscribe(role => {
+    sharedService.userRole$.subscribe((role) => {
       this.userRole = role;
-    })
+    });
   }
 
   ngOnInit() {
@@ -51,9 +50,7 @@ export class EmailLogHomeComponent {
     this.emailService.emailLogs$.subscribe((data: any) => {
       if (data.length) this.isLoading = false;
       this.emailLogs = data;
-      this.filteredEmailLogs = [...this.emailLogs]
-
-      
+      this.filteredEmailLogs = [...this.emailLogs];
 
       // setTimeout(() => {
       //   $('#example').DataTable();
@@ -62,15 +59,14 @@ export class EmailLogHomeComponent {
   }
 
   handleSearch(keyword: string): void {
-    this.filteredEmailLogs = this.emailLogs.filter(emailLog =>
-      emailLog.emailSubject.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
-      emailLog.recipient.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
-      emailLog.emailBody.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
-      emailLog.sentAt?.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
+    this.filteredEmailLogs = this.emailLogs.filter(
+      (emailLog) =>
+        emailLog.emailSubject.toLowerCase().includes(keyword.toLowerCase()) || // Search by name
+        emailLog.recipient.toLowerCase().includes(keyword.toLowerCase()) || // Search by email
+        emailLog.emailBody.toLowerCase().includes(keyword.toLowerCase()) || // Search by phone (optional)
+        emailLog.sentAt?.toLowerCase().includes(keyword.toLowerCase()) // Search by address (optional)
     );
   }
-
-  
 
   showSendEmail() {
     // Logic to trigger the email sending process
@@ -80,12 +76,11 @@ export class EmailLogHomeComponent {
     //   'info'
     // );
 
-    this.sendEmailContainer.clear()
+    this.sendEmailContainer.clear();
     this.sendEmailComponentRef =
       this.sendEmailContainer.createComponent(SendEmailComponent);
     this.sendEmailComponentRef.instance.visible = true;
     // console.log('sent...');
-    
   }
 
   showViewEmailLog(emailLog: IEmail) {
@@ -105,9 +100,13 @@ export class EmailLogHomeComponent {
   }
 
   deleteEmailLog(index: number) {
-    this.emailService.deleteEmailLog(index).subscribe(() => {
-      console.log('Deleted email log');
-      this.swal.showToast('Email log deleted successfully.', 'success');
-    });
+    this.swal
+      .showConfirmation('You want to delete this customer')
+      .then((result) => {
+        this.emailService.deleteEmailLog(index).subscribe(() => {
+          console.log('Deleted email log');
+          this.swal.showToast('Email log deleted successfully.', 'success');
+        });
+      });
   }
 }

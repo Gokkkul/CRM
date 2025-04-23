@@ -6,7 +6,7 @@
 <div class="" *ngIf="!isLoading">
     <h2>Leads</h2>
     <button class="btn btn-primary m-2" (click)="showAddLead()">Add Lead<i class="bi bi-plus"></i></button>
-    <button *ngIf ="userRole == 'Admin'" class="btn btn-warning m-2" (click)="addToCustomer()">Add to Customer</button>
+    <button *ngIf ="userRole == 'admin'" class="btn btn-warning m-2" (click)="addToCustomer()">Add to Customer</button>
     <hr>
     <app-search-bar (search)="handleSearch($event)"></app-search-bar>
     <table id="example" class="table table-striped">
@@ -52,6 +52,6 @@
         <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
 </div>
-<div #editLead></div>
-<div #addLead></div>
-<div #viewLead></div>
+<ng-template #editLead></ng-template>
+<ng-template #addLead></ng-template>
+<ng-template #viewLead></ng-template>
